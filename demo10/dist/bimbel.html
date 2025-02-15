@@ -1408,7 +1408,6 @@
 
     // Ganti dengan URL Web App Apps Script Anda (hasil Deploy)
     const scriptURL = "https://script.google.com/macros/s/AKfycbw1xfwhUR5oZSHtv_qD7zlvb92KFOPpihiPFch0CQohxN12UvPII0wfZZLK4hemnRMq/exec";
-	
 
     // Ambil semua data form
     const timestamp = document.getElementById("timestamp_reg").value;
@@ -1447,10 +1446,9 @@
     try {
       // Kirim data ke Apps Script
       const response = await fetch(scriptURL, {
-  method: 'POST',
-  body: formData,
-  mode: 'no-cors'
-});
+        method: "POST",
+        body: formData,
+      });
       console.log("HTTP status:", response.status);
 
       if (!response.ok) {
