@@ -114,7 +114,7 @@
 				opacity: 0;
 			}
 
-		
+
 		}
 	</style>
 	<script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
@@ -202,8 +202,7 @@
 							<!--end::Menu wrapper-->
 							<!--begin::Toolbar-->
 							<div class="flex-equal text-end ms-1">
-								<a href="#bimbel"
-									class="btn btn-success">Sign In</a>
+								<a href="#bimbel" class="btn btn-success">Sign In</a>
 							</div>
 							<!--end::Toolbar-->
 						</div>
@@ -214,12 +213,14 @@
 				<!--end::Header-->
 				<!--begin::Landing hero-->
 				<!-- Mulai ganti isi typed-container -->
-<div class="typed-container text-center mb-5 mb-lg-10 py-10 py-lg-20 position-relative" style="overflow: hidden;">
-  <!-- Vanta Birds akan ditempatkan di elemen ini -->
-  <div id="vanta" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></div>
+				<div class="typed-container text-center mb-5 mb-lg-10 py-10 py-lg-20 position-relative"
+					style="overflow: hidden;">
+					<!-- Vanta Birds akan ditempatkan di elemen ini -->
+					<div id="vanta" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
+					</div>
 
-  <!-- Konten Countdown -->
-  <div class="container position-relative" style="
+					<!-- Konten Countdown -->
+					<div class="container position-relative" style="
     z-index: 1; 
     max-width: 600px; 
     background: rgba(255, 255, 255, 0.1); 
@@ -229,8 +230,8 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     padding: 2rem;
   ">
-    <!-- Efek Moon -->
-    <div class="moon" style="
+						<!-- Efek Moon -->
+						<div class="moon" style="
       position: absolute;
       top: -50px;
       right: -50px;
@@ -242,7 +243,7 @@
       animation: glow 2s ease-in-out infinite;
     "></div>
 
-    <h1 class="title" style="
+						<h1 class="title" style="
       color: #fff;
       font-size: 2.5rem;
       margin-bottom: 2rem;
@@ -250,13 +251,13 @@
       position: relative;
       font-family: 'Poppins', sans-serif;
     ">
-      Ramadan Countdown
-    </h1>
+							Ramadan Countdown
+						</h1>
 
-    <!-- Grid countdown -->
-    <div class="countdown d-grid gap-3 mb-3" style="grid-template-columns: repeat(4, 1fr);">
-      <!-- Days -->
-      <div class="countdown-item" style="
+						<!-- Grid countdown -->
+						<div class="countdown d-grid gap-3 mb-3" style="grid-template-columns: repeat(4, 1fr);">
+							<!-- Days -->
+							<div class="countdown-item" style="
         background: rgba(255, 255, 255, 0.15);
         padding: 1rem;
         border-radius: 10px;
@@ -264,11 +265,12 @@
         position: relative;
         overflow: hidden;
       ">
-        <div class="number" id="days" style="font-size: 3rem; font-weight: 600; margin-bottom: 0.5rem;">00</div>
-        <div class="label" style="font-size: 0.9rem; opacity: 0.8;">Days</div>
-      </div>
-      <!-- Hours -->
-      <div class="countdown-item" style="
+								<div class="number" id="days"
+									style="font-size: 3rem; font-weight: 600; margin-bottom: 0.5rem;">00</div>
+								<div class="label" style="font-size: 0.9rem; opacity: 0.8;">Days</div>
+							</div>
+							<!-- Hours -->
+							<div class="countdown-item" style="
         background: rgba(255, 255, 255, 0.15);
         padding: 1rem;
         border-radius: 10px;
@@ -276,11 +278,12 @@
         position: relative;
         overflow: hidden;
       ">
-        <div class="number" id="hours" style="font-size: 3rem; font-weight: 600; margin-bottom: 0.5rem;">00</div>
-        <div class="label" style="font-size: 0.9rem; opacity: 0.8;">Hours</div>
-      </div>
-      <!-- Minutes -->
-      <div class="countdown-item" style="
+								<div class="number" id="hours"
+									style="font-size: 3rem; font-weight: 600; margin-bottom: 0.5rem;">00</div>
+								<div class="label" style="font-size: 0.9rem; opacity: 0.8;">Hours</div>
+							</div>
+							<!-- Minutes -->
+							<div class="countdown-item" style="
         background: rgba(255, 255, 255, 0.15);
         padding: 1rem;
         border-radius: 10px;
@@ -288,11 +291,12 @@
         position: relative;
         overflow: hidden;
       ">
-        <div class="number" id="minutes" style="font-size: 3rem; font-weight: 600; margin-bottom: 0.5rem;">00</div>
-        <div class="label" style="font-size: 0.9rem; opacity: 0.8;">Minutes</div>
-      </div>
-      <!-- Seconds -->
-      <div class="countdown-item" style="
+								<div class="number" id="minutes"
+									style="font-size: 3rem; font-weight: 600; margin-bottom: 0.5rem;">00</div>
+								<div class="label" style="font-size: 0.9rem; opacity: 0.8;">Minutes</div>
+							</div>
+							<!-- Seconds -->
+							<div class="countdown-item" style="
         background: rgba(255, 255, 255, 0.15);
         padding: 1rem;
         border-radius: 10px;
@@ -300,69 +304,70 @@
         position: relative;
         overflow: hidden;
       ">
-        <div class="number" id="seconds" style="font-size: 3rem; font-weight: 600; margin-bottom: 0.5rem;">00</div>
-        <div class="label" style="font-size: 0.9rem; opacity: 0.8;">Seconds</div>
-      </div>
-    </div>
+								<div class="number" id="seconds"
+									style="font-size: 3rem; font-weight: 600; margin-bottom: 0.5rem;">00</div>
+								<div class="label" style="font-size: 0.9rem; opacity: 0.8;">Seconds</div>
+							</div>
+						</div>
 
-    <!-- Pesan setelah countdown -->
-    <div class="message" style="color: #fff; font-size: 1.1rem;">
-      Ramadan akan tiba, insyaAllah 28 Februari 2025 🌙 ✨<br>
-		emg ramadhan nanti mau ngapain? skuyy isi dengan bimbel?!
-    </div>
-  </div>
-</div>
-<!--end::typed-container-->
+						<!-- Pesan setelah countdown -->
+						<div class="message" style="color: #fff; font-size: 1.1rem;">
+							Ramadan akan tiba, insyaAllah 28 Februari 2025 🌙 ✨<br>
+							emg ramadhan nanti mau ngapain? skuyy isi dengan bimbel?!
+						</div>
+					</div>
+				</div>
+				<!--end::typed-container-->
 
-<!-- Pastikan load Three.js dan Vanta Birds sebelum inisialisasi -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
+				<!-- Pastikan load Three.js dan Vanta Birds sebelum inisialisasi -->
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
 
-<script>
-  // Inisialisasi efek Vanta Birds
-  VANTA.BIRDS({
-    el: "#vanta",
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200.00,
-    minWidth: 200.00,
-    scale: 1.00,
-    scaleMobile: 1.00,
-    wingSpan: 40.00,
-    speedLimit: 8.00,
-    separation: 100.00,
-    alignment: 43.00,
-    quantity: 4.00,
-    backgroundAlpha: 0.0
-  });
+				<script>
+					// Inisialisasi efek Vanta Birds
+					VANTA.BIRDS({
+						el: "#vanta",
+						mouseControls: true,
+						touchControls: true,
+						gyroControls: false,
+						minHeight: 200.00,
+						minWidth: 200.00,
+						scale: 1.00,
+						scaleMobile: 1.00,
+						wingSpan: 40.00,
+						speedLimit: 8.00,
+						separation: 100.00,
+						alignment: 43.00,
+						quantity: 4.00,
+						backgroundAlpha: 0.0
+					});
 
-  // Fungsi Update Countdown
-  function updateCountdown() {
-    const ramadanDate = new Date('March 1, 2025 00:00:00').getTime();
-    const now = new Date().getTime();
-    const distance = ramadanDate - now;
+					// Fungsi Update Countdown
+					function updateCountdown() {
+						const ramadanDate = new Date('March 1, 2025 00:00:00').getTime();
+						const now = new Date().getTime();
+						const distance = ramadanDate - now;
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+						const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+						const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+						const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+						const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    document.getElementById('days').textContent = String(days).padStart(2, '0');
-    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+						document.getElementById('days').textContent = String(days).padStart(2, '0');
+						document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+						document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+						document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
 
-    if (distance < 0) {
-      clearInterval(countdownInterval);
-      document.querySelector('.message').textContent = 'Ramadan Mubarak! 🌙';
-    }
-  }
+						if (distance < 0) {
+							clearInterval(countdownInterval);
+							document.querySelector('.message').textContent = 'Ramadan Mubarak! 🌙';
+						}
+					}
 
-  // Panggil fungsi setiap detik
-  const countdownInterval = setInterval(updateCountdown, 1000);
-  updateCountdown();
-</script>
+					// Panggil fungsi setiap detik
+					const countdownInterval = setInterval(updateCountdown, 1000);
+					updateCountdown();
+				</script>
 
 				<!--end::Landing hero-->
 			</div>
@@ -399,93 +404,99 @@
 					<div class="row g-6 g-xl-9">
 						<!-- Project Card 1 -->
 						<div class="col-md-6 col-xxl-4">
-  <div class="card project-card">
-    <!-- Clickable image that opens in lightbox -->
-    <a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/portoNovka.jpeg">
-      <!-- Image -->
-      <img src="assets/media/stock/600x600/portoNovka.jpeg" class="card-img-top img-fluid object-fit-cover" alt="Project 1">
-      <!-- Overlay action icon -->
-      <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-        <i class="ki-duotone ki-eye fs-3x text-white">
-          <span class="path1"></span>
-          <span class="path2"></span>
-          <span class="path3"></span>
-        </i>
-      </div>
-    </a>
-    <!-- Card Body -->
-    <div class="card-body rounded-lg rounded-bottom-0">
-      <div class="mb-5">
-        <div class="symbol symbol-75px symbol-circle">
-          <img alt="Avatar" src="assets/media/avatars/novka.jpeg" />
-        </div>
-      </div>
-      <h5 class="card-title">Web Statis: Planet-Planet in Space</h5>
-      <p class="card-text">By: Novka Wadiansah - Graduate, Class of 2023</p>
-      <div class="tech-stack">
-        <span class="badge bg-primary">CSS Native</span>
-      </div>
-    </div>
-  </div>
-</div>
+							<div class="card project-card">
+								<!-- Clickable image that opens in lightbox -->
+								<a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects"
+									href="assets/media/stock/600x600/portoNovka.jpeg">
+									<!-- Image -->
+									<img src="assets/media/stock/600x600/portoNovka.jpeg"
+										class="card-img-top img-fluid object-fit-cover" alt="Project 1">
+									<!-- Overlay action icon -->
+									<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+										<i class="ki-duotone ki-eye fs-3x text-white">
+											<span class="path1"></span>
+											<span class="path2"></span>
+											<span class="path3"></span>
+										</i>
+									</div>
+								</a>
+								<!-- Card Body -->
+								<div class="card-body rounded-lg rounded-bottom-0">
+									<div class="mb-5">
+										<div class="symbol symbol-75px symbol-circle">
+											<img alt="Avatar" src="assets/media/avatars/novka.jpeg" />
+										</div>
+									</div>
+									<h5 class="card-title">Web Statis: Planet-Planet in Space</h5>
+									<p class="card-text">By: Novka Wadiansah - Graduate, Class of 2023</p>
+									<div class="tech-stack">
+										<span class="badge bg-primary">CSS Native</span>
+									</div>
+								</div>
+							</div>
+						</div>
 
-<div class="col-md-6 col-xxl-4">
-  <div class="card project-card">
-    <!-- Clickable image that opens in lightbox -->
-    <a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/portoAish.jpeg">
-      <img src="assets/media/stock/600x600/portoAish.jpeg" class="card-img-top img-fluid object-fit-cover" alt="Project 2" >
-      <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-        <i class="ki-duotone ki-eye fs-3x text-white">
-          <span class="path1"></span>
-          <span class="path2"></span>
-          <span class="path3"></span>
-        </i>
-      </div>
-    </a>
-    <!-- Card Body -->
-    <div class="card-body rounded-lg rounded-bottom-0">
-      <div class="mb-5">
-        <div class="symbol symbol-75px symbol-circle">
-          <img alt="Avatar" src="assets/media/avatars/aish.jpeg" />
-        </div>
-      </div>
-      <h5 class="card-title">Aplikasi Tebak Angka</h5>
-      <p class="card-text">By: Aisha Hannah Heriawan - Graduate, Class of 2024</p>
-      <div class="tech-stack">
-        <span class="badge bg-danger">Python</span>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="col-md-6 col-xxl-4">
-  <div class="card project-card">
-    <!-- Clickable image that opens in lightbox -->
-    <a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/portoReza.jpeg">
-      <img src="assets/media/stock/600x600/portoReza.jpeg" class="card-img-top img-fluid object-fit-cover" alt="Project 3">
-      <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-        <i class="ki-duotone ki-eye fs-3x text-white">
-          <span class="path1"></span>
-          <span class="path2"></span>
-          <span class="path3"></span>
-        </i>
-      </div>
-    </a>
-    <!-- Card Body -->
-    <div class="card-body rounded-lg rounded-bottom-0">
-      <div class="mb-5">
-        <div class="symbol symbol-75px symbol-circle">
-          <img alt="Avatar" src="assets/media/avatars/reza.jpeg" />
-        </div>
-      </div>
-      <h5 class="card-title">Aplikasi BMI Berbasis Web dengan Framework Flask</h5>
-      <p class="card-text">By: Andi Reza - Graduate, Class of 2024</p>
-      <div class="tech-stack">
-        <span class="badge bg-info">Flask</span>
-        <span class="badge bg-warning">MySQL</span>
-      </div>
-    </div>
-  </div>
-</div>
+						<div class="col-md-6 col-xxl-4">
+							<div class="card project-card">
+								<!-- Clickable image that opens in lightbox -->
+								<a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects"
+									href="assets/media/stock/600x600/portoAish.jpeg">
+									<img src="assets/media/stock/600x600/portoAish.jpeg"
+										class="card-img-top img-fluid object-fit-cover" alt="Project 2">
+									<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+										<i class="ki-duotone ki-eye fs-3x text-white">
+											<span class="path1"></span>
+											<span class="path2"></span>
+											<span class="path3"></span>
+										</i>
+									</div>
+								</a>
+								<!-- Card Body -->
+								<div class="card-body rounded-lg rounded-bottom-0">
+									<div class="mb-5">
+										<div class="symbol symbol-75px symbol-circle">
+											<img alt="Avatar" src="assets/media/avatars/aish.jpeg" />
+										</div>
+									</div>
+									<h5 class="card-title">Aplikasi Tebak Angka</h5>
+									<p class="card-text">By: Aisha Hannah Heriawan - Graduate, Class of 2024</p>
+									<div class="tech-stack">
+										<span class="badge bg-danger">Python</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-xxl-4">
+							<div class="card project-card">
+								<!-- Clickable image that opens in lightbox -->
+								<a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects"
+									href="assets/media/stock/600x600/portoReza.jpeg">
+									<img src="assets/media/stock/600x600/portoReza.jpeg"
+										class="card-img-top img-fluid object-fit-cover" alt="Project 3">
+									<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+										<i class="ki-duotone ki-eye fs-3x text-white">
+											<span class="path1"></span>
+											<span class="path2"></span>
+											<span class="path3"></span>
+										</i>
+									</div>
+								</a>
+								<!-- Card Body -->
+								<div class="card-body rounded-lg rounded-bottom-0">
+									<div class="mb-5">
+										<div class="symbol symbol-75px symbol-circle">
+											<img alt="Avatar" src="assets/media/avatars/reza.jpeg" />
+										</div>
+									</div>
+									<h5 class="card-title">Aplikasi BMI Berbasis Web dengan Framework Flask</h5>
+									<p class="card-text">By: Andi Reza - Graduate, Class of 2024</p>
+									<div class="tech-stack">
+										<span class="badge bg-info">Flask</span>
+										<span class="badge bg-warning">MySQL</span>
+									</div>
+								</div>
+							</div>
+						</div>
 
 					</div>
 
@@ -546,63 +557,67 @@
 					<!--begin::Heading-->
 					<div class="text-center mb-12">
 						<!--begin::Title-->
-							<h3 class="fs-2hx text-white mb-5" id="team" data-kt-scroll-offset="{default: 100, lg: 150}">
-								Meet the Educators Behind Must Dhiya' Bimbel
-							</h3>
-							<!--end::Title-->
-							<!--begin::Sub-title-->
-							<div class="fs-5 text-muted fw-bold">
-								Kami adalah tim pengajar yang berdedikasi untuk membantu siswa memahami dunia pemrograman dari nol hingga bisa membangun proyek sendiri.
-								<br />Dengan metode belajar santai dan interaktif, kami memastikan setiap siswa mendapatkan pengalaman belajar terbaik.
-							</div>
-							<!--end::Sub-title-->
+						<h3 class="fs-2hx text-white mb-5" id="team" data-kt-scroll-offset="{default: 100, lg: 150}">
+							Meet the Educators Behind Must Dhiya' Bimbel
+						</h3>
+						<!--end::Title-->
+						<!--begin::Sub-title-->
+						<div class="fs-5 text-muted fw-bold">
+							Kami adalah tim pengajar yang berdedikasi untuk membantu siswa memahami dunia pemrograman
+							dari nol hingga bisa membangun proyek sendiri.
+							<br />Dengan metode belajar santai dan interaktif, kami memastikan setiap siswa mendapatkan
+							pengalaman belajar terbaik.
 						</div>
-						<!--end::Heading-->
-						<!--begin::Slider-->
-						<div class="tns tns-default" style="direction: ltr">
-							<!--begin::Wrapper-->
-							<div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="10000"
-								data-tns-autoplay="true" data-tns-autoplay-timeout="10000" data-tns-controls="true"
-								data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false"
-								data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next"
-								data-tns-responsive="{1200: {items: 3}, 992: {items: 2}}">
+						<!--end::Sub-title-->
+					</div>
+					<!--end::Heading-->
+					<!--begin::Slider-->
+					<div class="tns tns-default" style="direction: ltr">
+						<!--begin::Wrapper-->
+						<div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="10000"
+							data-tns-autoplay="true" data-tns-autoplay-timeout="10000" data-tns-controls="true"
+							data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false"
+							data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next"
+							data-tns-responsive="{1200: {items: 3}, 992: {items: 2}}">
 
-								<!--begin::Item - Muhammad Fauzan Nur Ilham -->
-								<div class="text-center">
-									<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center"
-										style="background-image:url('assets/media/avatars/fauzan.jpeg')"></div>
-									<div class="mb-0">
-										<a href="#" class="text-white fw-bold text-hover-primary fs-3">Muhammad Fauzan Nur
-											Ilham</a>
-										<div class="text-muted fs-6 fw-semibold mt-1">Founder & Lead Instructor</div>
-									</div>
+							<!--begin::Item - Muhammad Fauzan Nur Ilham -->
+							<div class="text-center">
+								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center"
+									style="background-image:url('assets/media/avatars/fauzan.jpeg')"></div>
+								<div class="mb-0">
+									<a href="#" class="text-white fw-bold text-hover-primary fs-3">Muhammad Fauzan Nur
+										Ilham</a>
+									<div class="text-muted fs-6 fw-semibold mt-1">Founder & Lead Instructor</div>
 								</div>
-								<!--end::Item-->
-
-								<!--begin::Item - Rafidan Anwar -->
-								<div class="text-center">
-									<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center"
-										style="background-image:url('assets/media/avatars/Rafidan.jpeg')"></div>
-									<div class="mb-0">
-										<a href="#" class="text-white fw-bold text-hover-primary fs-3">Rafidan Anwar</a>
-										<div class="text-muted fs-6 fw-semibold mt-1">Instructor - Full Stack Development</div>
-									</div>
-								</div>
-								<!--end::Item-->
-
-								<!--begin::Item - Mu. Aldi Rahmad Fahrozi -->
-								<div class="text-center">
-									<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center"
-										style="background-image:url('assets/media/avatars/Aldi.jpeg')"></div>
-									<div class="mb-0">
-										<a href="#" class="text-white fw-bold text-hover-primary fs-3">Mu. Aldi Rahmad
-											Fahrozi</a>
-										<div class="text-muted fs-6 fw-semibold mt-1">Instructor - UI/UX & Digital Marketing</div>
-									</div>
-								</div>
-								<!--end::Item-->
 							</div>
-							<!--end::Wrapper-->
+							<!--end::Item-->
+
+							<!--begin::Item - Rafidan Anwar -->
+							<div class="text-center">
+								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center"
+									style="background-image:url('assets/media/avatars/Rafidan.jpeg')"></div>
+								<div class="mb-0">
+									<a href="#" class="text-white fw-bold text-hover-primary fs-3">Rafidan Anwar</a>
+									<div class="text-muted fs-6 fw-semibold mt-1">Instructor - Full Stack Development
+									</div>
+								</div>
+							</div>
+							<!--end::Item-->
+
+							<!--begin::Item - Mu. Aldi Rahmad Fahrozi -->
+							<div class="text-center">
+								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center"
+									style="background-image:url('assets/media/avatars/Aldi.jpeg')"></div>
+								<div class="mb-0">
+									<a href="#" class="text-white fw-bold text-hover-primary fs-3">Mu. Aldi Rahmad
+										Fahrozi</a>
+									<div class="text-muted fs-6 fw-semibold mt-1">Instructor - UI/UX & Digital Marketing
+									</div>
+								</div>
+							</div>
+							<!--end::Item-->
+						</div>
+						<!--end::Wrapper-->
 
 						<!--begin::Button-->
 						<button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_prev">
@@ -635,33 +650,31 @@
 				<div class="container" style="max-width: 1000px; margin: auto; text-align: center; padding-top: 50px;">
 					<div style="position: relative; padding-bottom: 50%; height: 0; overflow: hidden; max-width: 100%; background: #000; 
 								border-radius: 10px; box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);">
-						<iframe width="100%" height="100%" 
-							src="https://www.youtube.com/embed/AQD9ISAImSY?autoplay=1&mute=0" 
-							title="YouTube video player" 
-							frameborder="0" 
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-							allowfullscreen 
-							style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+						<iframe width="100%" height="100%"
+							src="https://www.youtube.com/embed/AQD9ISAImSY?autoplay=1&mute=0"
+							title="YouTube video player" frameborder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
 						</iframe>
 					</div>
-				</div>					
+				</div>
 				<!--end::Card-->
-			</div>			
+			</div>
 			<!--end::Container-->
-		</div>		
+		</div>
 		<!-- Bimbel Pricing Section -->
 		<div class="mt-sm-n20" id="bimbel">
 			<!--begin::Curve top-->
 			<div class="landing-curve landing-dark-color shadow" style="margin-top: 50px;">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" fill="none">
 					<path fill="currentColor" transform="translate(0, 35)"
-   					 d="M0,320L34.3,298.7C68.6,277,137,235,206,229.3C274.3,224,343,256,411,234.7C480,213,549,139,617,106.7C685.7,75,754,85,823,85.3C891.4,85,960,75,1029,85.3C1097.1,96,1166,128,1234,133.3C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+						d="M0,320L34.3,298.7C68.6,277,137,235,206,229.3C274.3,224,343,256,411,234.7C480,213,549,139,617,106.7C685.7,75,754,85,823,85.3C891.4,85,960,75,1029,85.3C1097.1,96,1166,128,1234,133.3C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
 					</path>
 				</svg>
 			</div>
 			<!--end::Curve top-->
 			<!--begin::Wrapper-->
-			
+
 			<div id="pricing" class="landing-dark-bg">
 				<!--begin::Container-->
 				<div class="container">
@@ -685,10 +698,14 @@
 								style="border: 1px dashed #2B4666;">
 								<a href="#pricing"
 									class="btn btn-color-gray-600 btn-active btn-active-success px-6 py-3 me-2 active"
-									data-kt-plan="month">Monthly</a>
+									data-kt-plan="month">
+									Monthly
+								</a>
 								<a href="#pricing"
 									class="btn btn-color-gray-600 btn-active btn-active-success px-6 py-3"
-									data-kt-plan="annual">Semester</a>
+									data-kt-plan="annual">
+									Semester
+								</a>
 							</div>
 							<!--end::Nav group-->
 
@@ -701,15 +718,26 @@
 										<div class="w-100 d-flex flex-column flex-center rounded-3 bg-body py-15 px-10">
 											<!--begin::Heading-->
 											<div class="mb-7 text-center">
-												<h2 class="text-dark mb-5 fw-boldest">REGULAR CLASS</h2>
+												<h2 class="text-dark mb-2 fw-boldest">REGULAR CLASS</h2>
+												<!-- Narasi promo dengan harga dicoret -->
+												<p class="fs-6 text-gray-800 mb-4">
+													<strong>Promo Spesial!</strong>
+													<span style="text-decoration: line-through;">IDR 250</span>
+													menjadi
+													<span class="text-danger">IDR 225</span>
+												</p>
 												<div class="text-center">
 													<span class="mb-2 text-primary">IDR.</span>
 													<span class="fs-3x fw-bold text-primary"
-														data-kt-plan-price-month="200"
-														data-kt-plan-price-annual="1.200">200</span>
+														data-kt-plan-price-month="225"
+														data-kt-plan-price-annual="1.325">
+														225
+													</span>
 													<span class="fs-7 fw-semibold opacity-50"
 														data-kt-plan-price-month="/ Mon"
-														data-kt-plan-price-annual="/ Sem">/ Mon</span>
+														data-kt-plan-price-annual="/ Sem">
+														/ Mon
+													</span>
 												</div>
 											</div>
 											<!--end::Heading-->
@@ -741,7 +769,9 @@
 													onclick="setPaket('REGULAR CLASS')">Tanya</a>
 												<a href="#" class="btn btn-warning" data-bs-toggle="modal"
 													data-bs-target="#kt_modal_register"
-													onclick="setPaketRegister('REGULAR CLASS')">Daftar</a>
+													onclick="setPaketRegister('REGULAR CLASS')">
+													Daftar (Regular)
+												</a>
 											</div>
 										</div>
 										<!--end::Option-->
@@ -757,15 +787,26 @@
 											style="box-shadow: 10px -10px rgba(255, 149, 0, 0.315);">
 											<!--begin::Heading-->
 											<div class="mb-7 text-center">
-												<h2 class="text-white mb-5 fw-boldest">PRIVATE CLASS</h2>
+												<h2 class="text-white mb-2 fw-boldest">PRIVATE CLASS</h2>
+												<!-- Narasi promo dengan harga dicoret -->
+												<p class="fs-6 text-white mb-4">
+													<strong>Promo Spesial!</strong>
+													<span style="text-decoration: line-through;">IDR 650</span>
+													menjadi
+													<span class="text-warning">IDR 525</span>
+												</p>
 												<div class="text-center">
 													<span class="mb-2 text-white">IDR.</span>
 													<span class="fs-3x fw-bold text-white"
 														data-kt-plan-price-month="500"
-														data-kt-plan-price-annual="3.000">500</span>
+														data-kt-plan-price-annual="3.125">
+														500
+													</span>
 													<span class="fs-7 fw-semibold opacity-50"
 														data-kt-plan-price-month="/ Mon"
-														data-kt-plan-price-annual="/ Sem">/ Mon</span>
+														data-kt-plan-price-annual="/ Sem">
+														/ Mon
+													</span>
 												</div>
 											</div>
 											<!--end::Heading-->
@@ -797,7 +838,9 @@
 													onclick="setPaket('PRIVATE CLASS')">Tanya</a>
 												<a href="#" class="btn btn-warning" data-bs-toggle="modal"
 													data-bs-target="#kt_modal_register"
-													onclick="setPaketRegister('PRIVATE CLASS')">Daftar</a>
+													onclick="setPaketRegister('PRIVATE CLASS')">
+													Daftar (Private)
+												</a>
 											</div>
 										</div>
 										<!--end::Option-->
@@ -887,234 +930,276 @@
 		<!-- End Modal Inquiry -->
 
 		<div class="modal fade" id="kt_modal_register" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered mw-650px">
-    <div class="modal-content rounded">
-      <!--begin::Header-->
-      <div class="modal-header pb-0 border-0 justify-content-end">
-        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-          <i class="ki-duotone ki-cross fs-1">
-            <span class="path1"></span>
-            <span class="path2"></span>
-          </i>
-        </div>
-      </div>
-      <!--end::Header-->
+			<div class="modal-dialog modal-dialog-centered mw-650px">
+				<div class="modal-content rounded">
+					<!-- Header modal -->
+					<div class="modal-header pb-0 border-0 justify-content-end">
+						<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+							<i class="ki-duotone ki-cross fs-1">
+								<span class="path1"></span>
+								<span class="path2"></span>
+							</i>
+						</div>
+					</div>
+					<!-- Body modal -->
+					<div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+						<form id="form_register" class="form">
+							<div class="mb-13 text-center">
+								<h1 class="mb-3">Daftar Bimbel</h1>
+								<div class="text-muted fw-semibold fs-5">
+									Silakan isi form di bawah untuk mendaftar.
+								</div>
+							</div>
+							<!-- Hidden: Timestamp (opsional) -->
+							<input type="hidden" id="timestamp_reg" name="timestamp">
 
-      <!--begin::Body-->
-      <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
-        <form id="form_register" class="form">
-          <div class="mb-13 text-center">
-            <h1 class="mb-3">Daftar Bimbel</h1>
-            <div class="text-muted fw-semibold fs-5">
-              Silakan isi form di bawah untuk mendaftar.
-            </div>
-          </div>
-          <!-- Hidden: Timestamp -->
-          <input type="hidden" id="timestamp_reg" name="timestamp">
+							<!-- (1) Paket Bimbel -->
+							<div class="d-flex flex-column mb-8 fv-row">
+								<label class="fs-6 fw-semibold mb-2">Paket Bimbel <span
+										class="required">*</span></label>
+								<!-- Pastikan ID = "paket_bimbel_reg" -->
+								<input type="text" class="form-control form-control-solid" id="paket_bimbel_reg"
+									name="paket_bimbel" placeholder="Pilih Paket Bimbel" readonly />
+							</div>
 
-          <!-- (1) Paket Bimbel -->
-          <div class="d-flex flex-column mb-8 fv-row">
-            <label class="fs-6 fw-semibold mb-2">Paket Bimbel <span class="required">*</span></label>
-            <input type="text"
-                   class="form-control form-control-solid"
-                   id="paket_bimbel_reg"
-                   name="paket_bimbel"
-                   placeholder="Pilih Paket Bimbel"
-                   readonly />
-          </div>
+							<!-- (2) Pilih Semester -->
+							<div class="d-flex flex-column mb-8 fv-row">
+								<label class="fs-6 fw-semibold mb-2">Pilih Semester <span
+										class="required">*</span></label>
+								<select id="semester_select" class="form-select form-control-solid" required
+									onchange="toggleSemesterDetail()">
+									<option value="">-- Pilih Semester --</option>
+									<option value="2">Semester 2</option>
+									<option value="4">Semester 4</option>
+								</select>
+							</div>
 
-          <!-- (2) Pilih Semester -->
-          <div class="d-flex flex-column mb-8 fv-row">
-            <label class="fs-6 fw-semibold mb-2">Pilih Semester <span class="required">*</span></label>
-            <select id="semester_select" class="form-select form-control-solid" required onchange="toggleSemesterDetail()">
-              <option value="">-- Pilih Semester --</option>
-              <option value="2">Semester 2</option>
-              <option value="4">Semester 4</option>
-            </select>
-          </div>
+							<!-- (3) Detail Semester 2 -->
+							<div id="detail_semester_2" class="mb-5 d-none">
+								<div class="p-3 bg-light border rounded">
+									<h4 class="fw-bold">Bimbel Semester 2</h4>
+									<!-- Tabel Materi & SKS -->
+									<div class="table-responsive mb-3">
+										<table class="table table-striped align-middle gs-0 gy-3">
+											<thead>
+												<tr class="fw-bold text-muted bg-light">
+													<th>Mata Kuliah / Materi</th>
+													<th class="text-center">SKS</th>
+													<th>Tools / Framework</th>
+													<th>Deskripsi Singkat</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Basis Data MySQL</td>
+													<td class="text-center">3</td>
+													<td>MySQL Workbench</td>
+													<td>Konsep relational DB, query dasar, normalisasi, integrasi ke
+														Flask.</td>
+												</tr>
+												<tr>
+													<td>Algoritma & Struktur Data</td>
+													<td class="text-center">4</td>
+													<td>Python, Flask</td>
+													<td>Pengenalan array, linked list, stack, queue, tree, BFS, DFS,
+														dll.</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- Prasyarat & Hasil Akhir -->
+									<h5 class="fw-semibold mb-2">Prasyarat</h5>
+									<ul class="mb-4">
+										<li>Telah memahami dasar pemrograman.</li>
+										<li>Memiliki laptop/PC dengan Python terinstal.</li>
+									</ul>
+									<h5 class="fw-semibold mb-2">Hasil Akhir Bimbel</h5>
+									<ul class="mb-4">
+										<li>Mendesain & mengelola DB MySQL.</li>
+										<li>Menerapkan algoritma & struktur data.</li>
+										<li>Membangun aplikasi web dasar Flask + MySQL.</li>
+									</ul>
+								</div>
+							</div>
 
-          <!-- (3) Detail Semester 2 -->
-          <div id="detail_semester_2" class="mb-5 d-none">
-            <div class="p-3 bg-light border rounded">
-              <h4 class="fw-bold">Bimbel Semester 2</h4>
-              <!-- Tabel Materi & SKS -->
-              <div class="table-responsive mb-3">
-                <table class="table table-striped align-middle gs-0 gy-3">
-                  <thead>
-                    <tr class="fw-bold text-muted bg-light">
-                      <th>Mata Kuliah / Materi</th>
-                      <th class="text-center">SKS</th>
-                      <th>Tools / Framework</th>
-                      <th>Deskripsi Singkat</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Basis Data MySQL</td>
-                      <td class="text-center">3</td>
-                      <td>MySQL Workbench</td>
-                      <td>Konsep relational DB, query dasar, normalisasi, integrasi ke Flask.</td>
-                    </tr>
-                    <tr>
-                      <td>Algoritma & Struktur Data</td>
-                      <td class="text-center">4</td>
-                      <td>Python, Flask</td>
-                      <td>Pengenalan array, linked list, stack, queue, tree, BFS, DFS, dll.</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- Prasyarat & Hasil Akhir -->
-              <h5 class="fw-semibold mb-2">Prasyarat</h5>
-              <ul class="mb-4">
-                <li>Telah memahami dasar pemrograman.</li>
-                <li>Memiliki laptop/PC dengan Python terinstal.</li>
-              </ul>
-              <h5 class="fw-semibold mb-2">Hasil Akhir Bimbel</h5>
-              <ul class="mb-4">
-                <li>Mendesain & mengelola DB MySQL.</li>
-                <li>Menerapkan algoritma & struktur data.</li>
-                <li>Membangun aplikasi web dasar Flask + MySQL.</li>
-              </ul>
-            </div>
-          </div>
+							<!-- (4) Detail Semester 4 -->
+							<div id="detail_semester_4" class="mb-5 d-none">
+								<div class="p-3 bg-light border rounded">
+									<h4 class="fw-bold">Bimbel Semester 4</h4>
+									<!-- Tabel Materi & SKS -->
+									<div class="table-responsive mb-3">
+										<table class="table table-striped align-middle gs-0 gy-3">
+											<thead>
+												<tr class="fw-bold text-muted bg-light">
+													<th>Mata Kuliah / Materi</th>
+													<th class="text-center">SKS</th>
+													<th>Tools / Framework</th>
+													<th>Deskripsi Singkat</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Software Engineering</td>
+													<td class="text-center">3</td>
+													<td>UML, Git, Agile</td>
+													<td>Analisis kebutuhan, desain UML, version control, metodologi
+														agile.</td>
+												</tr>
+												<tr>
+													<td>Kotlin Development</td>
+													<td class="text-center">4</td>
+													<td>Android Studio</td>
+													<td>Pemrograman Kotlin, OOP, concurrency, pembuatan aplikasi
+														end-to-end.</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- Prasyarat & Hasil Akhir -->
+									<h5 class="fw-semibold mb-2">Prasyarat</h5>
+									<ul class="mb-4">
+										<li>Memahami OOP & dasar pemrograman Java/Kotlin.</li>
+										<li>Minat untuk mengembangkan aplikasi mobile.</li>
+									</ul>
+									<h5 class="fw-semibold mb-2">Hasil Akhir Bimbel</h5>
+									<ul class="mb-4">
+										<li>Menerapkan SDLC, agile, UML.</li>
+										<li>Membangun aplikasi Android berbasis Kotlin.</li>
+										<li>Memahami version control & release/maintenance.</li>
+									</ul>
+								</div>
+							</div>
 
-          <!-- (4) Detail Semester 4 -->
-          <div id="detail_semester_4" class="mb-5 d-none">
-            <div class="p-3 bg-light border rounded">
-              <h4 class="fw-bold">Bimbel Semester 4</h4>
-              <!-- Tabel Materi & SKS -->
-              <div class="table-responsive mb-3">
-                <table class="table table-striped align-middle gs-0 gy-3">
-                  <thead>
-                    <tr class="fw-bold text-muted bg-light">
-                      <th>Mata Kuliah / Materi</th>
-                      <th class="text-center">SKS</th>
-                      <th>Tools / Framework</th>
-                      <th>Deskripsi Singkat</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Software Engineering</td>
-                      <td class="text-center">3</td>
-                      <td>UML, Git, Agile</td>
-                      <td>Analisis kebutuhan, desain UML, version control, metodologi agile.</td>
-                    </tr>
-                    <tr>
-                      <td>Kotlin Development</td>
-                      <td class="text-center">4</td>
-                      <td>Android Studio</td>
-                      <td>Pemrograman Kotlin, OOP, concurrency, pembuatan aplikasi end-to-end.</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- Prasyarat & Hasil Akhir -->
-              <h5 class="fw-semibold mb-2">Prasyarat</h5>
-              <ul class="mb-4">
-                <li>Memahami OOP & dasar pemrograman Java/Kotlin.</li>
-                <li>Minat untuk mengembangkan aplikasi mobile.</li>
-              </ul>
-              <h5 class="fw-semibold mb-2">Hasil Akhir Bimbel</h5>
-              <ul class="mb-4">
-                <li>Menerapkan SDLC, agile, UML.</li>
-                <li>Membangun aplikasi Android berbasis Kotlin.</li>
-                <li>Memahami version control & release/maintenance.</li>
-              </ul>
-            </div>
-          </div>
+							<!-- (5) Input Data Diri -->
+							<div class="d-flex flex-column mb-8 fv-row">
+								<label class="fs-6 fw-semibold mb-2">Email Address <span
+										class="required">*</span></label>
+								<input type="email" class="form-control form-control-solid"
+									placeholder="Masukkan email anda" id="email_reg" required>
+							</div>
+							<div class="d-flex flex-column mb-8 fv-row">
+								<label class="fs-6 fw-semibold mb-2">Nama <span class="required">*</span></label>
+								<input type="text" class="form-control form-control-solid"
+									placeholder="Masukkan nama anda" id="nama_reg" required>
+							</div>
+							<div class="d-flex flex-column mb-8 fv-row">
+								<label class="fs-6 fw-semibold mb-2">NIM <span class="required">*</span></label>
+								<input type="text" class="form-control form-control-solid"
+									placeholder="Masukkan NIM anda" id="nim_reg" required>
+							</div>
+							<div class="d-flex flex-column mb-8 fv-row">
+								<label class="fs-6 fw-semibold mb-2">Angkatan <span class="required">*</span></label>
+								<input type="text" class="form-control form-control-solid"
+									placeholder="Masukkan angkatan anda" id="angkatan_reg" required>
+							</div>
+							<div class="d-flex flex-column mb-8 fv-row">
+								<label class="fs-6 fw-semibold mb-2">Komitmen <span class="required">*</span></label>
+								<textarea class="form-control form-control-solid" placeholder="Jelaskan komitmen anda"
+									rows="3" id="komitmen_reg" required></textarea>
+							</div>
+							<div class="d-flex flex-column mb-8 fv-row">
+								<label class="fs-6 fw-semibold mb-2">Nomor WA <span class="required">*</span></label>
+								<input type="text" class="form-control form-control-solid"
+									placeholder="Masukkan nomor WA anda" id="nomor_wa_reg" required>
+							</div>
+							<div class="d-flex flex-column mb-8 fv-row">
+								<label class="fs-6 fw-semibold mb-2">Upload Bukti Pembayaran <span
+										class="required">*</span></label>
+								<input type="file" class="form-control form-control-solid" id="bukti_pembayaran_reg"
+									accept="image/*" required>
+							</div>
 
-          <!-- (5) Data Diri (Email, Nama, NIM, dsb.) -->
-          <div class="d-flex flex-column mb-8 fv-row">
-            <label class="fs-6 fw-semibold mb-2">Email Address <span class="required">*</span></label>
-            <input type="email" class="form-control form-control-solid" placeholder="Masukkan email anda" id="email_reg" required>
-          </div>
-          <div class="d-flex flex-column mb-8 fv-row">
-            <label class="fs-6 fw-semibold mb-2">Nama <span class="required">*</span></label>
-            <input type="text" class="form-control form-control-solid" placeholder="Masukkan nama anda" id="nama_reg" required>
-          </div>
-          <div class="d-flex flex-column mb-8 fv-row">
-            <label class="fs-6 fw-semibold mb-2">NIM <span class="required">*</span></label>
-            <input type="text" class="form-control form-control-solid" placeholder="Masukkan NIM anda" id="nim_reg" required>
-          </div>
-          <div class="d-flex flex-column mb-8 fv-row">
-            <label class="fs-6 fw-semibold mb-2">Angkatan <span class="required">*</span></label>
-            <input type="text" class="form-control form-control-solid" placeholder="Masukkan angkatan anda" id="angkatan_reg" required>
-          </div>
-          <div class="d-flex flex-column mb-8 fv-row">
-            <label class="fs-6 fw-semibold mb-2">Komitmen <span class="required">*</span></label>
-            <textarea class="form-control form-control-solid" placeholder="Jelaskan komitmen anda" rows="3" id="komitmen_reg" required></textarea>
-          </div>
-          <div class="d-flex flex-column mb-8 fv-row">
-            <label class="fs-6 fw-semibold mb-2">Nomor WA <span class="required">*</span></label>
-            <input type="text" class="form-control form-control-solid" placeholder="Masukkan nomor WA anda" id="nomor_wa_reg" required>
-          </div>
-          <div class="d-flex flex-column mb-8 fv-row">
-            <label class="fs-6 fw-semibold mb-2">Upload Bukti Pembayaran <span class="required">*</span></label>
-            <input type="file" class="form-control form-control-solid" id="bukti_pembayaran_reg" accept="image/*" required>
-          </div>
+							<!-- Submit -->
+							<div class="text-center">
+								<button type="reset" id="kt_modal_register_cancel" class="btn btn-light me-3"
+									data-bs-dismiss="modal">Cancel</button>
+								<button type="submit" id="kt_modal_register_submit" class="btn btn-primary">
+									<span class="indicator-label">Submit Pendaftaran</span>
+									<span class="indicator-progress">Please wait...
+										<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+									</span>
+								</button>
+							</div>
+						</form>
+					</div>
+					<!--end::Body-->
+				</div>
+			</div>
+		</div>
 
-          <!-- Actions -->
-          <div class="text-center">
-            <button type="reset" id="kt_modal_register_cancel" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" id="kt_modal_register_submit" class="btn btn-primary">
-              <span class="indicator-label">Submit Pendaftaran</span>
-              <span class="indicator-progress">Please wait...
-                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-              </span>
-            </button>
-          </div>
-        </form>
-      </div>
-      <!--end::Body-->
-    </div>
-  </div>
-</div>
+		<script>
+			window.selectedPlan = "month"; // default
 
-<script>
-  // Fungsi: isi input 'paket_bimbel_reg' ketika user klik "Daftar" di Regular / Private
-  function setPaketRegister(paket) {
-    document.getElementById('paket_bimbel_reg').value = paket;
-  }
+			// Pasang eventListener ke semua tombol data-kt-plan
+			document.querySelectorAll("[data-kt-plan]").forEach(btn => {
+				btn.addEventListener("click", function () {
+					// Hilangkan class active dari semua
+					document.querySelectorAll("[data-kt-plan]").forEach(el => el.classList.remove("active"));
 
-  // Fungsi: tampil/hidden detail semester
-  function toggleSemesterDetail() {
-    const val = document.getElementById("semester_select").value;
-    const detail2 = document.getElementById("detail_semester_2");
-    const detail4 = document.getElementById("detail_semester_4");
+					// Tambah class active ke yang diklik
+					this.classList.add("active");
 
-    detail2.classList.add("d-none");
-    detail4.classList.add("d-none");
-
-    if (val === "2") {
-      detail2.classList.remove("d-none");
-    } else if (val === "4") {
-      detail4.classList.remove("d-none");
-    }
-  }
-
-  // Contoh handle submit form register
-  document.getElementById("form_register").addEventListener("submit", function(e){
-    e.preventDefault();
-    // Lakukan validasi & pengiriman data, misal ke Google Apps Script
-    alert("Form pendaftaran berhasil disubmit!");
-  });
-			document.querySelectorAll('[data-kt-plan]').forEach(btn => {
-				btn.addEventListener('click', function () {
-					// Hapus kelas active dari semua tombol
-					document.querySelectorAll('[data-kt-plan]').forEach(el => el.classList.remove('active'));
-					this.classList.add('active');
-					// Jika mode annual, tampilkan benefit tambahan
-					if (this.getAttribute('data-kt-plan') === 'annual') {
-						document.querySelectorAll('.annual-benefit').forEach(el => el.classList.remove('d-none'));
-					} else {
-						document.querySelectorAll('.annual-benefit').forEach(el => el.classList.add('d-none'));
-					}
+					// Ambil plan (month/annual)
+					window.selectedPlan = this.getAttribute("data-kt-plan");
 				});
 			});
 
-			// ---------------------------
+			// Fungsi: isi input 'paket_bimbel_reg' ketika user klik "Daftar" di Regular / Private
+			function setPaketRegister(basePackage) {
+				// Cek plan yang sedang aktif
+				let plan = window.selectedPlan || "month"; // default jika belum di-set
+				let planLabel = (plan === "month") ? "MONTHLY" : "SEMESTER"; // Teks apa yang ingin ditampilkan
+
+				// Gabungkan basePackage + planLabel
+				let finalPackage = basePackage + " | " + planLabel;
+
+				// Tulis ke input #paket_bimbel_reg
+				document.getElementById("paket_bimbel_reg").value = finalPackage;
+			}
+
+			// ==========================
+			// TOGGLE SEMESTER DETAIL
+			// ==========================
+			function toggleSemesterDetail() {
+				const val = document.getElementById("semester_select").value;
+				const detail2 = document.getElementById("detail_semester_2");
+				const detail4 = document.getElementById("detail_semester_4");
+
+				detail2.classList.add("d-none");
+				detail4.classList.add("d-none");
+
+				if (val === "2") {
+					detail2.classList.remove("d-none");
+				} else if (val === "4") {
+					detail4.classList.remove("d-none");
+				}
+			}
+
+			// Fungsi update preview pendaftaran
+			function updatePreviewDaftar() {
+				const paket = document.getElementById("paket_bimbel_reg").value || "(belum dipilih)";
+				const semester = document.getElementById("semester_select").value || "(belum dipilih)";
+				const email = document.getElementById("email_reg")?.value || "";
+				const nama = document.getElementById("nama_reg")?.value || "";
+				const nim = document.getElementById("nim_reg")?.value || "";
+				const angkatan = document.getElementById("angkatan_reg")?.value || "";
+				const komitmen = document.getElementById("komitmen_reg")?.value || "";
+				const nomorWA = document.getElementById("nomor_wa_reg")?.value || "";
+
+				let previewText = "Paket Bimbel: " + paket + "\n"
+					+ "Semester: " + semester + "\n"
+					+ "Email: " + email + "\n"
+					+ "Nama: " + nama + "\n"
+					+ "NIM: " + nim + "\n"
+					+ "Angkatan: " + angkatan + "\n"
+					+ "Komitmen: " + komitmen + "\n"
+					+ "Nomor WA: " + nomorWA + "\n";
+
+				const previewElement = document.getElementById("preview_daftar");
+				if (previewElement) {
+					previewElement.textContent = previewText;
+				}
+			}
 			// Modal Inquiry (Tanya) Functions
 			// ---------------------------
 			function setPaket(paket) {
@@ -1141,87 +1226,65 @@
 				window.open(url, "_blank");
 			});
 
-			// ---------------------------
-			// Modal Pendaftaran (Daftar) Functions
-			// ---------------------------
-			// Modal Pendaftaran (Daftar) Functions
-			function setPaketRegister(paket) {
-			  document.getElementById("paket_reg").value = paket;
-			}
-			
-			// Set timestamp saat modal register dibuka
-			// Modal Pendaftaran (Daftar) Functions
-			// ---------------------------
-			// Modal Pendaftaran (Daftar) Functions
-			function setPaketRegister(paket) {
-				document.getElementById("paket_reg").value = paket;
-			  }
-			
-			  // Set timestamp saat modal register dibuka (opsional)
-			  var registerModal = document.getElementById("kt_modal_register");
-			  registerModal.addEventListener("shown.bs.modal", function () {
+			// Set timestamp saat modal register dibuka (opsional)
+			var registerModal = document.getElementById("kt_modal_register");
+			registerModal.addEventListener("shown.bs.modal", function () {
 				document.getElementById("timestamp_reg").value = new Date().toISOString();
-			  });
-			
-			  document.getElementById("form_register").addEventListener("submit", function(e) {
+			});
+
+			document.getElementById("form_register").addEventListener("submit", function (e) {
 				e.preventDefault();
-			  
-				// Ambil nilai input form
+
+				const paket = document.getElementById("paket_bimbel_reg").value;
+				const semester = document.getElementById("semester_select").value;
 				const email = document.getElementById("email_reg").value;
 				const nama = document.getElementById("nama_reg").value;
 				const nim = document.getElementById("nim_reg").value;
 				const angkatan = document.getElementById("angkatan_reg").value;
 				const komitmen = document.getElementById("komitmen_reg").value;
 				const nomorWA = document.getElementById("nomor_wa_reg").value;
-			  
-				// Ambil file gambar
+
 				const fileInput = document.getElementById("bukti_pembayaran_reg");
 				const file = fileInput.files[0];
 				if (!file) {
-				  alert("Mohon unggah bukti pembayaran.");
-				  return;
+					alert("Mohon unggah bukti pembayaran.");
+					return;
 				}
-			  
-				// Gunakan FileReader untuk ubah file gambar menjadi Base64
+
 				const reader = new FileReader();
-				reader.onloadend = function() {
-				  // contoh: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABA..."
-				  const base64String = reader.result.split(",")[1]; // Ambil isi Base64 tanpa prefix "data:..."
-			  
-				  // Siapkan payload JSON
-				  const payload = {
-					email: email,
-					nama: nama,
-					nim: nim,
-					angkatan: angkatan,
-					komitmen: komitmen,
-					// Tambahkan ' di depan nomor WA agar di sheet tersimpan sebagai teks
-					nomorWA: "'" + nomorWA,  
-					fileName: file.name,
-					fileType: file.type,
-					fileData: base64String
-				  };
-				  
-			  
-				  // URL Web App Google Apps Script (Ganti dengan milik Anda)
-				  const url = "https://script.google.com/macros/s/AKfycbwazk8mg1O0i6isANYCZh73Q95Ol6RuMzb_tgWoe9wb7HMI8s3am37YHk7r9KSk0xlh/exec";
-			  
-				  // Kirim data ke Apps Script
-				  fetch(url, {
-					method: "POST",
-					mode: "no-cors",
-					body: JSON.stringify(payload)
-				  })
-				  .then(() => {
-					// Tidak bisa baca response
-					alert("Data terkirim ");
-				  })
-				  .catch(err => console.error(err));
-				}				  
-			  
-				reader.readAsDataURL(file); // Mengubah file gambar menjadi Base64
-			  });
-				
+				reader.onloadend = function () {
+					const base64String = reader.result.split(",")[1];
+
+					const payload = {
+						paket: paket,
+						semester: semester,
+						email: email,
+						nama: nama,
+						nim: nim,
+						angkatan: angkatan,
+						komitmen: komitmen,
+						nomorWA: "'" + nomorWA,
+						fileName: file.name,
+						fileType: file.type,
+						fileData: base64String
+					};
+
+					// URL Web App Google Apps Script (ganti dengan milik Anda)
+					const url = "https://script.google.com/macros/s/AKfycbwazk8mg1O0i6isANYCZh73Q95Ol6RuMzb_tgWoe9wb7HMI8s3am37YHk7r9KSk0xlh/exec";
+
+					fetch(url, {
+						method: "POST",
+						mode: "no-cors",
+						body: JSON.stringify(payload)
+					})
+						.then(() => {
+							alert("Data terkirim. Terima kasih sudah mendaftar!");
+						})
+						.catch(err => console.error(err));
+				};
+				reader.readAsDataURL(file);
+			});
+
 		</script>
 		<!--end::Plans-->
 	</div>
@@ -1236,13 +1299,13 @@
 			</path>
 		</svg>
 	</div>
-	
+
 	<!--end::Curve bottom-->
 	</div>
 	<!--end::Pricing Section-->
 	<!--begin::Testimonials Section-->
 	<div class="mt-n10 mb-n20 position-relative z-index-2">
-	<!--begin::Container-->
+		<!--begin::Container-->
 		<div class="container">
 			<!--begin::Heading-->
 			<div class="text-center mb-17">
@@ -1291,27 +1354,27 @@
 							<div class="flex-grow-1">
 								<a href="#" class="text-dark fw-bold text-hover-primary fs-6">Aisha Hannah Heriawan</a>
 								<span class="text-muted d-block fw-bold">Design Illustrator</span>
-							<!--begin::Rating-->
-							<div class="rating mb-6">
-								<!-- 5 full stars for 4.0 rating -->
-								<div class="rating-label me-2 checked">
-									<i class="ki-duotone ki-star fs-5"></i>
+								<!--begin::Rating-->
+								<div class="rating mb-6">
+									<!-- 5 full stars for 4.0 rating -->
+									<div class="rating-label me-2 checked">
+										<i class="ki-duotone ki-star fs-5"></i>
+									</div>
+									<div class="rating-label me-2 checked">
+										<i class="ki-duotone ki-star fs-5"></i>
+									</div>
+									<div class="rating-label me-2 checked">
+										<i class="ki-duotone ki-star fs-5"></i>
+									</div>
+									<div class="rating-label me-2 checked">
+										<i class="ki-duotone ki-star fs-5"></i>
+									</div>
+									<div class="rating-label me-2 checked">
+										<i class="ki-duotone ki-star fs-5"></i>
+									</div>
+									<span class="ms-2 fw-bold fs-5">5.0</span>
 								</div>
-								<div class="rating-label me-2 checked">
-									<i class="ki-duotone ki-star fs-5"></i>
-								</div>
-								<div class="rating-label me-2 checked">
-									<i class="ki-duotone ki-star fs-5"></i>
-								</div>
-								<div class="rating-label me-2 checked">
-									<i class="ki-duotone ki-star fs-5"></i>
-								</div>
-								<div class="rating-label me-2 checked">
-									<i class="ki-duotone ki-star fs-5"></i>
-								</div>
-								<span class="ms-2 fw-bold fs-5">5.0</span>
-							</div>
-							<!--end::Rating-->
+								<!--end::Rating-->
 							</div>
 							<!--end::Name-->
 						</div>
@@ -1323,13 +1386,13 @@
 
 				<!-- Testimonial 2: Andi Reza -->
 				<div class="col-lg-4">
-					
+
 					<!--begin::Testimonial-->
 					<div
 						class="d-flex flex-column justify-content-between h-lg-100 px-10 px-lg-0 pe-lg-10 mb-15 mb-lg-0">
 						<!--begin::Wrapper-->
 						<div class="mb-7">
-							
+
 							<!--begin::Feedback-->
 							<div class="text-gray-500 fw-semibold fs-4">
 								Saya sangat senang dengan adanya bimbel Must Dhiya ini karena di sini kita diajarin
@@ -1352,30 +1415,30 @@
 							<!--end::Avatar-->
 							<!--begin::Name-->
 							<div class="flex-grow-1">
-								
+
 								<a href="#" class="text-dark fw-bold text-hover-primary fs-6">Andi Reza</a>
 								<span class="text-muted d-block fw-bold">Web3 Full Stack Dev</span>
 								<!--begin::Rating-->
-							<div class="rating">
-								<!-- 4 full stars and 1 empty star for 4.8 rating -->
-								<div class="rating-label me-2 checked">
-									<i class="ki-duotone ki-star fs-5"></i>
+								<div class="rating">
+									<!-- 4 full stars and 1 empty star for 4.8 rating -->
+									<div class="rating-label me-2 checked">
+										<i class="ki-duotone ki-star fs-5"></i>
+									</div>
+									<div class="rating-label me-2 checked">
+										<i class="ki-duotone ki-star fs-5"></i>
+									</div>
+									<div class="rating-label me-2 checked">
+										<i class="ki-duotone ki-star fs-5"></i>
+									</div>
+									<div class="rating-label me-2 checked">
+										<i class="ki-duotone ki-star fs-5"></i>
+									</div>
+									<div class="rating-label me-2 checked">
+										<i class="ki-duotone ki-star fs-5"></i>
+									</div>
+									<span class="ms-2 fw-bold fs-5">4.8</span>
 								</div>
-								<div class="rating-label me-2 checked">
-									<i class="ki-duotone ki-star fs-5"></i>
-								</div>
-								<div class="rating-label me-2 checked">
-									<i class="ki-duotone ki-star fs-5"></i>
-								</div>
-								<div class="rating-label me-2 checked">
-									<i class="ki-duotone ki-star fs-5"></i>
-								</div>
-								<div class="rating-label me-2 checked">
-									<i class="ki-duotone ki-star fs-5"></i>
-								</div>
-								<span class="ms-2 fw-bold fs-5">4.8</span>
-							</div>
-							<!--end::Rating-->
+								<!--end::Rating-->
 							</div>
 							<!--end::Name-->
 						</div>
@@ -1392,7 +1455,7 @@
 						class="d-flex flex-column justify-content-between h-lg-100 px-10 px-lg-0 pe-lg-10 mb-15 mb-lg-0">
 						<!--begin::Wrapper-->
 						<div>
-							
+
 							<!--end::Rating-->
 							<!--begin::Feedback-->
 							<div class="text-gray-500 fw-semibold fs-4">
@@ -1403,7 +1466,7 @@
 							</div>
 							<!--end::Feedback-->
 						</div>
-						
+
 						<!--end::Wrapper-->
 						<!--begin::Author-->
 						<div class="d-flex align-items-center">
@@ -1414,43 +1477,43 @@
 							<!--end::Avatar-->
 							<!--begin::Name-->
 							<div class="flex-grow-1">
-								
+
 								<a href="#" class="text-dark fw-bold text-hover-primary fs-6">Novka Wadiansah</a>
 								<span class="text-muted d-block fw-bold">Full Stack Web Dev</span>
 								<!--begin::Rating-->
-							<div class="rating">
-								<!-- 5 full stars for 4.0 rating -->
-								<div class="rating-label me-2 checked">
-									<i class="ki-duotone ki-star fs-5"></i>
-								</div>
-								<div class="rating-label me-2 checked">
-									<i class="ki-duotone ki-star fs-5"></i>
-								</div>
-								<div class="rating-label me-2 checked">
-									<i class="ki-duotone ki-star fs-5"></i>
-								</div>
-								<div class="rating-label me-2 checked">
-									<i class="ki-duotone ki-star fs-5"></i>
-								</div>
-								<div class="rating-label me-2">
+								<div class="rating">
+									<!-- 5 full stars for 4.0 rating -->
+									<div class="rating-label me-2 checked">
+										<i class="ki-duotone ki-star fs-5"></i>
+									</div>
+									<div class="rating-label me-2 checked">
+										<i class="ki-duotone ki-star fs-5"></i>
+									</div>
+									<div class="rating-label me-2 checked">
+										<i class="ki-duotone ki-star fs-5"></i>
+									</div>
+									<div class="rating-label me-2 checked">
+										<i class="ki-duotone ki-star fs-5"></i>
+									</div>
+									<div class="rating-label me-2">
 										<i class="ki-duotone ki-star fs-5"></i>
 									</div>
 									<span class="ms-2 fw-bold fs-5">4.0</span>
 								</div>
-								</div>
-								<!--end::Name-->
 							</div>
-							<!--end::Author-->
+							<!--end::Name-->
 						</div>
-						<!--end::Testimonial-->
-							<!--end::Card-->
+						<!--end::Author-->
 					</div>
-					<!--end::Body-->
+					<!--end::Testimonial-->
+					<!--end::Card-->
 				</div>
-				<!--end::Contact-->
+				<!--end::Body-->
 			</div>
-			<!--end::Container-->
+			<!--end::Contact-->
 		</div>
+		<!--end::Container-->
+	</div>
 	</div>
 	<!--end::Testimonials Section-->
 	<!--begin::Footer Section-->
@@ -1589,7 +1652,8 @@
 						</a>
 						<!--end::Logo image-->
 						<!--begin::Logo image-->
-						<span class="mx-5 fs-6 fw-semibold text-gray-600 pt-1" href="https://mustdhiya-io.vercel.app/">&copy;
+						<span class="mx-5 fs-6 fw-semibold text-gray-600 pt-1"
+							href="https://mustdhiya-io.vercel.app/">&copy;
 							2025 Must Dhiya' Inc.</span>
 						<!--end::Logo image-->
 					</div>
