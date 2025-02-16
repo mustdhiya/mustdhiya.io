@@ -957,7 +957,6 @@
 							<div class="d-flex flex-column mb-8 fv-row">
 								<label class="fs-6 fw-semibold mb-2">Paket Bimbel <span
 										class="required">*</span></label>
-								<!-- Pastikan ID = "paket_bimbel_reg" -->
 								<input type="text" class="form-control form-control-solid" id="paket_bimbel_reg"
 									name="paket_bimbel" placeholder="Pilih Paket Bimbel" readonly />
 							</div>
@@ -1102,6 +1101,33 @@
 								<input type="text" class="form-control form-control-solid"
 									placeholder="Masukkan nomor WA anda" id="nomor_wa_reg" required>
 							</div>
+
+							<!-- (6) Informasi Nomor Rekening (baru) -->
+							<!-- Sebelum field "Upload Bukti Pembayaran" -->
+							<div class="d-flex flex-column mb-8 fv-row">
+								<label class="fs-6 fw-semibold mb-2">No Rekening Pembayaran</label>
+								<div class="table-responsive">
+									<table class="table table-borderless text-muted small mb-0">
+										<tbody>
+											<tr>
+												<td class="fw-bold">No Rekening</td>
+												<td>:456601002849503</td>
+											</tr>
+											<tr>
+												<td class="fw-bold">Atas Nama</td>
+												<td>:Muhammad Fauzan Nur Ilham</td>
+											</tr>
+											<tr>
+												<td class="fw-bold">Bank</td>
+												<td>:BRI</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+
+							<!-- (7) Upload Bukti Pembayaran -->
 							<div class="d-flex flex-column mb-8 fv-row">
 								<label class="fs-6 fw-semibold mb-2">Upload Bukti Pembayaran <span
 										class="required">*</span></label>
@@ -1126,6 +1152,7 @@
 				</div>
 			</div>
 		</div>
+
 
 		<script>
 			window.selectedPlan = "month"; // default
