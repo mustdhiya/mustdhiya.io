@@ -35,6 +35,8 @@
 	<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+	<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 	
 	<!--end::Global Stylesheets Bundle-->
 	<style>
@@ -70,41 +72,47 @@
 			pointer-events: none;
 		}
 		.scrollable-certificate {
-			max-height: 600px;   /* Tentukan tinggi area scroll */
-			overflow-y: auto;    /* Tampilkan scroll vertical */
+			max-height: 600px;
+			overflow-y: auto;
+			position: relative; 
+			z-index: 1!important; /* Pastikan tidak menutupi tab */
 		  }
-
-		  .cert-img {
-			height: 250px;           /* tinggi gambar */
-			background-size: cover;
+		.nav.nav-tabs {
+			position: relative;
+			z-index: 9999!important; /* Lebih tinggi dari 1 */
+		  }
+		  .overlay-wrapper {
 			background-position: center;
+			background-size: cover;
 			border-radius: 8px;
+		  }
+		  .overlay {
+			position: relative;
+			display: block;
+			border-radius: 8px;
+			overflow: hidden;
+			
 		  }
 		  .overlay-layer {
 			position: absolute;
 			inset: 0;
 			background-color: rgba(0,0,0,0.25);
-			border-radius: 8px;
+			opacity: 0;
+			transition: opacity 0.3s;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			opacity: 0;
-			transition: opacity 0.3s;
 		  }
-		  .overlay-container {
-			position: relative;
-			display: block;
-			border-radius: 8px;
-			overflow: hidden;
-		  }
-		  .overlay-container:hover .overlay-layer {
+		  .overlay:hover .overlay-layer {
 			opacity: 1;
 		  }
-		  .overlay-icon {
-			color: white;
+		  .overlay-layer i {
+			color: #fff;
 			font-size: 2rem;
-		  }  
-		  
+		  }
+		  .h-250px { height: 250px; }
+		  .h-lg-100 { height: 100%; }
+		  .min-h-250px { min-height: 250px; }\
 
 		/* Wave canvas styling */
 		#waveCanvas {
@@ -471,8 +479,6 @@
 			</div>
 		</div>
 
-
-
 		<!--end::How It Works Section-->
 		<!--begin::Statistics Section-->
 		<div class="mt-sm-n10">
@@ -622,34 +628,13 @@
 								</li>
 								<li class="nav-item">
 									<a class="nav-link text-gray-500 text-active-primary px-3 px-lg-6" href="#"
-										data-bs-toggle="tab" data-bs-target="#kt_landing_projects_web_design">Software 1
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-gray-500 text-active-primary px-3 px-lg-6" href="#"
-										data-bs-toggle="tab" data-bs-target="#kt_landing_projects_mobile_apps">Software
-										2
+										data-bs-toggle="tab" data-bs-target="#kt_landing_projects_web_design">Software
 									</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link text-gray-500 text-active-primary px-3 px-lg-6" href="#"
 										data-bs-toggle="tab"
-										data-bs-target="#kt_landing_projects_development">Certificate 1</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-gray-500 text-active-primary px-3 px-lg-6" href="#"
-										data-bs-toggle="tab"
-										data-bs-target="#kt_landing_projects_development">Certificate 2</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-gray-500 text-active-primary px-3 px-lg-6" href="#"
-										data-bs-toggle="tab"
-										data-bs-target="#kt_landing_projects_development">Certificate 3</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-gray-500 text-active-primary px-3 px-lg-6" href="#"
-										data-bs-toggle="tab"
-										data-bs-target="#kt_landing_projects_development">Certificate 4</a>
+										data-bs-target="#kt_landing_projects_development">Certificate </a>
 								</li>
 							</ul>
 							<!--end::Tabs-->
@@ -926,10 +911,10 @@
 										<!--begin::Item-->
 										<a class="d-block card-rounded overlay h-lg-100"
 											data-fslightbox="lightbox-projects"
-											href="assets/media/stock/600x600/drill.png">
+											href="assets/media/stock/600x600/igfauzan.jpg">
 											<!--begin::Image-->
 											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px"
-												style="background-image:url('assets/media/stock/600x600/drill.png')">
+												style="background-image:url('assets/media/stock/600x600/igfauzan.jpg')">
 											</div>
 											<!--end::Image-->
 											<!--begin::Action-->
@@ -954,10 +939,10 @@
 												<!--begin::Item-->
 												<a class="d-block card-rounded overlay"
 													data-fslightbox="lightbox-projects"
-													href="assets/media/stock/600x600/kunjungan.png">
+													href="assets/media/stock/600x600/iggame.jpg">
 													<!--begin::Image-->
 													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
-														style="background-image:url('assets/media/stock/600x600/kunjungan.png')">
+														style="background-image:url('assets/media/stock/600x600/iggame.jpg')">
 													</div>
 													<!--end::Image-->
 													<!--begin::Action-->
@@ -978,10 +963,10 @@
 												<!--begin::Item-->
 												<a class="d-block card-rounded overlay"
 													data-fslightbox="lightbox-projects"
-													href="assets/media/stock/600x600/plts.JPG">
+													href="assets/media/stock/600x600/igpkm.jpg">
 													<!--begin::Image-->
 													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
-														style="background-image:url('assets/media/stock/600x600/plts.JPG')">
+														style="background-image:url('assets/media/stock/600x600/igpkm.jpg')">
 													</div>
 													<!--end::Image-->
 													<!--begin::Action-->
@@ -1001,10 +986,10 @@
 										<!--end::Row-->
 										<!--begin::Item-->
 										<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects"
-											href="assets/media/stock/600x600/loaduri.jpeg">
+											href="assets/media/stock/600x600/aldi1.jpg">
 											<!--begin::Image-->
 											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
-												style="background-image:url('assets/media/stock/600x600/loaduri.jpeg')">
+												style="background-image:url('assets/media/stock/600x600/aldi1.jpg')">
 											</div>
 											<!--end::Image-->
 											<!--begin::Action-->
@@ -1023,23 +1008,17 @@
 								</div>
 								<!--end::Row-->
 							</div>
-							<!--end::Tab pane-->
 							<!--begin::Tab pane-->
 							<div class="tab-pane fade" id="kt_landing_projects_development">
-								<!-- Kontainer scroll khusus -->
 								<div class="scrollable-certificate border p-3">
-								  <!-- Container grid untuk menampung sertifikat -->
 								  <div class="row g-3" id="certificate-container">
 									<!-- Akan di-generate oleh JavaScript array statis -->
 								  </div>
 								</div>
-							  </div>
+							  </div>							  
 							</div>
-						  </div>
-									  
-									  <!--end::Row caldi6-->
-	
-							  
+						  </div>		  
+									  <!--end::Row caldi6-->				  
 	</div>
 	<!--end::Curve bottom-->
 	</div>
@@ -1537,146 +1516,129 @@
 			});
 		}
 
-		const certificateFiles = [
-		"caldi1.jpg",
-		"caldi2.png",
-		"caldi3.png",
-		"caldi4.png",
-		"caldi5.png",
-		"caldi6.png",
-		"serti1.png",
-
-
-	  ];
-	  
-	function loadCertificates() {
-	const container = document.getElementById("certificate-container");
-	container.innerHTML = ""; // Bersihkan kontainer
-
-	for (let i = 0; i < certificateFiles.length; i += 4) {
-		// Ambil 4 item (atau kurang, jika sisa tidak cukup)
-		const leftItem = certificateFiles[i]     || null;
-		const topLeft  = certificateFiles[i + 1] || null;
-		const topRight = certificateFiles[i + 2] || null;
-		const bottom   = certificateFiles[i + 3] || null;
-
-		// Jika semua null (tidak ada sisa file), hentikan loop
-		if (!leftItem && !topLeft && !topRight && !bottom) break;
-
-		// Buat row
-		const rowDiv = document.createElement("div");
-		rowDiv.classList.add("row", "g-10", "mb-10");
-
-		// 1) Kolom kiri (leftItem) - tampil jika ada
-		let colLeftHTML = "";
-		if (leftItem) {
-		colLeftHTML = `
-			<div class="col-lg-6">
-			<a class="d-block card-rounded overlay h-lg-100"
-				data-fslightbox="lightbox-projects"
-				href="assets/media/stock/600x600/${leftItem}">
-				<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px"
-					style="background-image:url('assets/media/stock/600x600/${leftItem}')">
-				</div>
-				<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-				<i class="ki-duotone ki-eye fs-3x text-white">
-					<span class="path1"></span>
-					<span class="path2"></span>
-					<span class="path3"></span>
-				</i>
-				</div>
-			</a>
-			</div>
-		`;
-		} else {
-		// Jika tidak ada leftItem, buat kolom kosong atau abaikan
-		colLeftHTML = `<div class="col-lg-6"></div>`;
+		const certificateFiles = [];
+		for (let i = 1; i <= 55; i++) {
+		  certificateFiles.push(`serti${i}.png`);
 		}
-
-		// 2) Kolom kanan: topLeft, topRight, bottom
-		let colRightHTML = `<div class="col-lg-6">`;
-
-		// 2A) Row atas (2 item kecil)
-		colRightHTML += `<div class="row g-10 mb-10">`;
-		// topLeft
-		if (topLeft) {
-		colRightHTML += `
-			<div class="col-lg-6">
-			<a class="d-block card-rounded overlay"
-				data-fslightbox="lightbox-projects"
-				href="assets/media/stock/600x600/${topLeft}">
-				<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
-					style="background-image:url('assets/media/stock/600x600/${topLeft}')">
-				</div>
-				<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-				<i class="ki-duotone ki-eye fs-3x text-white">
-					<span class="path1"></span>
-					<span class="path2"></span>
-					<span class="path3"></span>
-				</i>
-				</div>
-			</a>
-			</div>
-		`;
-		} else {
-		// Kolom kosong kalau topLeft tidak ada
-		colRightHTML += `<div class="col-lg-6"></div>`;
-		}
-
-		// topRight
-		if (topRight) {
-		colRightHTML += `
-			<div class="col-lg-6">
-			<a class="d-block card-rounded overlay"
-				data-fslightbox="lightbox-projects"
-				href="assets/media/stock/600x600/${topRight}">
-				<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
-					style="background-image:url('assets/media/stock/600x600/${topRight}')">
-				</div>
-				<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-				<i class="ki-duotone ki-eye fs-3x text-white">
-					<span class="path1"></span>
-					<span class="path2"></span>
-					<span class="path3"></span>
-				</i>
-				</div>
-			</a>
-			</div>
-		`;
-		} else {
-		// Kolom kosong kalau topRight tidak ada
-		colRightHTML += `<div class="col-lg-6"></div>`;
-		}
-		colRightHTML += `</div>`; // end row atas
-
-		// 2B) Item besar di bawah (bottom)
-		if (bottom) {
-		colRightHTML += `
-			<a class="d-block card-rounded overlay"
-			data-fslightbox="lightbox-projects"
-			href="assets/media/stock/600x600/${bottom}">
-			<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
-				style="background-image:url('assets/media/stock/600x600/${bottom}')">
-			</div>
-			<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-				<i class="ki-duotone ki-eye fs-3x text-white">
-				<span class="path1"></span>
-				<span class="path2"></span>
-				<span class="path3"></span>
-				</i>
-			</div>
-			</a>
-		`;
-		}
-		// Jika bottom tidak ada, kolom bawah kosong
-
-		colRightHTML += `</div>`; // end col-lg-6
-
-		// Susun row
-		rowDiv.innerHTML = colLeftHTML + colRightHTML;
-		container.appendChild(rowDiv);
-	}
-	}
+		
+		
+		function loadCertificates() {
+			const container = document.getElementById("certificate-container");
+			container.innerHTML = ""; // Bersihkan kontainer
+		  
+			for (let i = 0; i < certificateFiles.length; i += 4) {
+			  const leftItem = certificateFiles[i]     || null;
+			  const topLeft  = certificateFiles[i + 1] || null;
+			  const topRight = certificateFiles[i + 2] || null;
+			  const bottom   = certificateFiles[i + 3] || null;
+		  
+			  if (!leftItem && !topLeft && !topRight && !bottom) break;
+		  
+			  const rowDiv = document.createElement("div");
+			  rowDiv.classList.add("row", "g-4", "mb-4");
+		  
+			  // Kolom kiri
+			  let colLeftHTML = "";
+			  if (leftItem) {
+				colLeftHTML = `
+				  <div class="col-lg-6">
+					<a class="d-block card-rounded overlay h-lg-100"
+					   data-fancybox="serti-gallery"
+					   href="assets/media/stock/600x600/${leftItem}">
+					  <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px"
+						   style="background-image:url('assets/media/stock/600x600/${leftItem}')">
+					  </div>
+					  <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+						<i class="ki-duotone ki-eye fs-3x text-white">
+						  <span class="path1"></span>
+						  <span class="path2"></span>
+						  <span class="path3"></span>
+						</i>
+					  </div>
+					</a>
+				  </div>
+				`;
+			  } else {
+				colLeftHTML = `<div class="col-lg-6"></div>`;
+			  }
+		  
+			  // Kolom kanan
+			  let colRightHTML = `<div class="col-lg-6">`;
+		  
+			  // Baris atas: topLeft & topRight
+			  colRightHTML += `<div class="row g-10 mb-10">`;
+			  if (topLeft) {
+				colRightHTML += `
+				  <div class="col-lg-6">
+					<a class="d-block card-rounded overlay"
+					   data-fancybox="serti-gallery"
+					   href="assets/media/stock/600x600/${topLeft}">
+					  <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+						   style="background-image:url('assets/media/stock/600x600/${topLeft}')">
+					  </div>
+					  <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+						<i class="ki-duotone ki-eye fs-3x text-white">
+						  <span class="path1"></span>
+						  <span class="path2"></span>
+						  <span class="path3"></span>
+						</i>
+					  </div>
+					</a>
+				  </div>
+				`;
+			  } else {
+				colRightHTML += `<div class="col-lg-6"></div>`;
+			  }
+		  
+			  if (topRight) {
+				colRightHTML += `
+				  <div class="col-lg-6">
+					<a class="d-block card-rounded overlay"
+					   data-fancybox="serti-gallery"
+					   href="assets/media/stock/600x600/${topRight}">
+					  <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+						   style="background-image:url('assets/media/stock/600x600/${topRight}')">
+					  </div>
+					  <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+						<i class="ki-duotone ki-eye fs-3x text-white">
+						  <span class="path1"></span>
+						  <span class="path2"></span>
+						  <span class="path3"></span>
+						</i>
+					  </div>
+					</a>
+				  </div>
+				`;
+			  } else {
+				colRightHTML += `<div class="col-lg-6"></div>`;
+			  }
+			  colRightHTML += `</div>`; // end row g-10
+		  
+			  // Item besar di bawah
+			  if (bottom) {
+				colRightHTML += `
+				  <a class="d-block card-rounded overlay"
+					 data-fancybox="serti-gallery"
+					 href="assets/media/stock/600x600/${bottom}">
+					<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+						 style="background-image:url('assets/media/stock/600x600/${bottom}')">
+					</div>
+					<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+					  <i class="ki-duotone ki-eye fs-3x text-white">
+						<span class="path1"></span>
+						<span class="path2"></span>
+						<span class="path3"></span>
+					  </i>
+					</div>
+				  </a>
+				`;
+			  }
+			  colRightHTML += `</div>`; // end col-lg-6
+		  
+			  rowDiv.innerHTML = colLeftHTML + colRightHTML;
+			  container.appendChild(rowDiv);
+			}
+		  }
 
 	  const certTabLink = document.querySelector('[data-bs-target="#kt_landing_projects_development"]');
 	  certTabLink.addEventListener('shown.bs.tab', loadCertificates);		
