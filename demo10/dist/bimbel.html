@@ -849,8 +849,7 @@
 							<div class="d-flex flex-column mb-8 fv-row">
 								<label class="fs-6 fw-semibold mb-2">Upload Bukti Pembayaran <span
 										class="required">*</span></label>
-								<input type="file" class="form-control form-control-solid" id="bukti_pembayaran_reg"
-									name="bukti_pembayaran" required>
+								<input type="file" class="form-control form-control-solid" id="bukti_pembayaran_reg"accept="image/*" required >
 							</div>
 							<!-- Actions -->
 							<div class="text-center">
@@ -933,54 +932,71 @@
 			function setPaketRegister(paket) {
 				document.getElementById("paket_reg").value = paket;
 			  }
-			  
-			  // Set timestamp saat modal register dibuka
+			
+			  // Set timestamp saat modal register dibuka (opsional)
 			  var registerModal = document.getElementById("kt_modal_register");
 			  registerModal.addEventListener("shown.bs.modal", function () {
 				document.getElementById("timestamp_reg").value = new Date().toISOString();
 			  });
+			
+			  document.getElementById("form_register").addEventListener("submit", function(e) {
+				e.preventDefault();
 			  
-			  document.getElementById("form_register").addEventListener("submit", function (e) {
-				  e.preventDefault();
-				
-				  var formData = new FormData();
-				  formData.append("email", document.getElementById("email_reg").value);
-				  formData.append("nama", document.getElementById("nama_reg").value);
-				  formData.append("nim", document.getElementById("nim_reg").value);
-				  formData.append("angkatan", document.getElementById("angkatan_reg").value);
-				  formData.append("komitmen", document.getElementById("komitmen_reg").value);
-				  formData.append("nomorWA", document.getElementById("nomor_wa_reg").value);
-				
-				  var buktiFile = document.getElementById("bukti_pembayaran_reg").files[0];
-				  if (buktiFile) {
-					formData.append("buktiPembayaran", buktiFile);
-				  }
-				
-				  var url = "https://script.google.com/macros/s/AKfycbwEkDY5gczcoBKkPfDiF0aSAY-pXB1slUazTqHehcmtPj6Sph_0fhCvJDYMwahb7P-r/exec";
-				
+				// Ambil nilai input form
+				const email = document.getElementById("email_reg").value;
+				const nama = document.getElementById("nama_reg").value;
+				const nim = document.getElementById("nim_reg").value;
+				const angkatan = document.getElementById("angkatan_reg").value;
+				const komitmen = document.getElementById("komitmen_reg").value;
+				const nomorWA = document.getElementById("nomor_wa_reg").value;
+			  
+				// Ambil file gambar
+				const fileInput = document.getElementById("bukti_pembayaran_reg");
+				const file = fileInput.files[0];
+				if (!file) {
+				  alert("Mohon unggah bukti pembayaran.");
+				  return;
+				}
+			  
+				// Gunakan FileReader untuk ubah file gambar menjadi Base64
+				const reader = new FileReader();
+				reader.onloadend = function() {
+				  // contoh: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABA..."
+				  const base64String = reader.result.split(",")[1]; // Ambil isi Base64 tanpa prefix "data:..."
+			  
+				  // Siapkan payload JSON
+				  const payload = {
+					email: email,
+					nama: nama,
+					nim: nim,
+					angkatan: angkatan,
+					komitmen: komitmen,
+					// Tambahkan ' di depan nomor WA agar di sheet tersimpan sebagai teks
+					nomorWA: "'" + nomorWA,  
+					fileName: file.name,
+					fileType: file.type,
+					fileData: base64String
+				  };
+				  
+			  
+				  // URL Web App Google Apps Script (Ganti dengan milik Anda)
+				  const url = "https://script.google.com/macros/s/AKfycbwazk8mg1O0i6isANYCZh73Q95Ol6RuMzb_tgWoe9wb7HMI8s3am37YHk7r9KSk0xlh/exec";
+			  
+				  // Kirim data ke Apps Script
 				  fetch(url, {
 					method: "POST",
-					body: formData,
-					mode: "cors", // ✅ Menghindari masalah CORS
-					redirect: "follow"
+					mode: "no-cors",
+					body: JSON.stringify(payload)
 				  })
-				  .then(response => response.json())
-				  .then(data => {
-					console.log("Response from server:", data);
-					if (data.status === "Success") {
-					  alert("Pendaftaran berhasil dikirim!");
-					  document.getElementById("form_register").reset();
-					  var modalRegister = bootstrap.Modal.getInstance(document.getElementById('kt_modal_register'));
-					  modalRegister.hide();
-					} else {
-					  alert("Terjadi kesalahan: " + data.message);
-					}
+				  .then(() => {
+					// Tidak bisa baca response
+					alert("Data terkirim ");
 				  })
-				  .catch(error => {
-					console.error("Error:", error);
-					alert("Terjadi kesalahan, silakan coba lagi.");
-				  });
-				});
+				  .catch(err => console.error(err));
+				}				  
+			  
+				reader.readAsDataURL(file); // Mengubah file gambar menjadi Base64
+			  });
 				
 		</script>
 		<!--end::Plans-->
