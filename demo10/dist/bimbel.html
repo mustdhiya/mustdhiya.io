@@ -1139,8 +1139,11 @@
 							<div class="text-center">
 								<button type="reset" id="kt_modal_register_cancel" class="btn btn-light me-3"
 									data-bs-dismiss="modal">Cancel</button>
-								<button type="submit" id="kt_modal_register_submit" class="btn btn-primary">
-									<span class="indicator-label">Submit Pendaftaran</span>
+								<button type="button" id="kt_button_demo" class="btn btn-primary"
+									data-kt-indicator="off">
+									<!-- Label normal -->
+									<span class="indicator-label">Click me</span>
+									<!-- Label loading -->
 									<span class="indicator-progress">Please wait...
 										<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
 									</span>
@@ -1258,10 +1261,39 @@
 			registerModal.addEventListener("shown.bs.modal", function () {
 				document.getElementById("timestamp_reg").value = new Date().toISOString();
 			});
+			document.addEventListener("DOMContentLoaded", function () {
+				var btn = document.getElementById("kt_button_demo");
+
+				btn.addEventListener("click", function () {
+					// Aktifkan spinner
+					btn.setAttribute("data-kt-indicator", "on");
+					// Disable agar user tidak klik berkali-kali
+					btn.disabled = true;
+
+					// Simulasi proses (misal 3 detik)
+					setTimeout(function () {
+						// Matikan spinner
+						btn.removeAttribute("data-kt-indicator");
+						btn.disabled = false;
+						// Tampilkan notifikasi atau apapun
+						Swal.fire({
+							title: "Berhasil!",
+							text: "Data terkirim. Terima kasih sudah mendaftar!",
+							icon: "success",
+							confirmButtonText: "OK"
+						});
+					}, 3000);
+				});
+			});
 
 			document.getElementById("form_register").addEventListener("submit", function (e) {
 				e.preventDefault();
 
+				var submitButton = document.getElementById("kt_modal_register_submit");
+				// Nyalakan spinner
+				submitButton.setAttribute("data-kt-indicator", "on");
+				submitButton.disabled = true;
+				
 				const paket = document.getElementById("paket_bimbel_reg").value;
 				const semester = document.getElementById("semester_select").value;
 				const email = document.getElementById("email_reg").value;
@@ -1307,14 +1339,35 @@
 						body: JSON.stringify(payload)
 					})
 						.then(() => {
-							alert("Data terkirim. Terima kasih sudah mendaftar!");
+							console.log("Then triggered!");
+							submitButton.removeAttribute("data-kt-indicator");
+							submitButton.disabled = false;
+
+							// SweetAlert success
+							Swal.fire({
+								title: "Berhasil!",
+								text: "Data terkirim.",
+								icon: "success"
+							});
 						})
-						.catch(err => console.error(err));
+						.catch((err) => {
+							console.log("Catch triggered!", err);
+							submitButton.removeAttribute("data-kt-indicator");
+							submitButton.disabled = false;
+
+							// SweetAlert error
+							Swal.fire({
+								title: "Gagal!",
+								text: "Terjadi kesalahan: " + err,
+								icon: "error"
+							});
+						});
 				};
 				reader.readAsDataURL(file);
 			});
 
 		</script>
+
 		<!--end::Plans-->
 	</div>
 	<!--end::Container-->
