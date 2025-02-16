@@ -35,6 +35,7 @@
 	<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+	
 	<!--end::Global Stylesheets Bundle-->
 	<style>
 		/* Container background dengan class landing-dark-bg */
@@ -68,6 +69,42 @@
 			height: 100%;
 			pointer-events: none;
 		}
+		.scrollable-certificate {
+			max-height: 600px;   /* Tentukan tinggi area scroll */
+			overflow-y: auto;    /* Tampilkan scroll vertical */
+		  }
+
+		  .cert-img {
+			height: 250px;           /* tinggi gambar */
+			background-size: cover;
+			background-position: center;
+			border-radius: 8px;
+		  }
+		  .overlay-layer {
+			position: absolute;
+			inset: 0;
+			background-color: rgba(0,0,0,0.25);
+			border-radius: 8px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			opacity: 0;
+			transition: opacity 0.3s;
+		  }
+		  .overlay-container {
+			position: relative;
+			display: block;
+			border-radius: 8px;
+			overflow: hidden;
+		  }
+		  .overlay-container:hover .overlay-layer {
+			opacity: 1;
+		  }
+		  .overlay-icon {
+			color: white;
+			font-size: 2rem;
+		  }  
+		  
 
 		/* Wave canvas styling */
 		#waveCanvas {
@@ -988,229 +1025,21 @@
 							</div>
 							<!--end::Tab pane-->
 							<!--begin::Tab pane-->
-							<div class="tab-pane fade" id="kt_landing_projects_mobile_apps">
-								<!--begin::Row-->
-								<div class="row g-10">
-									<!--begin::Col-->
-									<div class="col-lg-6">
-										<!--begin::Row-->
-										<div class="row g-10 mb-10">
-											<!--begin::Col-->
-											<div class="col-lg-6">
-												<!--begin::Item-->
-												<a class="d-block card-rounded overlay"
-													data-fslightbox="lightbox-projects"
-													href="assets/media/stock/600x600/caldi1.jpg">
-													<!--begin::Image-->
-													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
-														style="background-image:url('assets/media/stock/600x600/caldi1.jpg')">
-													</div>
-													<!--end::Image-->
-													<!--begin::Action-->
-													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-														<i class="ki-duotone ki-eye fs-3x text-white">
-															<span class="path1"></span>
-															<span class="path2"></span>
-															<span class="path3"></span>
-														</i>
-													</div>
-													<!--end::Action-->
-												</a>
-												<!--end::Item-->
-											</div>
-											<!--end::Col-->
-											<!--begin::Col-->
-											<div class="col-lg-6">
-												<!--begin::Item-->
-												<a class="d-block card-rounded overlay"
-													data-fslightbox="lightbox-projects"
-													href="assets/media/stock/600x600/caldi2.png">
-													<!--begin::Image-->
-													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
-														style="background-image:url('assets/media/stock/600x600/caldi2.png')">
-													</div>
-													<!--end::Image-->
-													<!--begin::Action-->
-													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-														<i class="ki-duotone ki-eye fs-3x text-white">
-															<span class="path1"></span>
-															<span class="path2"></span>
-															<span class="path3"></span>
-														</i>
-													</div>
-													<!--end::Action-->
-												</a>
-												<!--end::Item-->
-											</div>
-											<!--end::Col-->
-										</div>
-										<!--end::Row-->
-										<!--begin::Item-->
-										<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects"
-											href="assets/media/stock/600x600/caldi3.png">
-											<!--begin::Image-->
-											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
-												style="background-image:url('assets/media/stock/600x600/caldi3.png')">
-											</div>
-											<!--end::Image-->
-											<!--begin::Action-->
-											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-												<i class="ki-duotone ki-eye fs-3x text-white">
-													<span class="path1"></span>
-													<span class="path2"></span>
-													<span class="path3"></span>
-												</i>
-											</div>
-											<!--end::Action-->
-										</a>
-										<!--end::Item-->
-									</div>
-									<!--end::Col-->
-									<!--begin::Col-->
-									<div class="col-lg-6">
-										<!--begin::Item-->
-										<a class="d-block card-rounded overlay h-lg-100"
-											data-fslightbox="lightbox-projects"
-											href="assets/media/stock/600x600/caldi4.png">
-											<!--begin::Image-->
-											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px"
-												style="background-image:url('assets/media/stock/600x600/caldi4.png')">
-											</div>
-											<!--end::Image-->
-											<!--begin::Action-->
-											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-												<i class="ki-duotone ki-eye fs-3x text-white">
-													<span class="path1"></span>
-													<span class="path2"></span>
-													<span class="path3"></span>
-												</i>
-											</div>
-											<!--end::Action-->
-										</a>
-										<!--end::Item-->
-									</div>
-									<!--end::Col-->
-								</div>
-								<!--end::Row-->
-							</div>
-							<!--end::Tab pane-->
-							<!--begin::Tab pane-->
 							<div class="tab-pane fade" id="kt_landing_projects_development">
-								<!--begin::Row-->
-								<div class="row g-10">
-									<!--begin::Col-->
-									<div class="col-lg-6">
-										<!--begin::Item-->
-										<a class="d-block card-rounded overlay h-lg-100"
-											data-fslightbox="lightbox-projects"
-											href="assets/media/stock/600x600/img-15.jpg">
-											<!--begin::Image-->
-											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px"
-												style="background-image:url('assets/media/stock/600x600/img-15.jpg')">
-											</div>
-											<!--end::Image-->
-											<!--begin::Action-->
-											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-												<i class="ki-duotone ki-eye fs-3x text-white">
-													<span class="path1"></span>
-													<span class="path2"></span>
-													<span class="path3"></span>
-												</i>
-											</div>
-											<!--end::Action-->
-										</a>
-										<!--end::Item-->
-									</div>
-									<!--end::Col-->
-									<!--begin::Col-->
-									<div class="col-lg-6">
-										<!--begin::Row-->
-										<div class="row g-10 mb-10">
-											<!--begin::Col-->
-											<div class="col-lg-6">
-												<!--begin::Item-->
-												<a class="d-block card-rounded overlay"
-													data-fslightbox="lightbox-projects"
-													href="assets/media/stock/600x600/img-22.jpg">
-													<!--begin::Image-->
-													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
-														style="background-image:url('assets/media/stock/600x600/img-22.jpg')">
-													</div>
-													<!--end::Image-->
-													<!--begin::Action-->
-													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-														<i class="ki-duotone ki-eye fs-3x text-white">
-															<span class="path1"></span>
-															<span class="path2"></span>
-															<span class="path3"></span>
-														</i>
-													</div>
-													<!--end::Action-->
-												</a>
-												<!--end::Item-->
-											</div>
-											<!--end::Col-->
-											<!--begin::Col-->
-											<div class="col-lg-6">
-												<!--begin::Item-->
-												<a class="d-block card-rounded overlay"
-													data-fslightbox="lightbox-projects"
-													href="assets/media/stock/600x600/img-21.jpg">
-													<!--begin::Image-->
-													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
-														style="background-image:url('assets/media/stock/600x600/img-21.jpg')">
-													</div>
-													<!--end::Image-->
-													<!--begin::Action-->
-													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-														<i class="ki-duotone ki-eye fs-3x text-white">
-															<span class="path1"></span>
-															<span class="path2"></span>
-															<span class="path3"></span>
-														</i>
-													</div>
-													<!--end::Action-->
-												</a>
-												<!--end::Item-->
-											</div>
-											<!--end::Col-->
-										</div>
-										<!--end::Row-->
-										<!--begin::Item-->
-										<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects"
-											href="assets/media/stock/600x400/img-14.jpg">
-											<!--begin::Image-->
-											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
-												style="background-image:url('assets/media/stock/600x600/img-14.jpg')">
-											</div>
-											<!--end::Image-->
-											<!--begin::Action-->
-											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-												<i class="ki-duotone ki-eye fs-3x text-white">
-													<span class="path1"></span>
-													<span class="path2"></span>
-													<span class="path3"></span>
-												</i>
-											</div>
-											<!--end::Action-->
-										</a>
-										<!--end::Item-->
-									</div>
-									<!--end::Col-->
+								<!-- Kontainer scroll khusus -->
+								<div class="scrollable-certificate border p-3">
+								  <!-- Container grid untuk menampung sertifikat -->
+								  <div class="row g-3" id="certificate-container">
+									<!-- Akan di-generate oleh JavaScript array statis -->
+								  </div>
 								</div>
-								<!--end::Row-->
+							  </div>
 							</div>
-							<!--end::Tab pane-->
-						</div>
-						<!--end::Tabs content-->
-					</div>
-					<!--end::Card body-->
-				</div>
-				<!--end::Card-->
-			</div>
-			<!--end::Container-->
-		</div>
-
+						  </div>
+									  
+									  <!--end::Row caldi6-->
+	
+							  
 	</div>
 	<!--end::Curve bottom-->
 	</div>
@@ -1592,6 +1421,7 @@
 
 	<!-- Typed.js Library -->
 	<script src="assets/plugins/custom/typedjs/typedjs.bundle.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
 		// Wave Animation Code
 		const waveCanvas = document.getElementById('waveCanvas');
@@ -1706,6 +1536,150 @@
 				starCtx.fillRect(star.x, star.y, star.size, star.size);
 			});
 		}
+
+		const certificateFiles = [
+		"caldi1.jpg",
+		"caldi2.png",
+		"caldi3.png",
+		"caldi4.png",
+		"caldi5.png",
+		"caldi6.png",
+		"serti1.png",
+
+
+	  ];
+	  
+	function loadCertificates() {
+	const container = document.getElementById("certificate-container");
+	container.innerHTML = ""; // Bersihkan kontainer
+
+	for (let i = 0; i < certificateFiles.length; i += 4) {
+		// Ambil 4 item (atau kurang, jika sisa tidak cukup)
+		const leftItem = certificateFiles[i]     || null;
+		const topLeft  = certificateFiles[i + 1] || null;
+		const topRight = certificateFiles[i + 2] || null;
+		const bottom   = certificateFiles[i + 3] || null;
+
+		// Jika semua null (tidak ada sisa file), hentikan loop
+		if (!leftItem && !topLeft && !topRight && !bottom) break;
+
+		// Buat row
+		const rowDiv = document.createElement("div");
+		rowDiv.classList.add("row", "g-10", "mb-10");
+
+		// 1) Kolom kiri (leftItem) - tampil jika ada
+		let colLeftHTML = "";
+		if (leftItem) {
+		colLeftHTML = `
+			<div class="col-lg-6">
+			<a class="d-block card-rounded overlay h-lg-100"
+				data-fslightbox="lightbox-projects"
+				href="assets/media/stock/600x600/${leftItem}">
+				<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px"
+					style="background-image:url('assets/media/stock/600x600/${leftItem}')">
+				</div>
+				<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+				<i class="ki-duotone ki-eye fs-3x text-white">
+					<span class="path1"></span>
+					<span class="path2"></span>
+					<span class="path3"></span>
+				</i>
+				</div>
+			</a>
+			</div>
+		`;
+		} else {
+		// Jika tidak ada leftItem, buat kolom kosong atau abaikan
+		colLeftHTML = `<div class="col-lg-6"></div>`;
+		}
+
+		// 2) Kolom kanan: topLeft, topRight, bottom
+		let colRightHTML = `<div class="col-lg-6">`;
+
+		// 2A) Row atas (2 item kecil)
+		colRightHTML += `<div class="row g-10 mb-10">`;
+		// topLeft
+		if (topLeft) {
+		colRightHTML += `
+			<div class="col-lg-6">
+			<a class="d-block card-rounded overlay"
+				data-fslightbox="lightbox-projects"
+				href="assets/media/stock/600x600/${topLeft}">
+				<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+					style="background-image:url('assets/media/stock/600x600/${topLeft}')">
+				</div>
+				<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+				<i class="ki-duotone ki-eye fs-3x text-white">
+					<span class="path1"></span>
+					<span class="path2"></span>
+					<span class="path3"></span>
+				</i>
+				</div>
+			</a>
+			</div>
+		`;
+		} else {
+		// Kolom kosong kalau topLeft tidak ada
+		colRightHTML += `<div class="col-lg-6"></div>`;
+		}
+
+		// topRight
+		if (topRight) {
+		colRightHTML += `
+			<div class="col-lg-6">
+			<a class="d-block card-rounded overlay"
+				data-fslightbox="lightbox-projects"
+				href="assets/media/stock/600x600/${topRight}">
+				<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+					style="background-image:url('assets/media/stock/600x600/${topRight}')">
+				</div>
+				<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+				<i class="ki-duotone ki-eye fs-3x text-white">
+					<span class="path1"></span>
+					<span class="path2"></span>
+					<span class="path3"></span>
+				</i>
+				</div>
+			</a>
+			</div>
+		`;
+		} else {
+		// Kolom kosong kalau topRight tidak ada
+		colRightHTML += `<div class="col-lg-6"></div>`;
+		}
+		colRightHTML += `</div>`; // end row atas
+
+		// 2B) Item besar di bawah (bottom)
+		if (bottom) {
+		colRightHTML += `
+			<a class="d-block card-rounded overlay"
+			data-fslightbox="lightbox-projects"
+			href="assets/media/stock/600x600/${bottom}">
+			<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+				style="background-image:url('assets/media/stock/600x600/${bottom}')">
+			</div>
+			<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+				<i class="ki-duotone ki-eye fs-3x text-white">
+				<span class="path1"></span>
+				<span class="path2"></span>
+				<span class="path3"></span>
+				</i>
+			</div>
+			</a>
+		`;
+		}
+		// Jika bottom tidak ada, kolom bawah kosong
+
+		colRightHTML += `</div>`; // end col-lg-6
+
+		// Susun row
+		rowDiv.innerHTML = colLeftHTML + colRightHTML;
+		container.appendChild(rowDiv);
+	}
+	}
+
+	  const certTabLink = document.querySelector('[data-bs-target="#kt_landing_projects_development"]');
+	  certTabLink.addEventListener('shown.bs.tab', loadCertificates);		
 
 		function createShootingStar() {
 			const startX = Math.random() * starCanvas.width;
