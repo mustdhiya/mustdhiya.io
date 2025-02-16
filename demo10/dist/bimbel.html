@@ -1139,7 +1139,9 @@
 							<div class="text-center">
 								<button type="reset" id="kt_modal_register_cancel" class="btn btn-light me-3"
 									data-bs-dismiss="modal">Cancel</button>
-								<button type="submit" id="kt_modal_register_submit" class="btn btn-primary">
+								<button type="submit" id="kt_modal_register_submit" class="btn btn-primary"
+									data-kt-indicator="off">
+									
 									<span class="indicator-label">Submit Pendaftaran</span>
 									<span class="indicator-progress">Please wait...
 										<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
@@ -1305,9 +1307,23 @@
 						body: JSON.stringify(payload)
 					})
 						.then(() => {
-							alert("Data terkirim. Terima kasih sudah mendaftar!");
+							// Jika berhasil
+							Swal.fire({
+								title: "Berhasil!",
+								text: "Data terkirim. Terima kasih sudah mendaftar!",
+								icon: "success",
+								confirmButtonText: "OK"
+							});
 						})
-						.catch(err => console.error(err));
+						.catch((err) => {
+							// Jika gagal
+							Swal.fire({
+								title: "Gagal!",
+								text: "Maaf, terjadi kesalahan. Silakan coba lagi. \nError: " + err,
+								icon: "error",
+								confirmButtonText: "OK"
+							});
+						});
 				};
 				reader.readAsDataURL(file);
 			});
