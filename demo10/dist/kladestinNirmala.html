@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--begin::Head-->
+
+<head>
+	<base href="" />
+	<title>Must Dhiya' Tech - IT Solutions & Bimbel Teknologi</title>
+	<meta name="description"
+		content="Must Dhiya' Tech menyediakan solusi IT profesional dan bimbingan belajar teknologi dengan hasil terjamin">
+	<meta property="og:title" content="Must Dhiya' Tech - Partner Teknologi Anda">
+	<meta charset="utf-8" />
+	<meta name="keywords"
+		content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="https://keenthemes.com/metronic" />
+	<meta property="og:site_name" content="Must Dhiya | Technology" />
+	<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+	<link rel="shortcut icon" href="assets/media/logos/must-dhiya-logo.png" />
+	<!--begin::Fonts(mandatory for all pages)-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+	<!--end::Fonts-->
+	<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+	<link href="assets/plugins/custom/leaflet/leaflet.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+	<!--end::Global Stylesheets Bundle-->
+	<style>
+		/* Container background dengan class landing-dark-bg */
+		.landing-dark-bg {
+			position: relative;
+			overflow: hidden;
+		}
+
+		/* Style canvas agar memenuhi container */
+		canvas {
+			background-color: transparent;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			z-index: 0;
+			height: 100%;
+		}
+
+		/* Starfield canvas styling */
+		#starfield {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 1;
+			height: 100%;
+			pointer-events: none;
+		}
+
+		/* Wave canvas styling */
+		#waveCanvas {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+		}
+
+		/* Konten utama di atas background */
+		.hero-content {
+			position: relative;
+			text-align: center;
+			z-index: 0;
+			color: #fff;
+			padding: 2rem;
+		}
+
+		.typed-container {
+			position: relative;
+			height: 400px;
+			overflow: hidden;
+			/* Sesuaikan tinggi minimal agar muat seluruh baris teks */
+			min-height: 150px;
+		}
+
+		/* Optional: Styling untuk cursor agar konsisten */
+		.typed-cursor {
+			font-size: inherit;
+			opacity: 1;
+			animation: blink 0.7s infinite;
+		}
+
+		@keyframes blink {
+
+			0%,
+			100% {
+				opacity: 1;
+			}
+
+			50% {
+				opacity: 0;
+			}
+		}
+	</style>
+	<script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+
+<body id="kt_body" data-bs-spy="scroll" data-bs-target="#kt_landing_menu" class="bg-body position-relative">
+	<!--begin::Theme mode setup on page load-->
+	<!-- Canvas untuk animasi wave -->
+	<canvas id="starfield" width="800" height="400"></canvas>
+	<script>var defaultThemeMode = "light"; var themeMode; if (document.documentElement) { if (document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if (localStorage.getItem("data-bs-theme") !== null) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
+	<!--end::Theme mode setup on page load-->
+	<!--begin::Main-->
+	<!--begin::Root-->
+	<div class="d-flex flex-column flex-root">
+		<!--begin::Header Section-->
+		<div class="mb-0" id="home">
+			<!--begin::Wrapper-->
+			<div class="bgi-no-repeat bgi-size-contain bgi-position-x-center bgi-position-y-bottom landing-dark-bg">
+				<!-- Canvas untuk Starfield (bintang-bintang kelap-kelip) -->
+				<canvas id="starfield"></canvas>
+				<!-- Canvas untuk Gelombang (wave) -->
+				<canvas id="waveCanvas"></canvas>
+
+				<div class="landing-header" data-kt-sticky="true" data-kt-sticky-name="landing-header"
+					data-kt-sticky-offset="{default: '200px', lg: '300px'}">
+					<!--begin::Container-->
+					<div class="container">
+						<!--begin::Wrapper-->
+						<div class="d-flex align-items-center justify-content-between">
+							<!--begin::Logo-->
+							<div class="d-flex align-items-center flex-equal">
+								<!--begin::Mobile menu toggle-->
+								<button class="btn btn-icon btn-active-color-primary me-3 d-flex d-lg-none"
+									id="kt_landing_menu_toggle">
+									<i class="ki-duotone ki-abstract-14 fs-2hx">
+										<span class="path1"></span>
+										<span class="path2"></span>
+									</i>
+								</button>
+								<!--end::Mobile menu toggle-->
+								<!--begin::Logo image-->
+								<a href="#">
+									<img alt="Logo" src="assets/media/logos/must-dhiya-logo.png"
+										class="logo-default h-25px h-lg-30px" />
+									<span alt="Logo" class="text-white ki-text-bold logo-default h-25px h-lg-30px">Must
+										Dhiya'</span>
+									<img alt="Logo" src="assets/media/logos/must-dhiya-logo-dark.png"
+										class="logo-sticky h-20px h-lg-25px" />
+									<span alt="Logo" class="text-dark ki-text-bold logo-sticky h-20px h-lg-25px">Must
+										Dhiya'</span>
+								</a>
+								<!--end::Logo image-->
+							</div>
+							<!--end::Logo-->
+							<!--begin::Menu wrapper-->
+							<div class="d-lg-block" id="kt_header_nav_wrapper">
+								<div class="d-lg-block p-5 p-lg-0" data-kt-drawer="true"
+									data-kt-drawer-name="landing-menu"
+									data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
+									data-kt-drawer-width="200px" data-kt-drawer-direction="start"
+									data-kt-drawer-toggle="#kt_landing_menu_toggle" data-kt-swapper="true"
+									data-kt-swapper-mode="prepend"
+									data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav_wrapper'}">
+									<!--begin::Menu-->
+									<div class="menu menu-column flex-nowrap menu-rounded menu-lg-row menu-title-gray-600 menu-state-title-primary nav nav-flush fs-5 fw-semibold"
+										id="kt_landing_menu">
+										<div class="menu-item">
+											<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#bimbel"
+												data-kt-scroll-toggle="true">Bimbel</a>
+										</div>
+										<div class="menu-item">
+											<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#contact"
+												data-kt-scroll-toggle="true">Contact</a>
+										</div>
+									</div>
+									<!--end::Menu-->
+								</div>
+							</div>
+							<!--end::Menu wrapper-->
+							<!--begin::Toolbar-->
+							<div class="flex-equal text-end ms-1">
+								<a href="../../demo10/dist/authentication/layouts/corporate/sign-in.html"
+									class="btn btn-success">Sign In</a>
+							</div>
+							<!--end::Toolbar-->
+						</div>
+						<!--end::Wrapper-->
+					</div>
+					<!--end::Container-->
+				</div>
+				<!--end::Header-->
+				<!--begin::Landing hero-->
+				<div class="typed-container text-center mb-5 mb-lg-10 py-10 py-lg-20">
+					<!-- Wrapper khusus untuk teks yang diketik dengan tinggi tetap -->
+					<div class="typed-text" style="height: 190px; overflow: hidden;">
+						<h1 id="kt_typedjs_example_1"
+							class="hero-content animation-slide-in-up text-white lh-base fw-bold fs-2x fs-lg-3x mb-15"
+							data-kt-animate="slide-in-up">
+							Transformasi Digital Bisnis Anda
+							<br />dengan Solusi
+							<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);
+									-webkit-background-clip: text;
+									-webkit-text-fill-color: transparent;">
+								<span id="kt_landing_hero_text">Must Dhiya' Technology</span>
+							</span>
+						</h1>
+					</div>
+
+					<!--end::Title-->
+					<!--begin::Action-->
+					<a href="#bimbel" class="btn btn-primary">Try Bimbel</a>
+					<!--end::Heading-->
+					<!--begin::Clients-->
+					<div class="d-flex flex-center flex-wrap position-relative px-5">
+						<!--begin::Client-->
+						<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Fujifilm">
+							<img src="assets/media/svg/brand-logos/fujifilm.svg" class="mh-30px mh-lg-40px" alt="" />
+						</div>
+						<!--end::Client-->
+						<!--begin::Client-->
+						<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Vodafone">
+							<img src="assets/media/svg/brand-logos/vodafone.svg" class="mh-30px mh-lg-40px" alt="" />
+						</div>
+						<!--end::Client-->
+						<!--begin::Client-->
+						<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="KPMG International">
+							<img src="assets/media/svg/brand-logos/kpmg.svg" class="mh-30px mh-lg-40px" alt="" />
+						</div>
+						<!--end::Client-->
+						<!--begin::Client-->
+						<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Nasa">
+							<img src="assets/media/svg/brand-logos/nasa.svg" class="mh-30px mh-lg-40px" alt="" />
+						</div>
+						<!--end::Client-->
+						<!--begin::Client-->
+						<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Aspnetzero">
+							<img src="assets/media/svg/brand-logos/aspnetzero.svg" class="mh-30px mh-lg-40px" alt="" />
+						</div>
+						<!--end::Client-->
+						<!--begin::Client-->
+						<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip"
+							title="AON - Empower Results">
+							<img src="assets/media/svg/brand-logos/aon.svg" class="mh-30px mh-lg-40px" alt="" />
+						</div>
+						<!--end::Client-->
+						<!--begin::Client-->
+						<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Hewlett-Packard">
+							<img src="assets/media/svg/brand-logos/hp-3.svg" class="mh-30px mh-lg-40px" alt="" />
+						</div>
+						<!--end::Client-->
+						<!--begin::Client-->
+						<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Truman">
+							<img src="assets/media/svg/brand-logos/truman.svg" class="mh-30px mh-lg-40px" alt="" />
+						</div>
+						<!--end::Client-->
+					</div>
+					<!--end::Clients-->
+				</div>
+				<!--end::Landing hero-->
+			</div>
+			<!--end::Wrapper-->
+			<!--begin::Curve bottom-->
+			<div class="landing-curve landing-dark-color mb-10 mb-lg-20">
+				<svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path
+						d="M0 11C3.93573 11.3356 7.85984 11.6689 11.7725 12H1488.16C1492.1 11.6689 1496.04 11.3356 1500 11V12H1488.16C913.668 60.3476 586.282 60.6117 11.7725 12H0V11Z"
+						fill="currentColor"></path>
+				</svg>
+			</div>
+			<!--end::Curve bottom-->
+		</div>
+		<!--end::Header Section-->
+		<!--begin::How It Works Section-->
+		<div class="card container-xl" style="filter: drop-shadow(0px 0px 40px rgba(68, 81, 96, 0.08))">
+			<div class="post d-flex flex-column-fluid pb-19" id="kt_post">
+				<div id="kt_content_container" class="container-xl">
+					<div class="d-flex flex-wrap flex-stack mb-6">
+						<h3 class="fs-2hx text-dark my-5">Project Peserta Bimbel
+							<span class="fs-6 fw-semibold ms-1">(10)</span>
+						</h3>
+						<div class="d-flex my-2">
+							<select name="status" data-control="select2" data-hide-search="true"
+								class="form-select form-select-sm form-select-solid w-125px">
+								<option value="Online" selected="selected">Online</option>
+								<option value="Pending">Pending</option>
+								<option value="Declined">Declined</option>
+								<option value="Accepted">Accepted</option>
+							</select>
+						</div>
+					</div>
+					<div class="row g-6 g-xl-9">
+						<!-- Project Card 1 -->
+						<div class="col-md-6 col-xxl-4">
+							<div class="card project-card">
+								<img src="assets/media/stock/600x600/img-23.jpg" class="card-img-top" alt="Project 1">
+								<div class="card-body rounded-lg rounded-bottom-0">
+									<div class="mb-5">
+										<div class="symbol symbol-75px symbol-circle">
+											<img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+										</div>
+									</div>
+									<h5 class="card-title">Web Statis planet-planet di antariksa</h5>
+									<p class="card-text">Oleh: NOVKA WADIANSAH - Lulusan Angkatan 2023</p>
+									<div class="tech-stack">
+										<span class="badge bg-primary">React</span>
+										<span class="badge bg-success">Node.js</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Project Card 2 -->
+						<div class="col-md-6 col-xxl-4">
+							<div class="card project-card">
+								<img src="assets/media/stock/600x600/img-24.jpg" class="card-img-top" alt="Project 2">
+								<div class="card-body rounded-lg rounded-bottom-0">
+									<div class="mb-5">
+										<div class="symbol symbol-75px symbol-circle">
+											<img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+										</div>
+									</div>
+									<h5 class="card-title">Aplikasi tebak angka</h5>
+									<p class="card-text">Oleh: Aisha Hannah Heriawan - Lulusan Angkatan 2024</p>
+									<div class="tech-stack">
+										<span class="badge bg-danger">Laravel</span>
+										<span class="badge bg-warning">MySQL</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Project Card 3 -->
+						<div class="col-md-6 col-xxl-4">
+							<div class="card project-card">
+								<img src="assets/media/stock/600x600/img-25.jpg" class="card-img-top" alt="Project 3">
+								<div class="card-body rounded-lg rounded-bottom-0">
+									<div class="mb-5">
+										<div class="symbol symbol-75px symbol-circle">
+											<img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+										</div>
+									</div>
+									<h5 class="card-title">Aplikasi BMI berbasis web dengan framework flask</h5>
+									<p class="card-text">Oleh: Andi Reza - Lulusan Angkatan 2024</p>
+									<div class="tech-stack">
+										<span class="badge bg-info">Flutter</span>
+										<span class="badge bg-secondary">Firebase</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="d-flex flex-stack flex-wrap pt-10">
+						<div class="fs-6 fw-semibold text-gray-700">Showing 1 to 10 of 50 entries</div>
+						<ul class="pagination">
+							<li class="page-item previous">
+								<a href="#" class="page-link">
+									<i class="previous"></i>
+								</a>
+							</li>
+							<li class="page-item active">
+								<a href="#" class="page-link">1</a>
+							</li>
+							<li class="page-item">
+								<a href="#" class="page-link">2</a>
+							</li>
+							<li class="page-item">
+								<a href="#" class="page-link">3</a>
+							</li>
+							<li class="page-item">
+								<a href="#" class="page-link">4</a>
+							</li>
+							<li class="page-item">
+								<a href="#" class="page-link">5</a>
+							</li>
+							<li class="page-item">
+								<a href="#" class="page-link">6</a>
+							</li>
+							<li class="page-item next">
+								<a href="#" class="page-link">
+									<i class="next"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!--end::How It Works Section-->
+		<!--begin::Statistics Section-->
+		<div class="mt-sm-n10">
+			<!--begin::Curve top-->
+			<div class="landing-curve landing-dark-color">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1440 320">
+					<path fill="currentColor"
+						d="M0,256L48,250.7C96,245,192,235,288,213.3C384,192,480,160,576,160C672,160,768,192,864,186.7C960,181,1056,139,1152,122.7C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+					</path>
+				</svg>
+			</div>
+			<!--end::Curve top-->
+			<!--begin::Wrapper-->
+			<div class="pb-15 pt-18 landing-dark-bg">
+				<div class="container">
+					<!--begin::Heading-->
+					<div class="text-center mb-12">
+						<!--begin::Title-->
+						<h3 class="fs-2hx text-white mb-5" id="team" data-kt-scroll-offset="{default: 100, lg: 150}">
+							Meet the Minds Behind Must Dhiya' Tech
+						</h3>
+						<!--end::Title-->
+						<!--begin::Sub-title-->
+						<div class="fs-5 text-muted fw-bold">
+							We’re a passionate team of innovators, problem-solvers, and tech enthusiasts dedicated to
+							driving digital transformation.
+							<br />With creativity, expertise, and commitment, we turn ideas into impactful solutions.
+						</div>
+						<!--end::Sub-title-->
+					</div>
+					<!--end::Heading-->
+					<!--begin::Slider-->
+					<div class="tns tns-default" style="direction: ltr">
+						<!--begin::Wrapper-->
+						<div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="10000"
+							data-tns-autoplay="true" data-tns-autoplay-timeout="10000" data-tns-controls="true"
+							data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false"
+							data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next"
+							data-tns-responsive="{1200: {items: 3}, 992: {items: 2}}">
+
+							<!--begin::Item - Muhammad Fauzan Nur Ilham -->
+							<div class="text-center">
+								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center"
+									style="background-image:url('assets/media/avatars/fauzan.jpeg')"></div>
+								<div class="mb-0">
+									<a href="#" class="text-white fw-bold text-hover-primary fs-3">Muhammad Fauzan Nur
+										Ilham</a>
+									<div class="text-muted fs-6 fw-semibold mt-1">Founder & Full Stack Developer</div>
+								</div>
+							</div>
+							<!--end::Item-->
+
+							<!--begin::Item - Rafidan Anwar -->
+							<div class="text-center">
+								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center"
+									style="background-image:url('assets/media/avatars/Rafidan.jpeg')"></div>
+								<div class="mb-0">
+									<a href="#" class="text-white fw-bold text-hover-primary fs-3">Rafidan Anwar</a>
+									<div class="text-muted fs-6 fw-semibold mt-1">Full Stack Developer</div>
+								</div>
+							</div>
+							<!--end::Item-->
+
+							<!--begin::Item - Pandu Wirayuda -->
+							<div class="text-center">
+								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center"
+									style="background-image:url('assets/media/avatars/Pandu.jpeg')"></div>
+								<div class="mb-0">
+									<a href="#" class="text-white fw-bold text-hover-primary fs-3">Pandu Wirayuda</a>
+									<div class="text-muted fs-6 fw-semibold mt-1">Prompt Engineer AI</div>
+								</div>
+							</div>
+							<!--end::Item-->
+
+							<!--begin::Item - Mu. Aldi Rahmad Fahrozi -->
+							<div class="text-center">
+								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center"
+									style="background-image:url('assets/media/avatars/Aldi.jpeg')"></div>
+								<div class="mb-0">
+									<a href="#" class="text-white fw-bold text-hover-primary fs-3">Mu. Aldi Rahmad
+										Fahrozi</a>
+									<div class="text-muted fs-6 fw-semibold mt-1">Marketing & Management</div>
+								</div>
+							</div>
+							<!--end::Item-->
+						</div>
+						<!--end::Wrapper-->
+
+						<!--begin::Button-->
+						<button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_prev">
+							<i class="ki-duotone ki-left fs-2x"></i>
+						</button>
+						<button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_next">
+							<i class="ki-duotone ki-right fs-2x"></i>
+						</button>
+						<!--end::Button-->
+					</div>
+
+					<!--end::Slider-->
+				</div>
+			</div>
+			<!--end::Wrapper-->
+			<!--begin::Curve bottom-->
+			<div class="landing-curve landing-dark-color">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1440 320">
+					<path fill="currentColor"
+						d="M0,256L48,250.7C96,245,192,235,288,213.3C384,192,480,160,576,160C672,160,768,192,864,186.7C960,181,1056,139,1152,122.7C1248,107,1344,117,1392,122.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
+					</path>
+				</svg>
+			</div>
+			<!--end::Curve bottom-->
+		</div>
+		<div class="position-relative z-index-2">
+			<!--begin::Container-->
+			<div class="container">
+				<!--begin::Card-->
+				<div class="card" style="filter: drop-shadow(0px 0px 40px rgba(68, 81, 96, 0.08))">
+					<!--begin::Card body-->
+					<div class="card-body p-lg-20">
+						<!--begin::Heading-->
+						<div class="text-center mb-5 mb-lg-10">
+							<!--begin::Title-->
+							<h3 class="fs-2hx text-dark mb-5" id="portfolio"
+								data-kt-scroll-offset="{default: 100, lg: 250}">Our Projects</h3>
+							<!--end::Title-->
+						</div>
+						<!--end::Heading-->
+						<!--begin::Tabs wrapper-->
+						<div class="d-flex flex-center mb-5 mb-lg-15">
+							<!--begin::Tabs-->
+							<ul class="nav border-transparent flex-center fs-5 fw-bold">
+								<li class="nav-item">
+									<a class="nav-link text-gray-500 text-active-primary px-3 px-lg-6 active" href="#"
+										data-bs-toggle="tab" data-bs-target="#kt_landing_projects_latest">Latest</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-gray-500 text-active-primary px-3 px-lg-6" href="#"
+										data-bs-toggle="tab" data-bs-target="#kt_landing_projects_web_design">Web
+										Design</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-gray-500 text-active-primary px-3 px-lg-6" href="#"
+										data-bs-toggle="tab" data-bs-target="#kt_landing_projects_mobile_apps">Mobile
+										Apps</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-gray-500 text-active-primary px-3 px-lg-6" href="#"
+										data-bs-toggle="tab"
+										data-bs-target="#kt_landing_projects_development">Development</a>
+								</li>
+							</ul>
+							<!--end::Tabs-->
+						</div>
+						<!--end::Tabs wrapper-->
+						<!--begin::Tabs content-->
+						<div class="tab-content">
+							<!--begin::Tab pane-->
+							<div class="tab-pane fade show active" id="kt_landing_projects_latest">
+								<!--begin::Row-->
+								<div class="row g-10">
+									<!--begin::Col-->
+									<div class="col-lg-6">
+										<!--begin::Item-->
+										<a class="d-block card-rounded overlay h-lg-100"
+											data-fslightbox="lightbox-projects"
+											href="assets/media/stock/600x600/img-23.jpg">
+											<!--begin::Image-->
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px"
+												style="background-image:url('assets/media/stock/600x600/img-23.jpg')">
+											</div>
+											<!--end::Image-->
+											<!--begin::Action-->
+											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+												<i class="ki-duotone ki-eye fs-3x text-white">
+													<span class="path1"></span>
+													<span class="path2"></span>
+													<span class="path3"></span>
+												</i>
+											</div>
+											<!--end::Action-->
+										</a>
+										<!--end::Item-->
+									</div>
+									<!--end::Col-->
+									<!--begin::Col-->
+									<div class="col-lg-6">
+										<!--begin::Row-->
+										<div class="row g-10 mb-10">
+											<!--begin::Col-->
+											<div class="col-lg-6">
+												<!--begin::Item-->
+												<a class="d-block card-rounded overlay"
+													data-fslightbox="lightbox-projects"
+													href="assets/media/stock/600x600/img-22.jpg">
+													<!--begin::Image-->
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+														style="background-image:url('assets/media/stock/600x600/img-22.jpg')">
+													</div>
+													<!--end::Image-->
+													<!--begin::Action-->
+													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+														<i class="ki-duotone ki-eye fs-3x text-white">
+															<span class="path1"></span>
+															<span class="path2"></span>
+															<span class="path3"></span>
+														</i>
+													</div>
+													<!--end::Action-->
+												</a>
+												<!--end::Item-->
+											</div>
+											<!--end::Col-->
+											<!--begin::Col-->
+											<div class="col-lg-6">
+												<!--begin::Item-->
+												<a class="d-block card-rounded overlay"
+													data-fslightbox="lightbox-projects"
+													href="assets/media/stock/600x600/img-21.jpg">
+													<!--begin::Image-->
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+														style="background-image:url('assets/media/stock/600x600/img-21.jpg')">
+													</div>
+													<!--end::Image-->
+													<!--begin::Action-->
+													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+														<i class="ki-duotone ki-eye fs-3x text-white">
+															<span class="path1"></span>
+															<span class="path2"></span>
+															<span class="path3"></span>
+														</i>
+													</div>
+													<!--end::Action-->
+												</a>
+												<!--end::Item-->
+											</div>
+											<!--end::Col-->
+										</div>
+										<!--end::Row-->
+										<!--begin::Item-->
+										<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects"
+											href="assets/media/stock/600x400/img-20.jpg">
+											<!--begin::Image-->
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+												style="background-image:url('assets/media/stock/600x600/img-20.jpg')">
+											</div>
+											<!--end::Image-->
+											<!--begin::Action-->
+											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+												<i class="ki-duotone ki-eye fs-3x text-white">
+													<span class="path1"></span>
+													<span class="path2"></span>
+													<span class="path3"></span>
+												</i>
+											</div>
+											<!--end::Action-->
+										</a>
+										<!--end::Item-->
+									</div>
+									<!--end::Col-->
+								</div>
+								<!--end::Row-->
+							</div>
+							<!--end::Tab pane-->
+							<!--begin::Tab pane-->
+							<div class="tab-pane fade" id="kt_landing_projects_web_design">
+								<!--begin::Row-->
+								<div class="row g-10">
+									<!--begin::Col-->
+									<div class="col-lg-6">
+										<!--begin::Item-->
+										<a class="d-block card-rounded overlay h-lg-100"
+											data-fslightbox="lightbox-projects"
+											href="assets/media/stock/600x600/img-11.jpg">
+											<!--begin::Image-->
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px"
+												style="background-image:url('assets/media/stock/600x600/img-11.jpg')">
+											</div>
+											<!--end::Image-->
+											<!--begin::Action-->
+											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+												<i class="ki-duotone ki-eye fs-3x text-white">
+													<span class="path1"></span>
+													<span class="path2"></span>
+													<span class="path3"></span>
+												</i>
+											</div>
+											<!--end::Action-->
+										</a>
+										<!--end::Item-->
+									</div>
+									<!--end::Col-->
+									<!--begin::Col-->
+									<div class="col-lg-6">
+										<!--begin::Row-->
+										<div class="row g-10 mb-10">
+											<!--begin::Col-->
+											<div class="col-lg-6">
+												<!--begin::Item-->
+												<a class="d-block card-rounded overlay"
+													data-fslightbox="lightbox-projects"
+													href="assets/media/stock/600x600/img-12.jpg">
+													<!--begin::Image-->
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+														style="background-image:url('assets/media/stock/600x600/img-12.jpg')">
+													</div>
+													<!--end::Image-->
+													<!--begin::Action-->
+													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+														<i class="ki-duotone ki-eye fs-3x text-white">
+															<span class="path1"></span>
+															<span class="path2"></span>
+															<span class="path3"></span>
+														</i>
+													</div>
+													<!--end::Action-->
+												</a>
+												<!--end::Item-->
+											</div>
+											<!--end::Col-->
+											<!--begin::Col-->
+											<div class="col-lg-6">
+												<!--begin::Item-->
+												<a class="d-block card-rounded overlay"
+													data-fslightbox="lightbox-projects"
+													href="assets/media/stock/600x600/img-21.jpg">
+													<!--begin::Image-->
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+														style="background-image:url('assets/media/stock/600x600/img-21.jpg')">
+													</div>
+													<!--end::Image-->
+													<!--begin::Action-->
+													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+														<i class="ki-duotone ki-eye fs-3x text-white">
+															<span class="path1"></span>
+															<span class="path2"></span>
+															<span class="path3"></span>
+														</i>
+													</div>
+													<!--end::Action-->
+												</a>
+												<!--end::Item-->
+											</div>
+											<!--end::Col-->
+										</div>
+										<!--end::Row-->
+										<!--begin::Item-->
+										<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects"
+											href="assets/media/stock/600x400/img-20.jpg">
+											<!--begin::Image-->
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+												style="background-image:url('assets/media/stock/600x600/img-20.jpg')">
+											</div>
+											<!--end::Image-->
+											<!--begin::Action-->
+											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+												<i class="ki-duotone ki-eye fs-3x text-white">
+													<span class="path1"></span>
+													<span class="path2"></span>
+													<span class="path3"></span>
+												</i>
+											</div>
+											<!--end::Action-->
+										</a>
+										<!--end::Item-->
+									</div>
+									<!--end::Col-->
+								</div>
+								<!--end::Row-->
+							</div>
+							<!--end::Tab pane-->
+							<!--begin::Tab pane-->
+							<div class="tab-pane fade" id="kt_landing_projects_mobile_apps">
+								<!--begin::Row-->
+								<div class="row g-10">
+									<!--begin::Col-->
+									<div class="col-lg-6">
+										<!--begin::Row-->
+										<div class="row g-10 mb-10">
+											<!--begin::Col-->
+											<div class="col-lg-6">
+												<!--begin::Item-->
+												<a class="d-block card-rounded overlay"
+													data-fslightbox="lightbox-projects"
+													href="assets/media/stock/600x600/img-16.jpg">
+													<!--begin::Image-->
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+														style="background-image:url('assets/media/stock/600x600/img-16.jpg')">
+													</div>
+													<!--end::Image-->
+													<!--begin::Action-->
+													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+														<i class="ki-duotone ki-eye fs-3x text-white">
+															<span class="path1"></span>
+															<span class="path2"></span>
+															<span class="path3"></span>
+														</i>
+													</div>
+													<!--end::Action-->
+												</a>
+												<!--end::Item-->
+											</div>
+											<!--end::Col-->
+											<!--begin::Col-->
+											<div class="col-lg-6">
+												<!--begin::Item-->
+												<a class="d-block card-rounded overlay"
+													data-fslightbox="lightbox-projects"
+													href="assets/media/stock/600x600/img-12.jpg">
+													<!--begin::Image-->
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+														style="background-image:url('assets/media/stock/600x600/img-12.jpg')">
+													</div>
+													<!--end::Image-->
+													<!--begin::Action-->
+													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+														<i class="ki-duotone ki-eye fs-3x text-white">
+															<span class="path1"></span>
+															<span class="path2"></span>
+															<span class="path3"></span>
+														</i>
+													</div>
+													<!--end::Action-->
+												</a>
+												<!--end::Item-->
+											</div>
+											<!--end::Col-->
+										</div>
+										<!--end::Row-->
+										<!--begin::Item-->
+										<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects"
+											href="assets/media/stock/600x400/img-15.jpg">
+											<!--begin::Image-->
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+												style="background-image:url('assets/media/stock/600x600/img-15.jpg')">
+											</div>
+											<!--end::Image-->
+											<!--begin::Action-->
+											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+												<i class="ki-duotone ki-eye fs-3x text-white">
+													<span class="path1"></span>
+													<span class="path2"></span>
+													<span class="path3"></span>
+												</i>
+											</div>
+											<!--end::Action-->
+										</a>
+										<!--end::Item-->
+									</div>
+									<!--end::Col-->
+									<!--begin::Col-->
+									<div class="col-lg-6">
+										<!--begin::Item-->
+										<a class="d-block card-rounded overlay h-lg-100"
+											data-fslightbox="lightbox-projects"
+											href="assets/media/stock/600x600/img-23.jpg">
+											<!--begin::Image-->
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px"
+												style="background-image:url('assets/media/stock/600x600/img-23.jpg')">
+											</div>
+											<!--end::Image-->
+											<!--begin::Action-->
+											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+												<i class="ki-duotone ki-eye fs-3x text-white">
+													<span class="path1"></span>
+													<span class="path2"></span>
+													<span class="path3"></span>
+												</i>
+											</div>
+											<!--end::Action-->
+										</a>
+										<!--end::Item-->
+									</div>
+									<!--end::Col-->
+								</div>
+								<!--end::Row-->
+							</div>
+							<!--end::Tab pane-->
+							<!--begin::Tab pane-->
+							<div class="tab-pane fade" id="kt_landing_projects_development">
+								<!--begin::Row-->
+								<div class="row g-10">
+									<!--begin::Col-->
+									<div class="col-lg-6">
+										<!--begin::Item-->
+										<a class="d-block card-rounded overlay h-lg-100"
+											data-fslightbox="lightbox-projects"
+											href="assets/media/stock/600x600/img-15.jpg">
+											<!--begin::Image-->
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px"
+												style="background-image:url('assets/media/stock/600x600/img-15.jpg')">
+											</div>
+											<!--end::Image-->
+											<!--begin::Action-->
+											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+												<i class="ki-duotone ki-eye fs-3x text-white">
+													<span class="path1"></span>
+													<span class="path2"></span>
+													<span class="path3"></span>
+												</i>
+											</div>
+											<!--end::Action-->
+										</a>
+										<!--end::Item-->
+									</div>
+									<!--end::Col-->
+									<!--begin::Col-->
+									<div class="col-lg-6">
+										<!--begin::Row-->
+										<div class="row g-10 mb-10">
+											<!--begin::Col-->
+											<div class="col-lg-6">
+												<!--begin::Item-->
+												<a class="d-block card-rounded overlay"
+													data-fslightbox="lightbox-projects"
+													href="assets/media/stock/600x600/img-22.jpg">
+													<!--begin::Image-->
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+														style="background-image:url('assets/media/stock/600x600/img-22.jpg')">
+													</div>
+													<!--end::Image-->
+													<!--begin::Action-->
+													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+														<i class="ki-duotone ki-eye fs-3x text-white">
+															<span class="path1"></span>
+															<span class="path2"></span>
+															<span class="path3"></span>
+														</i>
+													</div>
+													<!--end::Action-->
+												</a>
+												<!--end::Item-->
+											</div>
+											<!--end::Col-->
+											<!--begin::Col-->
+											<div class="col-lg-6">
+												<!--begin::Item-->
+												<a class="d-block card-rounded overlay"
+													data-fslightbox="lightbox-projects"
+													href="assets/media/stock/600x600/img-21.jpg">
+													<!--begin::Image-->
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+														style="background-image:url('assets/media/stock/600x600/img-21.jpg')">
+													</div>
+													<!--end::Image-->
+													<!--begin::Action-->
+													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+														<i class="ki-duotone ki-eye fs-3x text-white">
+															<span class="path1"></span>
+															<span class="path2"></span>
+															<span class="path3"></span>
+														</i>
+													</div>
+													<!--end::Action-->
+												</a>
+												<!--end::Item-->
+											</div>
+											<!--end::Col-->
+										</div>
+										<!--end::Row-->
+										<!--begin::Item-->
+										<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects"
+											href="assets/media/stock/600x400/img-14.jpg">
+											<!--begin::Image-->
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px"
+												style="background-image:url('assets/media/stock/600x600/img-14.jpg')">
+											</div>
+											<!--end::Image-->
+											<!--begin::Action-->
+											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+												<i class="ki-duotone ki-eye fs-3x text-white">
+													<span class="path1"></span>
+													<span class="path2"></span>
+													<span class="path3"></span>
+												</i>
+											</div>
+											<!--end::Action-->
+										</a>
+										<!--end::Item-->
+									</div>
+									<!--end::Col-->
+								</div>
+								<!--end::Row-->
+							</div>
+							<!--end::Tab pane-->
+						</div>
+						<!--end::Tabs content-->
+					</div>
+					<!--end::Card body-->
+				</div>
+				<!--end::Card-->
+			</div>
+			<!--end::Container-->
+		</div>
+		<!--end::Projects Section-->
+		<!--begin::Pricing Section-->
+		<div class="mt-sm-n20" id="bimbel">
+			<!--begin::Curve top-->
+			<div class="landing-curve landing-dark-color">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" fill="none">
+					<path fill="currentColor"
+						d="M0,320L34.3,298.7C68.6,277,137,235,206,229.3C274.3,224,343,256,411,234.7C480,213,549,139,617,106.7C685.7,75,754,85,823,85.3C891.4,85,960,75,1029,85.3C1097.1,96,1166,128,1234,133.3C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+					</path>
+				</svg>
+			</div>
+			<!--end::Curve top-->
+			<!--begin::Wrapper-->
+			<div id='pricing' class="landing-dark-bg">
+				<!--begin::Container-->
+				<div class="container">
+					<!--begin::Plans-->
+					<div class="d-flex flex-column container">
+  <!--begin::Heading-->
+  <div class="mb-13 text-center">
+    <h1 class="fs-2hx fw-bold text-white mb-5" id="pricing" data-kt-scroll-offset="{default: 100, lg: 150}">
+      🔥 PILIHAN PAKET MUST DHIYA BIMBEL 🔥
+    </h1>
+    <div class="text-gray-600 fw-semibold fs-5">
+      Pilih paket yang sesuai dengan kebutuhan belajar kamu!
+    </div>
+  </div>
+  <!--end::Heading-->
+  
+  <!--begin::Pricing-->
+  <div class="text-center" id="kt_pricing">
+    <!--begin::Nav group-->
+    <div class="nav-group landing-dark-bg d-inline-flex mb-15" data-kt-buttons="true" style="border: 1px dashed #2B4666;">
+      <a href="#pricing" class="btn btn-color-gray-600 btn-active btn-active-success px-6 py-3 me-2 active" data-kt-plan="month">Monthly</a>
+      <a href="#pricing" class="btn btn-color-gray-600 btn-active btn-active-success px-6 py-3" data-kt-plan="annual">Semseter</a>
+    </div>
+    <!--end::Nav group-->
+    
+    <!--begin::Row-->
+    <div class="row g-10">
+      <!--begin::Col for REGULAR CLASS-->
+      <div class="col-xl-6">
+        <div class="d-flex h-100 align-items-center">
+          <!--begin::Option-->
+          <div class="w-100 d-flex flex-column flex-center rounded-3 bg-body py-15 px-10">
+            <!--begin::Heading-->
+            <div class="mb-7 text-center">
+              <!--begin::Title-->
+              <h2 class="text-dark mb-5 fw-boldest">REGULAR CLASS</h2>
+              <!--end::Title-->
+              <!--begin::Price-->
+              <div class="text-center">
+                <span class="mb-2 text-primary">IDR.</span>
+                <span class="fs-3x fw-bold text-primary" data-kt-plan-price-month="99" data-kt-plan-price-annual="1.200">200</span>
+                <span class="fs-7 fw-semibold opacity-50" data-kt-plan-price-month="/ Mon" data-kt-plan-price-annual="/ Sem">/ Mon</span>
+              </div>
+              <!--end::Price-->
+            </div>
+            <!--end::Heading-->
+            <!--begin::Features-->
+            <div class="w-100 mb-10 text-start">
+              <p class="fw-semibold fs-6 text-gray-800 mb-2">✅ Belajar coding dari nol hingga bisa bikin aplikasi</p>
+              <p class="fw-semibold fs-6 text-gray-800 mb-2">✅ Kelas eksklusif hanya untuk 15 orang</p>
+              <p class="fw-semibold fs-6 text-gray-800 mb-2">✅ Akses belajar offline (Kamis & Sabtu siang) atau online</p>
+              <p class="fw-semibold fs-6 text-gray-800 mb-2">✅ Bimbingan langsung dari mentor berpengalaman</p>
+              <p class="fw-semibold fs-6 text-gray-800 mb-2">✅ Kesempatan ikut Meet & Greet di cafe bersama komunitas coder Samarinda</p>
+              <p class="fw-semibold fs-6 text-gray-800 mb-2">✅ Materi lengkap & latihan praktik langsung</p>
+            </div>
+			<a href="#" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal" data-bs-target="#kt_modal_new_target">Select</a>
+            <!--end::Select-->
+          </div>
+          <!--end::Option-->
+        </div>
+      </div>
+      <!--end::Col-->
+      
+      <!--begin::Col for PRIVATE CLASS-->
+      <div class="col-xl-6">
+        <div class="d-flex h-100 align-items-center">
+          <!--begin::Option-->
+          <div class="w-100 d-flex flex-column flex-center rounded-3 bg-primary py-20 px-10">
+            <!--begin::Heading-->
+            <div class="mb-7 text-center">
+              <!--begin::Title-->
+              <h2 class="text-white mb-5 fw-boldest">PRIVATE CLASS</h2>
+              <!--end::Title-->
+              <!--begin::Price-->
+              <div class="text-center">
+                <span class="mb-2 text-white">IDR.</span>
+                <span class="fs-3x fw-bold text-white" data-kt-plan-price-month="99" data-kt-plan-price-annual="3.000">500</span>
+                <span class="fs-7 fw-semibold opacity-50" data-kt-plan-price-month="/ Mon" data-kt-plan-price-annual="/ Sem">/ Mon</span>
+              </div>
+              <!--end::Price-->
+            </div>
+            <!--end::Heading-->
+            <!--begin::Features-->
+            <div class="w-100 mb-10 text-start">
+              <p class="fw-semibold fs-6 text-white opacity-75 mb-2">✨ Semua fasilitas REGULAR CLASS, ditambah:</p>
+              <p class="fw-semibold fs-6 text-white opacity-75 mb-2">🔹 Sesi 1-on-1 mentoring untuk progress lebih cepat dan fokus</p>
+              <p class="fw-semibold fs-6 text-white opacity-75 mb-2">🔹 Jadwal fleksibel sesuai kebutuhan kamu</p>
+              <p class="fw-semibold fs-6 text-white opacity-75 mb-2">🔹 Pendampingan khusus dalam menyelesaikan proyek atau aplikasi</p>
+              <p class="fw-semibold fs-6 text-white opacity-75 mb-2">🔹 Konsultasi eksklusif sepuasnya dengan mentor</p>
+              <p class="fw-semibold fs-6 text-white opacity-75 mb-2">🔹 Akses materi tambahan & latihan khusus</p>
+            </div>
+			<a href="#" class="btn btn-color-primary btn-active-light-primary btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_new_target">Select</a>
+          </div>
+          <!--end::Option-->
+        </div>
+      </div>
+      <!--end::Col-->
+    </div>
+    <!--end::Row-->
+  </div>
+  <div class="modal fade" id="kt_modal_new_target" tabindex="-1" aria-hidden="true">
+			<!--begin::Modal dialog-->
+			<div class="modal-dialog modal-dialog-centered mw-650px">
+				<!--begin::Modal content-->
+				<div class="modal-content rounded">
+					<!--begin::Modal header-->
+					<div class="modal-header pb-0 border-0 justify-content-end">
+						<!--begin::Close-->
+						<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+							<i class="ki-duotone ki-cross fs-1">
+								<span class="path1"></span>
+								<span class="path2"></span>
+							</i>
+						</div>
+						<!--end::Close-->
+					</div>
+					<!--begin::Modal header-->
+					<!--begin::Modal body-->
+					<div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+						<!--begin:Form-->
+						<form id="kt_modal_new_target_form" class="form" action="#">
+							<!--begin::Heading-->
+							<div class="mb-13 text-center">
+								<!--begin::Title-->
+								<h1 class="mb-3">Set First Target</h1>
+								<!--end::Title-->
+								<!--begin::Description-->
+								<div class="text-muted fw-semibold fs-5">If you need more info, please check
+								<a href="#" class="fw-bold link-primary">Project Guidelines</a>.</div>
+								<!--end::Description-->
+							</div>
+							<!--end::Heading-->
+							<!--begin::Input group-->
+							<div class="d-flex flex-column mb-8 fv-row">
+								<!--begin::Label-->
+								<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+									<span class="required">Target Title</span>
+									<span class="ms-1" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference">
+										<i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+											<span class="path1"></span>
+											<span class="path2"></span>
+											<span class="path3"></span>
+										</i>
+									</span>
+								</label>
+								<!--end::Label-->
+								<input type="text" class="form-control form-control-solid" placeholder="Enter Target Title" name="target_title" />
+							</div>
+							<!--end::Input group-->
+							<!--begin::Input group-->
+							<div class="row g-9 mb-8">
+								<!--begin::Col-->
+								<div class="col-md-6 fv-row">
+									<label class="required fs-6 fw-semibold mb-2">Assign</label>
+									<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Team Member" name="target_assign">
+										<option value="">Select user...</option>
+										<option value="1">Karina Clark</option>
+										<option value="2">Robert Doe</option>
+										<option value="3">Niel Owen</option>
+										<option value="4">Olivia Wild</option>
+										<option value="5">Sean Bean</option>
+									</select>
+								</div>
+								<!--end::Col-->
+								<!--begin::Col-->
+								<div class="col-md-6 fv-row">
+									<label class="required fs-6 fw-semibold mb-2">Due Date</label>
+									<!--begin::Input-->
+									<div class="position-relative d-flex align-items-center">
+										<!--begin::Icon-->
+										<i class="ki-duotone ki-calendar-8 fs-2 position-absolute mx-4">
+											<span class="path1"></span>
+											<span class="path2"></span>
+											<span class="path3"></span>
+											<span class="path4"></span>
+											<span class="path5"></span>
+											<span class="path6"></span>
+										</i>
+										<!--end::Icon-->
+										<!--begin::Datepicker-->
+										<input class="form-control form-control-solid ps-12" placeholder="Select a date" name="due_date" />
+										<!--end::Datepicker-->
+									</div>
+									<!--end::Input-->
+								</div>
+								<!--end::Col-->
+							</div>
+							<!--end::Input group-->
+							<!--begin::Input group-->
+							<div class="d-flex flex-column mb-8">
+								<label class="fs-6 fw-semibold mb-2">Target Details</label>
+								<textarea class="form-control form-control-solid" rows="3" name="target_details" placeholder="Type Target Details"></textarea>
+							</div>
+							<!--end::Input group-->
+							<!--begin::Input group-->
+							<div class="d-flex flex-column mb-8 fv-row">
+								<!--begin::Label-->
+								<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+									<span class="required">Tags</span>
+									<span class="ms-1" data-bs-toggle="tooltip" title="Specify a target priorty">
+										<i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+											<span class="path1"></span>
+											<span class="path2"></span>
+											<span class="path3"></span>
+										</i>
+									</span>
+								</label>
+								<!--end::Label-->
+								<input class="form-control form-control-solid" value="Important, Urgent" name="tags" />
+							</div>
+							<!--end::Input group-->
+							<!--begin::Input group-->
+							<div class="d-flex flex-stack mb-8">
+								<!--begin::Label-->
+								<div class="me-5">
+									<label class="fs-6 fw-semibold">Adding Users by Team Members</label>
+									<div class="fs-7 fw-semibold text-muted">If you need more info, please check budget planning</div>
+								</div>
+								<!--end::Label-->
+								<!--begin::Switch-->
+								<label class="form-check form-switch form-check-custom form-check-solid">
+									<input class="form-check-input" type="checkbox" value="1" checked="checked" />
+									<span class="form-check-label fw-semibold text-muted">Allowed</span>
+								</label>
+								<!--end::Switch-->
+							</div>
+							<!--end::Input group-->
+							<!--begin::Input group-->
+							<div class="mb-15 fv-row">
+								<!--begin::Wrapper-->
+								<div class="d-flex flex-stack">
+									<!--begin::Label-->
+									<div class="fw-semibold me-5">
+										<label class="fs-6">Notifications</label>
+										<div class="fs-7 text-muted">Allow Notifications by Phone or Email</div>
+									</div>
+									<!--end::Label-->
+									<!--begin::Checkboxes-->
+									<div class="d-flex align-items-center">
+										<!--begin::Checkbox-->
+										<label class="form-check form-check-custom form-check-solid me-10">
+											<input class="form-check-input h-20px w-20px" type="checkbox" name="communication[]" value="email" checked="checked" />
+											<span class="form-check-label fw-semibold">Email</span>
+										</label>
+										<!--end::Checkbox-->
+										<!--begin::Checkbox-->
+										<label class="form-check form-check-custom form-check-solid">
+											<input class="form-check-input h-20px w-20px" type="checkbox" name="communication[]" value="phone" />
+											<span class="form-check-label fw-semibold">Phone</span>
+										</label>
+										<!--end::Checkbox-->
+									</div>
+									<!--end::Checkboxes-->
+								</div>
+								<!--end::Wrapper-->
+							</div>
+							<!--end::Input group-->
+							<!--begin::Actions-->
+							<div class="text-center">
+								<button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</button>
+								<button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+									<span class="indicator-label">Submit</span>
+									<span class="indicator-progress">Please wait...
+									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+								</button>
+							</div>
+							<!--end::Actions-->
+						</form>
+						<!--end:Form-->
+					</div>
+					<!--end::Modal body-->
+				</div>
+				<!--end::Modal content-->
+			</div>
+			<!--end::Modal dialog-->
+		</div>
+  <!--end::Pricing-->
+</div>
+
+
+				</div>
+				<!--end::Row-->
+			</div>
+			<!--end::Pricing-->
+		</div>
+		<!--end::Plans-->
+	</div>
+	<!--end::Container-->
+	</div>
+	<!--end::Wrapper-->
+	<!--begin::Curve bottom-->
+	<div class="landing-curve landing-dark-color">
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1440 320">
+			<path fill="currentColor"
+				d="M0,320L34.3,298.7C68.6,277,137,235,206,229.3C274.3,224,343,256,411,234.7C480,213,549,139,617,106.7C685.7,75,754,85,823,85.3C891.4,85,960,75,1029,85.3C1097.1,96,1166,128,1234,133.3C1302.9,139,1371,117,1406,106.7L1440,96L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z">
+			</path>
+		</svg>
+	</div>
+	<!--end::Curve bottom-->
+	</div>
+	<!--end::Pricing Section-->
+	<!--begin::Testimonials Section-->
+	<div class="mt-20 mb-n20 position-relative z-index-2">
+		<!--begin::Container-->
+		<div class="container">
+			<!--begin::Heading-->
+			<div class="text-center mb-17">
+				<!--begin::Title-->
+				<h3 class="fs-2hx text-dark mb-5" id="clients" data-kt-scroll-offset="{default: 125, lg: 150}">What
+					Our Clients Say</h3>
+				<!--end::Title-->
+				<!--begin::Description-->
+				<div class="fs-5 text-muted fw-bold">Save thousands to millions of bucks by using single tool
+					<br />for different amazing and great useful admin
+				</div>
+				<!--end::Description-->
+			</div>
+			<!--end::Heading-->
+			<!--begin::Row-->
+			<div class="row g-lg-10 mb-10 mb-lg-20">
+				<!--begin::Col-->
+				<div class="col-lg-4">
+					<!--begin::Testimonial-->
+					<div
+						class="d-flex flex-column justify-content-between h-lg-100 px-10 px-lg-0 pe-lg-10 mb-15 mb-lg-0">
+						<!--begin::Wrapper-->
+						<div class="mb-7">
+							<!--begin::Rating-->
+							<div class="rating mb-6">
+								<div class="rating-label me-2 checked">
+									<i class="ki-duotone ki-star fs-5"></i>
+								</div>
+								<div class="rating-label me-2 checked">
+									<i class="ki-duotone ki-star fs-5"></i>
+								</div>
+								<div class="rating-label me-2 checked">
+									<i class="ki-duotone ki-star fs-5"></i>
+								</div>
+								<div class="rating-label me-2 checked">
+									<i class="ki-duotone ki-star fs-5"></i>
+								</div>
+								<div class="rating-label me-2 checked">
+									<i class="ki-duotone ki-star fs-5"></i>
+								</div>
+							</div>
+							<!--end::Rating-->
+							<!--begin::Title-->
+							<div class="fs-2 fw-bold text-dark mb-3">This is by far the cleanest template
+								<br />and the most well structured
+							</div>
+							<!--end::Title-->
+							<!--begin::Feedback-->
+							<div class="text-gray-500 fw-semibold fs-4">The most well thought out design theme I
+								have ever used. The codes are up to tandard. The css styles are very clean. In fact
+								the cleanest and the most up to standard I have ever seen.</div>
+							<!--end::Feedback-->
+						</div>
+						<!--end::Wrapper-->
+						<!--begin::Author-->
+						<div class="d-flex align-items-center">
+							<!--begin::Avatar-->
+							<div class="symbol symbol-circle symbol-50px me-5">
+								<img src="assets/media/avatars/300-1.jpg" class="" alt="" />
+							</div>
+							<!--end::Avatar-->
+							<!--begin::Name-->
+							<div class="flex-grow-1">
+								<a href="#" class="text-dark fw-bold text-hover-primary fs-6">Paul Miles</a>
+								<span class="text-muted d-block fw-bold">Development Lead</span>
+							</div>
+							<!--end::Name-->
+						</div>
+						<!--end::Author-->
+					</div>
+					<!--end::Testimonial-->
+				</div>
+				<!--end::Col-->
+				<!--begin::Col-->
+				<div class="col-lg-4">
+					<!--begin::Testimonial-->
+					<div
+						class="d-flex flex-column justify-content-between h-lg-100 px-10 px-lg-0 pe-lg-10 mb-15 mb-lg-0">
+						<!--begin::Wrapper-->
+						<div class="mb-7">
+							<!--begin::Rating-->
+							<div class="rating mb-6">
+								<div class="rating-label me-2 checked">
+									<i class="ki-duotone ki-star fs-5"></i>
+								</div>
+								<div class="rating-label me-2 checked">
+									<i class="ki-duotone ki-star fs-5"></i>
+								</div>
+								<div class="rating-label me-2 checked">
+									<i class="ki-duotone ki-star fs-5"></i>
+								</div>
+								<div class="rating-label me-2 checked">
+									<i class="ki-duotone ki-star fs-5"></i>
+								</div>
+								<div class="rating-label me-2 checked">
+									<i class="ki-duotone ki-star fs-5"></i>
+								</div>
+							</div>
+							<!--end::Rating-->
+							<!--begin::Title-->
+							<div class="fs-2 fw-bold text-dark mb-3">This is by far the cleanest template
+								<br />and the most well structured
+							</div>
+							<!--end::Title-->
+							<!--begin::Feedback-->
+							<div class="text-gray-500 fw-semibold fs-4">The most well thought out design theme I
+								have ever used. The codes are up to tandard. The css styles are very clean. In fact
+								the cleanest and the most up to standard I have ever seen.</div>
+							<!--end::Feedback-->
+						</div>
+						<!--end::Wrapper-->
+						<!--begin::Author-->
+						<div class="d-flex align-items-center">
+							<!--begin::Avatar-->
+							<div class="symbol symbol-circle symbol-50px me-5">
+								<img src="assets/media/avatars/300-2.jpg" class="" alt="" />
+							</div>
+							<!--end::Avatar-->
+							<!--begin::Name-->
+							<div class="flex-grow-1">
+								<a href="#" class="text-dark fw-bold text-hover-primary fs-6">Janya Clebert</a>
+								<span class="text-muted d-block fw-bold">Development Lead</span>
+							</div>
+							<!--end::Name-->
+						</div>
+						<!--end::Author-->
+					</div>
+					<!--end::Testimonial-->
+				</div>
+				<!--end::Col-->
+				<!--begin::Col-->
+				<div class="col-lg-4">
+					<!--begin::Testimonial-->
+					<div
+						class="d-flex flex-column justify-content-between h-lg-100 px-10 px-lg-0 pe-lg-10 mb-15 mb-lg-0">
+						<!--begin::Wrapper-->
+						<div class="mb-7">
+							<!--begin::Rating-->
+							<div class="rating mb-6">
+								<div class="rating-label me-2 checked">
+									<i class="ki-duotone ki-star fs-5"></i>
+								</div>
+								<div class="rating-label me-2 checked">
+									<i class="ki-duotone ki-star fs-5"></i>
+								</div>
+								<div class="rating-label me-2 checked">
+									<i class="ki-duotone ki-star fs-5"></i>
+								</div>
+								<div class="rating-label me-2 checked">
+									<i class="ki-duotone ki-star fs-5"></i>
+								</div>
+								<div class="rating-label me-2 checked">
+									<i class="ki-duotone ki-star fs-5"></i>
+								</div>
+							</div>
+							<!--end::Rating-->
+							<!--begin::Title-->
+							<div class="fs-2 fw-bold text-dark mb-3">This is by far the cleanest template
+								<br />and the most well structured
+							</div>
+							<!--end::Title-->
+							<!--begin::Feedback-->
+							<div class="text-gray-500 fw-semibold fs-4">The most well thought out design theme I
+								have ever used. The codes are up to tandard. The css styles are very clean. In fact
+								the cleanest and the most up to standard I have ever seen.</div>
+							<!--end::Feedback-->
+						</div>
+						<!--end::Wrapper-->
+						<!--begin::Author-->
+						<div class="d-flex align-items-center">
+							<!--begin::Avatar-->
+							<div class="symbol symbol-circle symbol-50px me-5">
+								<img src="assets/media/avatars/300-16.jpg" class="" alt="" />
+							</div>
+							<!--end::Avatar-->
+							<!--begin::Name-->
+							<div class="flex-grow-1">
+								<a href="#" class="text-dark fw-bold text-hover-primary fs-6">Steave Brown</a>
+								<span class="text-muted d-block fw-bold">Development Lead</span>
+							</div>
+							<!--end::Name-->
+						</div>
+						<!--end::Author-->
+					</div>
+					<!--end::Testimonial-->
+				</div>
+				<!--end::Col-->
+			</div>
+		</div>
+		<!--end::Container-->
+	</div>
+	<div class="py-10 py-lg-20" id="team">
+		<!-- ... Konten team yang ada ... -->
+
+		<!-- Tambahkan contact form -->
+		<div class="post d-flex flex-column-fluid" id="kt_post">
+			<!--begin::Container-->
+			<div id="kt_content_container" class="container-xxl">
+				<!--begin::Contact-->
+				<div class="card">
+					<!--begin::Body-->
+					<div class="card-body p-lg-17">
+						<!--begin::Row-->
+						<div class="row mb-3">
+							<!--begin::Col-->
+							<div class="col-md-6 pe-lg-10">
+								<!--begin::Form-->
+								<form action="" class="form mb-15" method="post" id="kt_contact_form" action="mailto:mustdhiya@gmail.com">
+									<h1 class="fw-bold text-dark mb-9">Send Us Email</h1>
+									<!--begin::Input group-->
+									<div class="row mb-5">
+										<!--begin::Col-->
+										<div class="col-md-6 fv-row">
+											<!--begin::Label-->
+											<label class="fs-5 fw-semibold mb-2">Name</label>
+											<!--end::Label-->
+											<!--begin::Input-->
+											<input type="text" class="form-control form-control-solid" placeholder=""
+												name="name" />
+											<!--end::Input-->
+										</div>
+										<!--end::Col-->
+										<!--begin::Col-->
+										<div class="col-md-6 fv-row">
+											<!--end::Label-->
+											<label class="fs-5 fw-semibold mb-2">Email</label>
+											<!--end::Label-->
+											<!--end::Input-->
+											<input type="email" class="form-control form-control-solid" placeholder=""
+												name="email" />
+											<!--end::Input-->
+										</div>
+										<!--end::Col-->
+									</div>
+									<!--end::Input group-->
+									<!--begin::Input group-->
+									<div class="d-flex flex-column mb-5 fv-row">
+										<!--begin::Label-->
+										<label class="fs-5 fw-semibold mb-2">Subject</label>
+										<!--end::Label-->
+										<!--begin::Input-->
+										<input class="form-control form-control-solid" placeholder="" name="subject" />
+										<!--end::Input-->
+									</div>
+									<!--end::Input group-->
+									<!--begin::Input group-->
+									<div class="d-flex flex-column mb-10 fv-row">
+										<label class="fs-6 fw-semibold mb-2">Message</label>
+										<textarea class="form-control form-control-solid" rows="6" name="message"
+											placeholder=""></textarea>
+									</div>
+									<!--end::Input group-->
+									<!--begin::Submit-->
+									<button type="submit" class="btn btn-primary" id="kt_contact_submit_button">
+										<!--begin::Indicator label-->
+										<span class="indicator-label">Send Feedback</span>
+										<!--end::Indicator label-->
+										<!--begin::Indicator progress-->
+										<span class="indicator-progress">Please wait...
+											<span
+												class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+										<!--end::Indicator progress-->
+									</button>
+									<!--end::Submit-->
+								</form>
+								<!--end::Form-->
+							</div>
+							<!--end::Col-->
+							<!--begin::Col-->
+							<div class="col-md-6 ps-lg-10">
+								<!--begin::Map-->
+								<div id="kt_contact_map" class="w-100 rounded mb-2 mb-lg-0 mt-2" style="height: 486px">
+								</div>
+								<!--end::Map-->
+							</div>
+							<!--end::Col-->
+						</div>
+						<!--end::Row-->
+						<!--begin::Row-->
+						<div class="row g-5 mb-5 mb-lg-15">
+							<!--begin::Col-->
+							<div class="col-sm-6 pe-lg-10">
+								<!--begin::Phone-->
+								<div
+									class="bg-light card-rounded d-flex flex-column flex-center flex-center p-10 h-100">
+									<!--begin::Icon-->
+									<i class="ki-duotone ki-briefcase fs-3tx text-primary">
+										<span class="path1"></span>
+										<span class="path2"></span>
+									</i>
+									<!--end::Icon-->
+									<!--begin::Subtitle-->
+									<h1 class="text-dark fw-bold my-5">Let’s Speak</h1>
+									<!--end::Subtitle-->
+									<!--begin::Number-->
+									<div class="text-gray-700 fw-semibold fs-2">+62 (812) 597-7538</div>
+									<!--end::Number-->
+								</div>
+								<!--end::Phone-->
+							</div>
+							<!--end::Col-->
+							<!--begin::Col-->
+							<div class="col-sm-6 ps-lg-10">
+								<!--begin::Address-->
+								<div
+									class="text-center bg-light card-rounded d-flex flex-column flex-center p-10 h-100">
+									<!--begin::Icon-->
+									<i class="ki-duotone ki-geolocation fs-3tx text-primary">
+										<span class="path1"></span>
+										<span class="path2"></span>
+									</i>
+									<!--end::Icon-->
+									<!--begin::Subtitle-->
+									<h1 class="text-dark fw-bold my-5">Our Team</h1>
+									<!--end::Subtitle-->
+									<!--begin::Description-->
+									<div class="text-gray-700 fs-3 fw-semibold">Universitas Muhammadiyah Kalimantan Timur, Samarinda, Indonesia</div>
+									<!--end::Description-->
+								</div>
+								<!--end::Address-->
+							</div>
+							<!--end::Col-->
+						</div>
+						<!--end::Row-->
+						<!--begin::Card-->
+						<div class="card mb-4 bg-light text-center">
+							<!--begin::Body-->
+							<div class="card-body py-12">
+								<!--begin::Icon-->
+								<a href="#" class="mx-4">
+									<img src="assets/media/svg/brand-logos/facebook-4.svg" class="h-30px my-2" alt="" />
+								</a>
+								<!--end::Icon-->
+								<!--begin::Icon-->
+								<a href="#" class="mx-4">
+									<img src="assets/media/svg/brand-logos/instagram-2-1.svg" class="h-30px my-2"
+										alt="" />
+								</a>
+								<!--end::Icon-->
+								<!--begin::Icon-->
+								<a href="#" class="mx-4">
+									<img src="assets/media/svg/brand-logos/github.svg" class="h-30px my-2" alt="" />
+								</a>
+								<!--end::Icon-->
+								<!--begin::Icon-->
+								<a href="#" class="mx-4">
+									<img src="assets/media/svg/brand-logos/behance.svg" class="h-30px my-2" alt="" />
+								</a>
+								<!--end::Icon-->
+								<!--begin::Icon-->
+								<a href="#" class="mx-4">
+									<img src="assets/media/svg/brand-logos/pinterest-p.svg" class="h-30px my-2"
+										alt="" />
+								</a>
+								<!--end::Icon-->
+								<!--begin::Icon-->
+								<a href="#" class="mx-4">
+									<img src="assets/media/svg/brand-logos/twitter.svg" class="h-30px my-2" alt="" />
+								</a>
+								<!--end::Icon-->
+								<!--begin::Icon-->
+								<a href="#" class="mx-4">
+									<img src="assets/media/svg/brand-logos/dribbble-icon-1.svg" class="h-30px my-2"
+										alt="" />
+								</a>
+								<!--end::Icon-->
+							</div>
+							<!--end::Body-->
+						</div>
+						<!--end::Card-->
+					</div>
+					<!--end::Body-->
+				</div>
+				<!--end::Contact-->
+			</div>
+			<!--end::Container-->
+		</div>
+	</div>
+	<!--end::Testimonials Section-->
+	<!--begin::Footer Section-->
+	<div class="mb-0">
+		<!--begin::Curve top-->
+		<div class="landing-curve landing-dark-color">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1440 320"><path fill="currentColor" d="M0,96L34.3,101.3C68.6,107,137,117,206,112C274.3,107,343,85,411,90.7C480,96,549,128,617,154.7C685.7,181,754,203,823,224C891.4,245,960,267,1029,245.3C1097.1,224,1166,160,1234,128C1302.9,96,1371,96,1406,96L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg>
+		</div>
+		<!--end::Curve top-->
+		<!--begin::Wrapper-->
+		<div class="landing-dark-bg pt-20">
+			<!--begin::Container-->
+			<div class="container">
+				<!--begin::Row-->
+				<div class="row py-10 py-lg-20">
+					<!--begin::Col-->
+					<div class="col-lg-6 pe-lg-16 mb-10 mb-lg-0">
+						<!--begin::Block-->
+						<div class="rounded landing-dark-border p-9 mb-10">
+							<!--begin::Title-->
+							<h2 class="text-white">Would you need a Custom License?</h2>
+							<!--end::Title-->
+							<!--begin::Text-->
+							<span class="fw-normal fs-4 text-gray-700">Email us to
+								<a href="https://keenthemes.com/support"
+									class="text-white opacity-50 text-hover-primary">support@mustdhiya.com</a></span>
+							<!--end::Text-->
+						</div>
+						<!--end::Block-->
+						<!--begin::Block-->
+						<div class="rounded landing-dark-border p-9">
+							<!--begin::Title-->
+							<h2 class="text-white">How About a Custom Project?</h2>
+							<!--end::Title-->
+							<!--begin::Text-->
+							<span class="fw-normal fs-4 text-gray-700">Use Our Custom Development Service.
+								<a href="../../demo10/dist/pages/user-profile/overview.html"
+									class="text-white opacity-50 text-hover-primary">Click to Get a Quote</a></span>
+							<!--end::Text-->
+						</div>
+						<!--end::Block-->
+					</div>
+					<!--end::Col-->
+					<!--begin::Col-->
+					<div class="col-lg-6 ps-lg-16">
+						<!--begin::Navs-->
+						<div class="d-flex justify-content-center">
+							<!--begin::Links-->
+							<div class="d-flex fw-semibold flex-column me-20">
+								<!--begin::Subtitle-->
+								<h4 class="fw-bold text-gray-400 mb-6">More for Metronic</h4>
+								<!--end::Subtitle-->
+								<!--begin::Link-->
+								<a href="https://keenthemes.com/faqs"
+									class="text-white opacity-50 text-hover-primary fs-5 mb-6">FAQ</a>
+								<!--end::Link-->
+								<!--begin::Link-->
+								<a href="https://preview.keenthemes.com/html/metronic/docs"
+									class="text-white opacity-50 text-hover-primary fs-5 mb-6">Documentaions</a>
+								<!--end::Link-->
+								<!--begin::Link-->
+								<a href="https://www.youtube.com/c/KeenThemesTuts/videos"
+									class="text-white opacity-50 text-hover-primary fs-5 mb-6">Video Tuts</a>
+								<!--end::Link-->
+								<!--begin::Link-->
+								<a href="https://preview.keenthemes.com/html/metronic/docs/getting-started/changelog"
+									class="text-white opacity-50 text-hover-primary fs-5 mb-6">Changelog</a>
+								<!--end::Link-->
+								<!--begin::Link-->
+								<a href="https://devs.keenthemes.com/"
+									class="text-white opacity-50 text-hover-primary fs-5 mb-6">Support Forum</a>
+								<!--end::Link-->
+								<!--begin::Link-->
+								<a href="https://keenthemes.com/blog"
+									class="text-white opacity-50 text-hover-primary fs-5">Blog</a>
+								<!--end::Link-->
+							</div>
+							<!--end::Links-->
+							<!--begin::Links-->
+							<div class="d-flex fw-semibold flex-column ms-lg-20">
+								<!--begin::Subtitle-->
+								<h4 class="fw-bold text-gray-400 mb-6">Stay Connected</h4>
+								<!--end::Subtitle-->
+								<!--begin::Link-->
+								<a href="https://www.facebook.com/keenthemes" class="mb-6">
+									<img src="assets/media/svg/brand-logos/facebook-4.svg" class="h-20px me-2" alt="" />
+									<span class="text-white opacity-50 text-hover-primary fs-5 mb-6">Facebook</span>
+								</a>
+								<!--end::Link-->
+								<!--begin::Link-->
+								<a href="https://github.com/KeenthemesHub" class="mb-6">
+									<img src="assets/media/svg/brand-logos/github.svg" class="h-20px me-2" alt="" />
+									<span class="text-white opacity-50 text-hover-primary fs-5 mb-6">Github</span>
+								</a>
+								<!--end::Link-->
+								<!--begin::Link-->
+								<a href="https://twitter.com/keenthemes" class="mb-6">
+									<img src="assets/media/svg/brand-logos/twitter.svg" class="h-20px me-2" alt="" />
+									<span class="text-white opacity-50 text-hover-primary fs-5 mb-6">Twitter</span>
+								</a>
+								<!--end::Link-->
+								<!--begin::Link-->
+								<a href="https://dribbble.com/keenthemes" class="mb-6">
+									<img src="assets/media/svg/brand-logos/dribbble-icon-1.svg" class="h-20px me-2"
+										alt="" />
+									<span class="text-white opacity-50 text-hover-primary fs-5 mb-6">Dribbble</span>
+								</a>
+								<!--end::Link-->
+								<!--begin::Link-->
+								<a href="https://www.instagram.com/keenthemes" class="mb-6">
+									<img src="assets/media/svg/brand-logos/instagram-2-1.svg" class="h-20px me-2"
+										alt="" />
+									<span class="text-white opacity-50 text-hover-primary fs-5 mb-6">Instagram</span>
+								</a>
+								<!--end::Link-->
+							</div>
+							<!--end::Links-->
+						</div>
+						<!--end::Navs-->
+					</div>
+					<!--end::Col-->
+				</div>
+				<!--end::Row-->
+			</div>
+			<!--end::Container-->
+			<!--begin::Separator-->
+			<div class="landing-dark-separator"></div>
+			<!--end::Separator-->
+			<!--begin::Container-->
+			<div class="container">
+				<!--begin::Wrapper-->
+				<div class="d-flex flex-column flex-md-row flex-stack py-7 py-lg-10">
+					<!--begin::Copyright-->
+					<div class="d-flex align-items-center order-2 order-md-1">
+						<!--begin::Logo-->
+						<a href="../../demo10/dist/home.html">
+							<img alt="Logo" src="assets/media/logos/must-dhiya-logo.png" class="h-15px h-md-20px" />
+									<span alt="Logo" class="text-white ki-text-bold logo-default h-25px h-lg-30px">Must
+										Dhiya'</span>
+						</a>
+						<!--end::Logo image-->
+						<!--begin::Logo image-->
+						<span class="mx-5 fs-6 fw-semibold text-gray-600 pt-1" href="https://keenthemes.com">&copy;
+							2025 Must Dhiya' Inc.</span>
+						<!--end::Logo image-->
+					</div>
+					<!--end::Copyright-->
+					<!--begin::Menu-->
+					<ul class="menu menu-gray-600 menu-hover-primary fw-semibold fs-6 fs-md-5 order-1 mb-5 mb-md-0">
+						<li class="menu-item">
+							<a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
+						</li>
+						<li class="menu-item mx-5">
+							<a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
+						</li>
+						<li class="menu-item">
+							<a href="" target="_blank" class="menu-link px-2">Purchase</a>
+						</li>
+					</ul>
+					<!--end::Menu-->
+				</div>
+				<!--end::Wrapper-->
+			</div>
+			<!--end::Container-->
+		</div>
+		<!--end::Wrapper-->
+	</div>
+	<!--end::Footer Section-->
+	<!--begin::Scrolltop-->
+	<div id="kt_scrolltop" class="scrolltop" data-kt-scroll-offset="{default: 75, lg: 85}">
+		<i class="ki-duotone ki-arrow-up">
+			<span class="path1"></span>
+			<span class="path2"></span>
+		</i>
+	</div>
+	<!--end::Scrolltop-->
+	</div>
+	<!--end::Root-->
+	<!--end::Main-->
+	<!--begin::Scrolltop-->
+	<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+		<i class="ki-duotone ki-arrow-up">
+			<span class="path1"></span>
+			<span class="path2"></span>
+		</i>
+	</div>
+	<!--end::Scrolltop-->
+	<!--begin::Javascript-->
+	<script>var hostUrl = "assets/";</script>
+	<!--begin::Global Javascript Bundle(mandatory for all pages)-->
+
+	<!-- Typed.js Library -->
+	<script src="assets/plugins/custom/typedjs/typedjs.bundle.js"></script>
+	<script>
+		// Wave Animation Code
+		const waveCanvas = document.getElementById('waveCanvas');
+		const waveCtx = waveCanvas.getContext('2d');
+
+		function resizeWaveCanvas() {
+			const container = document.querySelector('.landing-dark-bg');
+			waveCanvas.width = container.clientWidth;
+			waveCanvas.height = container.clientHeight;
+		}
+		window.addEventListener('resize', resizeWaveCanvas);
+		resizeWaveCanvas();
+
+		let lines = [];
+		const lineCount = 4;
+		const waveHeight = 50;
+		const speed = 0.005;
+		let animationProgress = 1;
+
+		for (let i = 0; i < lineCount; i++) {
+			lines.push({
+				frequency: 0.015 + i * 0.005,
+				amplitude: waveHeight - i * 2.5,
+				phase: i * Math.PI / 200,
+				verticalOffset: i * 70
+			});
+		}
+
+		function animateWaves() {
+			waveCtx.clearRect(0, 0, waveCanvas.width, waveCanvas.height);
+			animationProgress += speed;
+			lines.forEach((line, index) => {
+				waveCtx.beginPath();
+				waveCtx.lineWidth = 1.5;
+				// Gunakan dashed jika belum mencapai nilai tertentu
+				waveCtx.setLineDash(animationProgress < 1 ? [8, 4] : []);
+				waveCtx.strokeStyle = `rgba(138, 103, 187, ${0.7 - index * 0.03})`;
+				for (let x = 0; x <= waveCanvas.width; x += 2) {
+					const yOffset = line.verticalOffset * (x / waveCanvas.width);
+					const y = waveCanvas.height / 2 + yOffset + Math.sin(x * line.frequency + animationProgress + line.phase) * line.amplitude;
+					x === 0 ? waveCtx.moveTo(x, y) : waveCtx.lineTo(x, y);
+				}
+				waveCtx.stroke();
+
+				// Animasi titik bergerak di sepanjang garis gelombang
+				const dotX = waveCanvas.width * ((animationProgress + line.phase) % 1);
+				const yOffset = line.verticalOffset * (dotX / waveCanvas.width);
+				const dotY = waveCanvas.height / 2 + yOffset + Math.sin(dotX * line.frequency + animationProgress + line.phase) * line.amplitude;
+				waveCtx.beginPath();
+				waveCtx.arc(dotX, dotY, 5, 0, Math.PI * 2);
+				waveCtx.fillStyle = `rgba(80, 162, 171, 1)`;
+				waveCtx.fill();
+			});
+			requestAnimationFrame(animateWaves);
+		}
+		animateWaves();
+		// Starfield Animation Code
+		const starCanvas = document.getElementById("starfield");
+		const starCtx = starCanvas.getContext("2d");
+
+		let stars = [];
+		const layerCount = 12; // 3 layer untuk efek parallax
+		const speeds = [0.15, 0.1, 0.2]; // Kecepatan lebih lambat untuk bintang yang lebih jauh
+		const baseStarCount = 50;
+		let shootingStar = null;
+
+		function resizeStarCanvas() {
+			const container = document.querySelector('.landing-dark-bg');
+			starCanvas.width = container.clientWidth;
+			starCanvas.height = container.clientHeight;
+			createStars();
+		}
+		window.addEventListener("resize", resizeStarCanvas);
+		resizeStarCanvas();
+
+		function createStars() {
+			stars = [];
+			const scalingFactor = Math.max(starCanvas.width, starCanvas.height) / 1000;
+			for (let i = 0; i < layerCount; i++) {
+				const starCount = Math.floor(baseStarCount * scalingFactor * (i + 1));
+				for (let j = 0; j < starCount; j++) {
+					stars.push({
+						x: Math.random() * starCanvas.width,
+						y: Math.random() * starCanvas.height,
+						size: Math.random() * (i + 1) + 0.5,
+						speed: speeds[i],
+						opacity: Math.random(),
+						baseOpacity: Math.random() * 0.5 + 0.5,
+						layer: i,
+					});
+				}
+			}
+		}
+
+		function updateStars() {
+			stars.forEach((star) => {
+				star.y -= star.speed; // Semua bintang bergerak ke atas
+				star.opacity = star.baseOpacity + Math.sin(Date.now() * 0.001 * star.speed) * 0.3;
+				// Reset posisi bintang jika sudah keluar layar
+				if (star.y < 0) {
+					star.y = starCanvas.height;
+					star.x = Math.random() * starCanvas.width;
+				}
+			});
+		}
+
+		function drawStars() {
+			starCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
+			// Gambar bintang-bintang
+			stars.forEach((star) => {
+				starCtx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+				starCtx.fillRect(star.x, star.y, star.size, star.size);
+			});
+		}
+
+		function createShootingStar() {
+			const startX = Math.random() * starCanvas.width;
+			const startY = Math.random() * starCanvas.height;
+			const angle = Math.random() * Math.PI * 2; // Arah acak
+			const length = Math.random() * 300 + 100; // Panjang trail acak
+			const speed = Math.random() * 4 + 2;
+			shootingStar = {
+				x: startX,
+				y: startY,
+				length: length,
+				speed: speed,
+				opacity: 1,
+				dx: Math.cos(angle) * speed,
+				dy: Math.sin(angle) * speed,
+			};
+			// Jadwalkan kemunculan shooting star berikutnya (20–40 detik)
+			const nextAppearance = Math.random() * 20000 + 20000;
+			setTimeout(createShootingStar, nextAppearance);
+		}
+
+		function updateShootingStar() {
+			if (!shootingStar) return;
+			shootingStar.x += shootingStar.dx;
+			shootingStar.y += shootingStar.dy;
+			shootingStar.opacity -= 0.01;
+			if (
+				shootingStar.opacity <= 0 ||
+				shootingStar.x < 0 ||
+				shootingStar.x > starCanvas.width ||
+				shootingStar.y < 0 ||
+				shootingStar.y > starCanvas.height
+			) {
+				shootingStar = null;
+			}
+		}
+
+		function drawShootingStar() {
+			if (!shootingStar) return;
+			const gradient = starCtx.createLinearGradient(
+				shootingStar.x,
+				shootingStar.y,
+				shootingStar.x - shootingStar.dx * shootingStar.length,
+				shootingStar.y - shootingStar.dy * shootingStar.length
+			);
+			gradient.addColorStop(0, `rgba(255, 255, 255, ${shootingStar.opacity})`);
+			gradient.addColorStop(1, `rgba(255, 255, 255, 0)`);
+			starCtx.beginPath();
+			starCtx.strokeStyle = gradient;
+			starCtx.lineWidth = 2;
+			starCtx.moveTo(shootingStar.x, shootingStar.y);
+			starCtx.lineTo(
+				shootingStar.x - shootingStar.dx * shootingStar.length,
+				shootingStar.y - shootingStar.dy * shootingStar.length
+			);
+			starCtx.stroke();
+			starCtx.closePath();
+		}
+
+		function animateStars() {
+			updateStars();
+			updateShootingStar();
+			drawStars();
+			drawShootingStar();
+			requestAnimationFrame(animateStars);
+		}
+		createStars();
+		setTimeout(createShootingStar, Math.random() * 20000 + 20000);
+		animateStars();
+	</script>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			var typed = new Typed("#kt_typedjs_example_1", {
+				strings: [
+					"Transformasi Digital Bisnis Anda",
+					"Solusi IT Terbaik untuk Masa Depan",
+					"<span style='background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'><span id='kt_landing_hero_text'>Must Dhiya' Technology</span></span>, Partner Teknologi Anda"
+				],
+				typeSpeed: 50,
+				backSpeed: 25,
+				loop: true,
+				showCursor: false
+			});
+		});
+	</script>
+	<script src="assets/plugins/global/plugins.bundle.js"></script>
+	<script src="assets/js/scripts.bundle.js"></script>
+	<!--end::Global Javascript Bundle-->
+	<!--begin::Vendors Javascript(used for this page only)-->
+	<script src="assets/plugins/custom/fslightbox/fslightbox.bundle.js"></script>
+	<script src="assets/plugins/custom/typedjs/typedjs.bundle.js"></script>
+	<!--begin::Vendors Javascript(used for this page only)-->
+	<script src="assets/plugins/custom/leaflet/leaflet.bundle.js"></script>
+	<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+	<!--end::Vendors Javascript-->
+	<!--begin::Custom Javascript(used for this page only)-->
+	<script src="assets/js/custom/landing.js"></script>
+	<script src="assets/js/custom/pages/pricing/general.js"></script>
+	<script src="assets/js/custom/pages/general/contact.js"></script>
+	<script src="assets/js/widgets.bundle.js"></script>
+	<script src="assets/js/custom/widgets.js"></script>
+	<script src="assets/js/custom/apps/chat/chat.js"></script>
+	<script src="assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+	<script src="assets/js/custom/utilities/modals/create-campaign.js"></script>
+	<script src="assets/js/custom/utilities/modals/create-app.js"></script>
+	<script src="assets/js/custom/utilities/modals/users-search.js"></script>
+	<!--end::Custom Javascript-->
+	<!--end::Javascript-->
+</body>
+<!--end::Body-->
+
+</html>
