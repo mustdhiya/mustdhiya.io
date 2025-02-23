@@ -116,12 +116,19 @@
 		}
 
 		.imge {
-    z-index: 9999;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+			z-index: 9999;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+		#secretForm{
+			z-index: 10000;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
 
 
 		.glitch-text::before {
@@ -146,9 +153,26 @@
 	<p>Cari jawabannya dalam kalimat ini.</p>
 	<div id="image-container" style="display: none;">
 		<img src="assets/media/stock/600x600/result.png" class="imge" alt="Placeholder Image">
+
+		<form id="secretForm">
+			<input type="text" id="secretInput" placeholder="Masukkan jawaban">
+			<button type="submit">Submit</button>
+		</form>
 	</div>
 
 	<script>
+		document.getElementById("secretForm").addEventListener("submit", function (event) {
+			event.preventDefault(); // Mencegah refresh halaman
+
+			const inputText = document.getElementById("secretInput").value.trim().toLowerCase();
+			const correctAnswer = "apa sih yang gak bisa";
+
+			if (inputText === correctAnswer) {
+				window.location.href = "https://mustdhiya-io.vercel.app/last.html";
+			} else {
+				alert("Jawaban salah, coba lagi!");
+			}
+		});
 		function showImage() {
 			document.getElementById("image-container").style.display = "block";
 		}

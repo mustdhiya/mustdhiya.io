@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Stage 2</title>
+	<style>
+		
+		body {
+			font-family: Arial, sans-serif;
+			text-align: center;
+			background-color: black;
+			color: white;
+		}
+
+		.glitch-text {
+			font-size: 24px;
+			font-weight: bold;
+			position: relative;
+			display: inline-block;
+			margin: 20px;
+			text-transform: uppercase;
+			animation: glitch 1s infinite;
+		}
+
+		@keyframes glitch {
+			0% {
+				text-shadow: 2px 2px red;
+			}
+
+			50% {
+				text-shadow: -2px -2px cyan;
+			}
+
+			100% {
+				text-shadow: 2px -2px magenta;
+			}
+		}
+
+		.showButton {
+			padding: 10px 20px;
+			font-size: 16px;
+			cursor: pointer;
+			border: none;
+			background-color: white;
+			color: black;
+			transition: 0.3s;
+		}
+
+		.showButton:hover {
+			background-color: red;
+			color: white;
+		}
+
+		#image-container {
+			margin-top: 20px;
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+
+	<button onclick="showImage()" class="showButton">Show</button>
+	<canvas id="glitchCanvas" class="glitchCanvas"></canvas>
+	<div class="glitch-text" id="glitchText">Must Dhiya confidential</div>
+	<p>Cari jawabannya dalam kalimat ini.</p>
+
+	<div id="image-container">
+		<form id="secretForm">
+			<p>apa jawaban dari stage 2?</p>
+			<input type="text" id="secretInput" placeholder="Masukkan jawaban">
+			<button type="submit">Submit</button>
+		</form>
+		<div id="clue-container"
+			style="display: none; margin-top: 20px; padding: 10px; background-color: white; color: black; border-radius: 5px; text-align: center;">
+			<p><strong>Clue Baru:</strong></p>
+			<p>Naik ke atas tapi bisa ke bawah. Fungsionalitas di kedepankan. Di dalamnya ada matahari terbit di tengah
+				ke atas tapi tidak di paling atas 2112.</p>
+			<a href="https://maps.app.goo.gl/fqdYkWr8G1j5kUdBA">berdedikasi</a>
+		</div>
+	</div>
+
+	<script>
+		document.getElementById("secretForm").addEventListener("submit", function (event) {
+			event.preventDefault(); // Mencegah refresh halaman
+
+			const inputText = document.getElementById("secretInput").value.trim().toLowerCase();
+			const correctAnswer = "-0.474649, 117.139866";
+
+			if (inputText === correctAnswer) {
+				document.getElementById("clue-container").style.display = "block";
+			} else {
+				alert("Jawaban salah, coba lagi!");
+			}
+		});
+
+
+		function showImage() {
+			document.getElementById("image-container").style.display = "block";
+		}
+		const canvas = document.getElementById('glitchCanvas');
+		const ctx = canvas.getContext('2d');
+
+		// Atur ukuran canvas langsung saat halaman dimuat
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+
+		// Tambahkan event listener untuk resize
+		window.addEventListener('resize', () => {
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+		});
+
+		// Fungsi untuk menggambar efek glitch
+		function drawGlitch() {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.fillStyle = `rgba(0, 251, 204, ${Math.random() * 0.5})`;
+			for (let i = 0; i < 10; i++) {
+				let x = Math.random() * canvas.width;
+				let y = Math.random() * canvas.height;
+				let w = Math.random() * 200;
+				let h = Math.random() * 5;
+				ctx.fillRect(x, y, w, h);
+			}
+			requestAnimationFrame(drawGlitch);
+		}
+
+		// Jalankan animasi setelah canvas diatur ukurannya
+		drawGlitch();
+	</script>
+
+</body>
+
+</html>
