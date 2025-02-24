@@ -1,158 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--begin::Head-->
+    <!--begin::Head-->
 
-<head>
-	<base href="" />
-	<title>Metronic 8.1.9 - Soal Aljabar Linear</title>
+    <head>
+        <base href=""/>
+        <title>Metronic 8.1.9 - Soal Aljabar Linear</title>
 
-	<meta name="description"
-		content="Must Dhiya' Tech menyediakan solusi IT profesional dan bimbingan belajar teknologi dengan hasil terjamin">
-	<meta property="og:title" content="Must Dhiya' Tech - Partner Teknologi Anda">
-	<meta charset="utf-8" />
-	<meta name="keywords"
-		content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta property="og:locale" content="en_US" />
-	<meta property="og:type" content="article" />
-	<meta property="og:url" content="https://keenthemes.com/metronic" />
-	<meta property="og:site_name" content="Must Dhiya | Technology" />
-	<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-	<link rel="shortcut icon" href="assets/media/logos/must-dhiya-logo.png" />
-	<!--begin::Fonts(mandatory for all pages)-->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
-	<!--end::Fonts-->
-	<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-	<link href="assets/plugins/custom/leaflet/leaflet.bundle.css" rel="stylesheet" type="text/css" />
-	<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
-	<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-	<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
-	<!--end::Global Stylesheets Bundle-->
-	<style>
-		/* Container background dengan class landing-dark-bg */
-		.landing-dark-bg {
-			position: relative;
-			overflow: hidden;
-		}
+        <meta name="description"
+              content="Must Dhiya' Tech menyediakan solusi IT profesional dan bimbingan belajar teknologi dengan hasil terjamin">
+        <meta property="og:title" content="Must Dhiya' Tech - Partner Teknologi Anda">
+        <meta charset="utf-8"/>
+        <meta name="keywords"
+              content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta property="og:locale" content="en_US"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:url" content="https://keenthemes.com/metronic"/>
+        <meta property="og:site_name" content="Must Dhiya | Technology"/>
+        <link rel="canonical" href="https://preview.keenthemes.com/metronic8"/>
+        <link rel="shortcut icon" href="assets/media/logos/must-dhiya-logo.png"/>
+        <!--begin::Fonts(mandatory for all pages)-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>
+        <!--end::Fonts-->
+        <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+        <link href="assets/plugins/custom/leaflet/leaflet.bundle.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
+        <!--end::Global Stylesheets Bundle-->
+        <style>
+            /* Container background dengan class landing-dark-bg */
+            .landing-dark-bg {
+                position: relative;
+                overflow: hidden;
+            }
 
-		/* Style canvas agar memenuhi container */
-		canvas {
-			background-color: transparent;
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100vw;
-			z-index: 0;
-			height: 100%;
-		}
+            /* Style canvas agar memenuhi container */
+            canvas {
+                background-color: transparent;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                z-index: 0;
+                height: 100%;
+            }
 
-		/* Starfield canvas styling */
-		#starfield {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			z-index: 1;
-			height: 100%;
-			pointer-events: none;
-		}
+            /* Starfield canvas styling */
+            #starfield {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1;
+                height: 100%;
+                pointer-events: none;
+            }
 
-		/* Wave canvas styling */
-		#waveCanvas {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			pointer-events: none;
-		}
+            /* Wave canvas styling */
+            #waveCanvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+            }
 
-		/* Konten utama di atas background */
-		.hero-content {
-			position: relative;
-			text-align: center;
-			z-index: 0;
-			color: #fff;
-			padding: 2rem;
-		}
+            /* Konten utama di atas background */
+            .hero-content {
+                position: relative;
+                text-align: center;
+                z-index: 0;
+                color: #fff;
+                padding: 2rem;
+            }
 
-		.typed-container {
-			position: relative;
-			height: 400px;
-			overflow: hidden;
-			/* Sesuaikan tinggi minimal agar muat seluruh baris teks */
-			min-height: 150px;
-		}
+            .typed-container {
+                position: relative;
+                height: 400px;
+                overflow: hidden;
+                /* Sesuaikan tinggi minimal agar muat seluruh baris teks */
+                min-height: 150px;
+            }
 
-		/* Optional: Styling untuk cursor agar konsisten */
-		.typed-cursor {
-			font-size: inherit;
-			opacity: 1;
-			animation: blink 0.7s infinite;
-		}
+            /* Optional: Styling untuk cursor agar konsisten */
+            .typed-cursor {
+                font-size: inherit;
+                opacity: 1;
+                animation: blink 0.7s infinite;
+            }
 
-		@keyframes blink {
+            @keyframes blink {
 
-			0%,
-			100% {
-				opacity: 1;
-			}
+                0%,
+                100% {
+                    opacity: 1;
+                }
 
-			50% {
-				opacity: 0;
-			}
-		}
-	</style>
-	<script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
-</head>
-<!--end::Head-->
-<!--begin::Body-->
+                50% {
+                    opacity: 0;
+                }
+            }
+        </style>
+        <script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
+    </head>
+    <!--end::Head-->
+    <!--begin::Body-->
 
-<body id="kt_body" data-bs-spy="scroll" data-bs-target="#kt_landing_menu" class="bg-body position-relative">
-	<!-- Canvas untuk animasi wave -->
-	<div class="card">
-        <div class="card-body rounded-lg rounded-bottom-0">
-            <div class="mb-5">
-                <div class="symbol symbol-75px symbol-circle">
-                    <img alt="Avatar" src="assets/media/stock/600x600/img-59.jpg" />
+    <body id="kt_body" data-bs-spy="scroll" data-bs-target="#kt_landing_menu" class="bg-body position-relative">
+        <!-- Canvas untuk animasi wave -->
+        <div class="card">
+            <div class="card-body rounded-lg rounded-bottom-0">
+                <div class="mb-5">
+                    <div class="symbol symbol-75px symbol-circle">
+                        <img alt="Avatar" src="assets/media/stock/600x600/img-59.jpg"/>
+                    </div>
+                </div>
+                <h5 class="card-title">kmu mikirin ap sih?</h5>
+                <p class="card-text">By: Anonim</p>
+                <div class="tech-stack">
+                    <span class="badge bg-danger">Python</span>
                 </div>
             </div>
-            <h5 class="card-title">kmu mikirin ap sih?</h5>
-            <p class="card-text">By: Anonim</p>
-            <div class="tech-stack">
-                <span class="badge bg-danger">Python</span>
-            </div>
-        </div>
 
-        <div class="card-body">
-            <h5 class="mb-3">Soal Aljabar Linear</h5>
-            <p>Diberikan sistem persamaan:</p>
-            <pre>
+            <div class="card-body">
+                <h5 class="mb-3">Soal Aljabar Linear</h5>
+                <p>Diberikan sistem persamaan:</p>
+                <pre>
 3x - 5y = -600.303
 2x + 7y = 810.543
             </pre>
-            <p>Masukkan nilai <strong>x</strong> dan <strong>y</strong> yang benar:</p>
+                <p>Masukkan nilai <strong>x</strong> dan <strong>y</strong> yang benar:</p>
 
-            <div class="mb-3">
-                <label for="xInput" class="form-label">Masukkan x:</label>
-                <input type="number" step="0.000001" class="form-control" id="xInput">
-            </div>
-            <div class="mb-3">
-                <label for="yInput" class="form-label">Masukkan y:</label>
-                <input type="number" step="0.000001" class="form-control" id="yInput">
-            </div>
+                <div class="mb-3">
+                    <label for="xInput" class="form-label">Masukkan x:</label>
+                    <input type="number" step="0.000001" class="form-control" id="xInput">
+                </div>
+                <div class="mb-3">
+                    <label for="yInput" class="form-label">Masukkan y:</label>
+                    <input type="number" step="0.000001" class="form-control" id="yInput">
+                </div>
 
-            <button class="btn btn-primary" onclick="cekJawaban()">Submit</button>
+                <button class="btn btn-primary" onclick="cekJawaban()">Submit</button>
 
-            <p id="hasil" class="mt-3 fw-bold"></p>
-            <div id="linkJawaban" class="mt-3" style="display: none;">
-                <a href="https://www.instagram.com/reel/C_-d0xBubhr/" target="_blank" class="btn btn-success">Lihat Hasil</a>
+                <p id="hasil" class="mt-3 fw-bold"></p>
+                <div id="linkJawaban" class="mt-3" style="display: none;">
+                    <a href="https://www.instagram.com/reel/C_-d0xBubhr/" target="_blank" class="btn btn-success">Lihat
+                        Hasil</a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        function cekJawaban() {
+        <script>
+          function cekJawaban() {
             let xInput = parseFloat(document.getElementById("xInput").value);
             let yInput = parseFloat(document.getElementById("yInput").value);
 
@@ -161,245 +162,249 @@
             let toleransi = 0.000001;  // Toleransi kecil untuk angka desimal
 
             if (Math.abs(xInput - xBenar) < toleransi && Math.abs(yInput - yBenar) < toleransi) {
-                document.getElementById("hasil").innerHTML = "✅ Jawaban Benar!";
-                document.getElementById("hasil").classList.add("text-success");
-                document.getElementById("linkJawaban").style.display = "block";
+              document.getElementById("hasil").innerHTML = "✅ Jawaban Benar!";
+              document.getElementById("hasil").classList.add("text-success");
+              document.getElementById("linkJawaban").style.display = "block";
             } else {
-                document.getElementById("hasil").innerHTML = "❌ Jawaban Salah, coba lagi!";
-                document.getElementById("hasil").classList.add("text-danger");
-                document.getElementById("linkJawaban").style.display = "none";
+              document.getElementById("hasil").innerHTML = "❌ Jawaban Salah, coba lagi!";
+              document.getElementById("hasil").classList.add("text-danger");
+              document.getElementById("linkJawaban").style.display = "none";
             }
-        }
-        
-    </script>
-	<!--begin::Global Javascript Bundle(mandatory for all pages)-->
+          }
 
-	<!-- Typed.js Library -->
-	<script src="assets/plugins/custom/typedjs/typedjs.bundle.js"></script>
-	<script>
-		// Wave Animation Code
-		const waveCanvas = document.getElementById('waveCanvas');
-		const waveCtx = waveCanvas.getContext('2d');
+        </script>
+        <!--begin::Global Javascript Bundle(mandatory for all pages)-->
 
-		function resizeWaveCanvas() {
-			const container = document.querySelector('.landing-dark-bg');
-			waveCanvas.width = container.clientWidth;
-			waveCanvas.height = container.clientHeight;
-		}
-		window.addEventListener('resize', resizeWaveCanvas);
-		resizeWaveCanvas();
+        <!-- Typed.js Library -->
+        <script src="assets/plugins/custom/typedjs/typedjs.bundle.js"></script>
+        <script>
+          // Wave Animation Code
+          const waveCanvas = document.getElementById('waveCanvas');
+          const waveCtx = waveCanvas.getContext('2d');
 
-		let lines = [];
-		const lineCount = 4;
-		const waveHeight = 50;
-		const speed = 0.005;
-		let animationProgress = 1;
+          function resizeWaveCanvas() {
+            const container = document.querySelector('.landing-dark-bg');
+            waveCanvas.width = container.clientWidth;
+            waveCanvas.height = container.clientHeight;
+          }
 
-		for (let i = 0; i < lineCount; i++) {
-			lines.push({
-				frequency: 0.015 + i * 0.005,
-				amplitude: waveHeight - i * 2.5,
-				phase: i * Math.PI / 200,
-				verticalOffset: i * 70
-			});
-		}
+          window.addEventListener('resize', resizeWaveCanvas);
+          resizeWaveCanvas();
 
-		function animateWaves() {
-			waveCtx.clearRect(0, 0, waveCanvas.width, waveCanvas.height);
-			animationProgress += speed;
-			lines.forEach((line, index) => {
-				waveCtx.beginPath();
-				waveCtx.lineWidth = 1.5;
-				// Gunakan dashed jika belum mencapai nilai tertentu
-				waveCtx.setLineDash(animationProgress < 1 ? [8, 4] : []);
-				waveCtx.strokeStyle = `rgba(138, 103, 187, ${0.7 - index * 0.03})`;
-				for (let x = 0; x <= waveCanvas.width; x += 2) {
-					const yOffset = line.verticalOffset * (x / waveCanvas.width);
-					const y = waveCanvas.height / 2 + yOffset + Math.sin(x * line.frequency + animationProgress + line.phase) * line.amplitude;
-					x === 0 ? waveCtx.moveTo(x, y) : waveCtx.lineTo(x, y);
-				}
-				waveCtx.stroke();
+          let lines = [];
+          const lineCount = 4;
+          const waveHeight = 50;
+          const speed = 0.005;
+          let animationProgress = 1;
 
-				// Animasi titik bergerak di sepanjang garis gelombang
-				const dotX = waveCanvas.width * ((animationProgress + line.phase) % 1);
-				const yOffset = line.verticalOffset * (dotX / waveCanvas.width);
-				const dotY = waveCanvas.height / 2 + yOffset + Math.sin(dotX * line.frequency + animationProgress + line.phase) * line.amplitude;
-				waveCtx.beginPath();
-				waveCtx.arc(dotX, dotY, 5, 0, Math.PI * 2);
-				waveCtx.fillStyle = `rgba(80, 162, 171, 1)`;
-				waveCtx.fill();
-			});
-			requestAnimationFrame(animateWaves);
-		}
-		animateWaves();
-		// Starfield Animation Code
-		const starCanvas = document.getElementById("starfield");
-		const starCtx = starCanvas.getContext("2d");
+          for (let i = 0; i < lineCount; i++) {
+            lines.push({
+              frequency: 0.015 + i * 0.005,
+              amplitude: waveHeight - i * 2.5,
+              phase: i * Math.PI / 200,
+              verticalOffset: i * 70
+            });
+          }
 
-		let stars = [];
-		const layerCount = 12; // 3 layer untuk efek parallax
-		const speeds = [0.15, 0.1, 0.2]; // Kecepatan lebih lambat untuk bintang yang lebih jauh
-		const baseStarCount = 50;
-		let shootingStar = null;
+          function animateWaves() {
+            waveCtx.clearRect(0, 0, waveCanvas.width, waveCanvas.height);
+            animationProgress += speed;
+            lines.forEach((line, index) => {
+              waveCtx.beginPath();
+              waveCtx.lineWidth = 1.5;
+              // Gunakan dashed jika belum mencapai nilai tertentu
+              waveCtx.setLineDash(animationProgress < 1 ? [ 8, 4 ] : []);
+              waveCtx.strokeStyle = `rgba(138, 103, 187, ${ 0.7 - index * 0.03 })`;
+              for (let x = 0; x <= waveCanvas.width; x += 2) {
+                const yOffset = line.verticalOffset * (x / waveCanvas.width);
+                const y = waveCanvas.height / 2 + yOffset + Math.sin(x * line.frequency + animationProgress + line.phase) * line.amplitude;
+                x === 0 ? waveCtx.moveTo(x, y) : waveCtx.lineTo(x, y);
+              }
+              waveCtx.stroke();
 
-		function resizeStarCanvas() {
-			const container = document.querySelector('.landing-dark-bg');
-			starCanvas.width = container.clientWidth;
-			starCanvas.height = container.clientHeight;
-			createStars();
-		}
-		window.addEventListener("resize", resizeStarCanvas);
-		resizeStarCanvas();
+              // Animasi titik bergerak di sepanjang garis gelombang
+              const dotX = waveCanvas.width * ((animationProgress + line.phase) % 1);
+              const yOffset = line.verticalOffset * (dotX / waveCanvas.width);
+              const dotY = waveCanvas.height / 2 + yOffset + Math.sin(dotX * line.frequency + animationProgress + line.phase) * line.amplitude;
+              waveCtx.beginPath();
+              waveCtx.arc(dotX, dotY, 5, 0, Math.PI * 2);
+              waveCtx.fillStyle = `rgba(80, 162, 171, 1)`;
+              waveCtx.fill();
+            });
+            requestAnimationFrame(animateWaves);
+          }
 
-		function createStars() {
-			stars = [];
-			const scalingFactor = Math.max(starCanvas.width, starCanvas.height) / 1000;
-			for (let i = 0; i < layerCount; i++) {
-				const starCount = Math.floor(baseStarCount * scalingFactor * (i + 1));
-				for (let j = 0; j < starCount; j++) {
-					stars.push({
-						x: Math.random() * starCanvas.width,
-						y: Math.random() * starCanvas.height,
-						size: Math.random() * (i + 1) + 0.5,
-						speed: speeds[i],
-						opacity: Math.random(),
-						baseOpacity: Math.random() * 0.5 + 0.5,
-						layer: i,
-					});
-				}
-			}
-		}
+          animateWaves();
+          // Starfield Animation Code
+          const starCanvas = document.getElementById("starfield");
+          const starCtx = starCanvas.getContext("2d");
 
-		function updateStars() {
-			stars.forEach((star) => {
-				star.y -= star.speed; // Semua bintang bergerak ke atas
-				star.opacity = star.baseOpacity + Math.sin(Date.now() * 0.001 * star.speed) * 0.3;
-				// Reset posisi bintang jika sudah keluar layar
-				if (star.y < 0) {
-					star.y = starCanvas.height;
-					star.x = Math.random() * starCanvas.width;
-				}
-			});
-		}
+          let stars = [];
+          const layerCount = 12; // 3 layer untuk efek parallax
+          const speeds = [ 0.15, 0.1, 0.2 ]; // Kecepatan lebih lambat untuk bintang yang lebih jauh
+          const baseStarCount = 50;
+          let shootingStar = null;
 
-		function drawStars() {
-			starCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
-			// Gambar bintang-bintang
-			stars.forEach((star) => {
-				starCtx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
-				starCtx.fillRect(star.x, star.y, star.size, star.size);
-			});
-		}
+          function resizeStarCanvas() {
+            const container = document.querySelector('.landing-dark-bg');
+            starCanvas.width = container.clientWidth;
+            starCanvas.height = container.clientHeight;
+            createStars();
+          }
 
-		function createShootingStar() {
-			const startX = Math.random() * starCanvas.width;
-			const startY = Math.random() * starCanvas.height;
-			const angle = Math.random() * Math.PI * 2; // Arah acak
-			const length = Math.random() * 300 + 100; // Panjang trail acak
-			const speed = Math.random() * 4 + 2;
-			shootingStar = {
-				x: startX,
-				y: startY,
-				length: length,
-				speed: speed,
-				opacity: 1,
-				dx: Math.cos(angle) * speed,
-				dy: Math.sin(angle) * speed,
-			};
-			// Jadwalkan kemunculan shooting star berikutnya (20–40 detik)
-			const nextAppearance = Math.random() * 20000 + 20000;
-			setTimeout(createShootingStar, nextAppearance);
-		}
+          window.addEventListener("resize", resizeStarCanvas);
+          resizeStarCanvas();
 
-		function updateShootingStar() {
-			if (!shootingStar) return;
-			shootingStar.x += shootingStar.dx;
-			shootingStar.y += shootingStar.dy;
-			shootingStar.opacity -= 0.01;
-			if (
-				shootingStar.opacity <= 0 ||
-				shootingStar.x < 0 ||
-				shootingStar.x > starCanvas.width ||
-				shootingStar.y < 0 ||
-				shootingStar.y > starCanvas.height
-			) {
-				shootingStar = null;
-			}
-		}
+          function createStars() {
+            stars = [];
+            const scalingFactor = Math.max(starCanvas.width, starCanvas.height) / 1000;
+            for (let i = 0; i < layerCount; i++) {
+              const starCount = Math.floor(baseStarCount * scalingFactor * (i + 1));
+              for (let j = 0; j < starCount; j++) {
+                stars.push({
+                  x: Math.random() * starCanvas.width,
+                  y: Math.random() * starCanvas.height,
+                  size: Math.random() * (i + 1) + 0.5,
+                  speed: speeds[i],
+                  opacity: Math.random(),
+                  baseOpacity: Math.random() * 0.5 + 0.5,
+                  layer: i,
+                });
+              }
+            }
+          }
 
-		function drawShootingStar() {
-			if (!shootingStar) return;
-			const gradient = starCtx.createLinearGradient(
-				shootingStar.x,
-				shootingStar.y,
-				shootingStar.x - shootingStar.dx * shootingStar.length,
-				shootingStar.y - shootingStar.dy * shootingStar.length
-			);
-			gradient.addColorStop(0, `rgba(255, 255, 255, ${shootingStar.opacity})`);
-			gradient.addColorStop(1, `rgba(255, 255, 255, 0)`);
-			starCtx.beginPath();
-			starCtx.strokeStyle = gradient;
-			starCtx.lineWidth = 2;
-			starCtx.moveTo(shootingStar.x, shootingStar.y);
-			starCtx.lineTo(
-				shootingStar.x - shootingStar.dx * shootingStar.length,
-				shootingStar.y - shootingStar.dy * shootingStar.length
-			);
-			starCtx.stroke();
-			starCtx.closePath();
-		}
+          function updateStars() {
+            stars.forEach((star) => {
+              star.y -= star.speed; // Semua bintang bergerak ke atas
+              star.opacity = star.baseOpacity + Math.sin(Date.now() * 0.001 * star.speed) * 0.3;
+              // Reset posisi bintang jika sudah keluar layar
+              if (star.y < 0) {
+                star.y = starCanvas.height;
+                star.x = Math.random() * starCanvas.width;
+              }
+            });
+          }
 
-		function animateStars() {
-			updateStars();
-			updateShootingStar();
-			drawStars();
-			drawShootingStar();
-			requestAnimationFrame(animateStars);
-		}
-		createStars();
-		setTimeout(createShootingStar, Math.random() * 20000 + 20000);
-		animateStars();
-	</script>
+          function drawStars() {
+            starCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
+            // Gambar bintang-bintang
+            stars.forEach((star) => {
+              starCtx.fillStyle = `rgba(255, 255, 255, ${ star.opacity })`;
+              starCtx.fillRect(star.x, star.y, star.size, star.size);
+            });
+          }
 
-	<script>
-		document.addEventListener("DOMContentLoaded", function () {
-			var typed = new Typed("#kt_typedjs_example_1", {
-				strings: [
-					"Transformasi Digital Bisnis Anda",
-					"Solusi IT Terbaik untuk Masa Depan",
-					"<span style='background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'><span id='kt_landing_hero_text'>Must Dhiya' Technology</span></span>, Partner Teknologi Anda"
-				],
-				typeSpeed: 50,
-				backSpeed: 25,
-				loop: true,
-				showCursor: false
-			});
-		});
-	</script>
-	<script src="assets/plugins/global/plugins.bundle.js"></script>
-	<script src="assets/js/scripts.bundle.js"></script>
-	<!--end::Global Javascript Bundle-->
-	<!--begin::Vendors Javascript(used for this page only)-->
-	<script src="assets/plugins/custom/fslightbox/fslightbox.bundle.js"></script>
-	<script src="assets/plugins/custom/typedjs/typedjs.bundle.js"></script>
-	<!--begin::Vendors Javascript(used for this page only)-->
-	<script src="assets/plugins/custom/leaflet/leaflet.bundle.js"></script>
-	<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
-	<!--end::Vendors Javascript-->
-	<!--begin::Custom Javascript(used for this page only)-->
-	<script src="assets/js/custom/landing.js"></script>
-	<script src="assets/js/custom/pages/pricing/general.js"></script>
-	<script src="assets/js/custom/pages/general/contact.js"></script>
-	<script src="assets/js/widgets.bundle.js"></script>
-	<script src="assets/js/custom/widgets.js"></script>
-	<script src="assets/js/custom/apps/chat/chat.js"></script>
-	<script src="assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-	<script src="assets/js/custom/utilities/modals/create-campaign.js"></script>
-	<script src="assets/js/custom/utilities/modals/create-app.js"></script>
-	<script src="assets/js/custom/utilities/modals/users-search.js"></script>
-	<!--end::Custom Javascript-->
-	<!--end::Javascript-->
-</body>
-<!--end::Body-->
+          function createShootingStar() {
+            const startX = Math.random() * starCanvas.width;
+            const startY = Math.random() * starCanvas.height;
+            const angle = Math.random() * Math.PI * 2; // Arah acak
+            const length = Math.random() * 300 + 100; // Panjang trail acak
+            const speed = Math.random() * 4 + 2;
+            shootingStar = {
+              x: startX,
+              y: startY,
+              length: length,
+              speed: speed,
+              opacity: 1,
+              dx: Math.cos(angle) * speed,
+              dy: Math.sin(angle) * speed,
+            };
+            // Jadwalkan kemunculan shooting star berikutnya (20–40 detik)
+            const nextAppearance = Math.random() * 20000 + 20000;
+            setTimeout(createShootingStar, nextAppearance);
+          }
+
+          function updateShootingStar() {
+            if (!shootingStar) return;
+            shootingStar.x += shootingStar.dx;
+            shootingStar.y += shootingStar.dy;
+            shootingStar.opacity -= 0.01;
+            if (
+              shootingStar.opacity <= 0 ||
+              shootingStar.x < 0 ||
+              shootingStar.x > starCanvas.width ||
+              shootingStar.y < 0 ||
+              shootingStar.y > starCanvas.height
+            ) {
+              shootingStar = null;
+            }
+          }
+
+          function drawShootingStar() {
+            if (!shootingStar) return;
+            const gradient = starCtx.createLinearGradient(
+              shootingStar.x,
+              shootingStar.y,
+              shootingStar.x - shootingStar.dx * shootingStar.length,
+              shootingStar.y - shootingStar.dy * shootingStar.length
+            );
+            gradient.addColorStop(0, `rgba(255, 255, 255, ${ shootingStar.opacity })`);
+            gradient.addColorStop(1, `rgba(255, 255, 255, 0)`);
+            starCtx.beginPath();
+            starCtx.strokeStyle = gradient;
+            starCtx.lineWidth = 2;
+            starCtx.moveTo(shootingStar.x, shootingStar.y);
+            starCtx.lineTo(
+              shootingStar.x - shootingStar.dx * shootingStar.length,
+              shootingStar.y - shootingStar.dy * shootingStar.length
+            );
+            starCtx.stroke();
+            starCtx.closePath();
+          }
+
+          function animateStars() {
+            updateStars();
+            updateShootingStar();
+            drawStars();
+            drawShootingStar();
+            requestAnimationFrame(animateStars);
+          }
+
+          createStars();
+          setTimeout(createShootingStar, Math.random() * 20000 + 20000);
+          animateStars();
+        </script>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            var typed = new Typed("#kt_typedjs_example_1", {
+              strings: [
+                "Transformasi Digital Bisnis Anda",
+                "Solusi IT Terbaik untuk Masa Depan",
+                "<span style='background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'><span id='kt_landing_hero_text'>Must Dhiya' Technology</span></span>, Partner Teknologi Anda"
+              ],
+              typeSpeed: 50,
+              backSpeed: 25,
+              loop: true,
+              showCursor: false
+            });
+          });
+        </script>
+        <script src="assets/plugins/global/plugins.bundle.js"></script>
+        <script src="assets/js/scripts.bundle.js"></script>
+        <!--end::Global Javascript Bundle-->
+        <!--begin::Vendors Javascript(used for this page only)-->
+        <script src="assets/plugins/custom/fslightbox/fslightbox.bundle.js"></script>
+        <script src="assets/plugins/custom/typedjs/typedjs.bundle.js"></script>
+        <!--begin::Vendors Javascript(used for this page only)-->
+        <script src="assets/plugins/custom/leaflet/leaflet.bundle.js"></script>
+        <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+        <!--end::Vendors Javascript-->
+        <!--begin::Custom Javascript(used for this page only)-->
+        <script src="assets/js/custom/landing.js"></script>
+        <script src="assets/js/custom/pages/pricing/general.js"></script>
+        <script src="assets/js/custom/pages/general/contact.js"></script>
+        <script src="assets/js/widgets.bundle.js"></script>
+        <script src="assets/js/custom/widgets.js"></script>
+        <script src="assets/js/custom/apps/chat/chat.js"></script>
+        <script src="assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+        <script src="assets/js/custom/utilities/modals/create-campaign.js"></script>
+        <script src="assets/js/custom/utilities/modals/create-app.js"></script>
+        <script src="assets/js/custom/utilities/modals/users-search.js"></script>
+        <!--end::Custom Javascript-->
+        <!--end::Javascript-->
+    </body>
+    <!--end::Body-->
 
 </html>
