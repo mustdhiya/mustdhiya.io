@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ modul.judul }}{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold">{{ modul.judul }}</h1>
+<p class="text-gray-700">{{ modul.deskripsi }}</p>
+
+<h2 class="text-xl font-semibold mt-6">Daftar Halaman</h2>
+<ul class="mt-4">
+  {% for page in pages %}
+  <li class="border-b p-2">
+    <a href="{% url 'detail_page' page.id %}" class="text-blue-600">
+      {{ page.judul }}
+    </a>
+  </li>
+  {% empty %}
+  <p class="text-gray-500">Belum ada halaman dalam modul ini.</p>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'detail_kursus' modul.kursus.id %}" class="text-blue-600 mt-4 inline-block">
+  Kembali ke Kursus
+</a>
+{% endblock %}

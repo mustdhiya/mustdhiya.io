@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block title %}Hapus Kursus{% endblock %} {% block content %}
+<div class="max-w-xl mx-auto mt-10 text-center">
+  <h1 class="text-2xl font-bold">Konfirmasi Hapus</h1>
+  <p>
+    Apakah Anda yakin ingin menghapus kursus
+    <strong>{{ kursus.judul }}</strong>?
+  </p>
+
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="bg-red-500 text-white px-6 py-2 rounded mt-4">
+      Hapus
+    </button>
+  </form>
+</div>
+{% endblock %}

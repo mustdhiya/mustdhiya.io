@@ -1,0 +1,8 @@
+{% extends "lms/base.html" %}
+
+{% block content %}
+<div class="p-6 bg-white shadow rounded-lg">
+    <h1 class="text-2xl font-bold">Dashboard Admin</h1>
+    <p>Halo, {{ request.user.username }}! Anda adalah Admin.</p>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "lms/base.html" %}
+
+{% block content %}
+<h1 class="text-2xl font-bold">Sertifikat Saya</h1>
+
+<ul class="mt-4">
+    {% for certificate in certificates %}
+    <li class="bg-gray-100 p-4 rounded shadow mb-2">
+        <p><strong>Kursus:</strong> {{ certificate.course.title }}</p>
+        <p><strong>ID Sertifikat:</strong> {{ certificate.certificate_id }}</p>
+        <p><strong>Diterbitkan:</strong> {{ certificate.issued_date }}</p>
+    </li>
+    {% empty %}
+    <p>Belum ada sertifikat.</p>
+    {% endfor %}
+</ul>
+{% endblock %}

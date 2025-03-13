@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% block title %}Home - Mustdhiya Bimbel{% endblock %}
+{% block content %}
+<div class="text-center mt-10">
+  <h1 class="text-4xl font-bold text-blue-700">
+    Selamat Datang di Mustdhiya Bimbel
+  </h1>
+  <p class="text-lg text-gray-700 mt-2">
+    Platform E-Learning untuk Pembelajaran Berkualitas
+  </p>
+
+  <div class="mt-6">
+    <a
+      href="{% url 'kursus_list' %}"
+      class="bg-blue-500 text-white px-6 py-2 rounded-md text-lg hover:bg-blue-600"
+    >
+      Lihat Kursus
+    </a>
+  </div>
+
+  {% if user.is_authenticated %}
+  <div class="mt-4">
+    {% if user.is_staff %}
+    <a
+      href="{% url 'admin_dashboard' %}"
+      class="text-green-600 text-lg font-bold"
+      >Masuk ke Dashboard Admin</a
+    >
+    {% elif user.is_instruktur %}
+    <a
+      href="{% url 'instruktur_dashboard' %}"
+      class="text-green-600 text-lg font-bold"
+      >Masuk ke Dashboard Instruktur</a
+    >
+    {% else %}
+    <a
+      href="{% url 'siswa_dashboard' %}"
+      class="text-green-600 text-lg font-bold"
+      >Masuk ke Dashboard Siswa</a
+    >
+    {% endif %}
+  </div>
+  {% else %}
+  <div class="mt-4">
+    <a href="{% url 'login' %}" class="text-blue-600 text-lg font-bold"
+      >Login</a
+    >
+    |
+    <a href="{% url 'register' %}" class="text-yellow-600 text-lg font-bold"
+      >Register</a
+    >
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

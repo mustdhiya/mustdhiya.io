@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}{{ kursus.judul }}{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<nav class="text-gray-500 mb-4">
+  <a href="{% url 'home' %}" class="text-blue-600">Home</a> /
+  <a href="{% url 'kursus_list' %}" class="text-blue-600">Katalog Kursus</a> /
+  <span class="font-semibold">{{ kursus.judul }}</span>
+</nav>
+
+<!-- Detail Kursus -->
+<div class="bg-white p-6 rounded shadow-md">
+  {% if kursus.thumbnail %}
+    <img src="{{ kursus.thumbnail.url }}" alt="{{ kursus.judul }}" class="w-full max-h-60 object-cover rounded mb-4">
+  {% endif %}
+  
+  <h1 class="text-2xl font-bold mb-2">{{ kursus.judul }}</h1>
+  <p class="text-gray-700">{{ kursus.deskripsi }}</p>
+  <p><strong>Instruktur:</strong> {{ kursus.instruktur.username }}</p>
+  <p><strong>Harga:</strong> Rp {{ kursus.harga }}</p>
+  <p><strong>Status:</strong> {{ kursus.get_status_display }}</p>
+
+  {% if request.user == kursus.instruktur or request.user.role == "admin" %}
+  <div class="mt-4">
+    <a href="{% url 'edit_kursus' kursus.id %}" class="text-blue-600 mr-2">Edit Kursus</a>
+    <a href="{% url 'hapus_kursus' kursus.id %}" class="text-red-600">Hapus Kursus</a>
+  </div>
+  {% endif %}
+</div>
+
+<!-- Modul Kursus -->
+<h2 class="text-xl font-semibold mt-6">Modul Kursus</h2>
+
+{% if request.user == kursus.instruktur or request.user.role == "admin" %}
+<a href="{% url 'tambah_modul' kursus.id %}" class="bg-blue-500 text-white px-4 py-2 rounded mt-2 inline-block">
+  + Tambah Modul
+</a>
+{% endif %}
+
+<ul class="mt-4">
+  {% for modul in kursus.moduls.all %}
+  <li class="border p-4 rounded mt-2 bg-gray-50">
+    <h3 class="font-semibold text-lg">
+      <a href="{% url 'detail_modul' modul.id %}" class="text-blue-600">
+        {{ modul.judul }}
+      </a>
+    </h3>
+    <p class="text-gray-700">{{ modul.deskripsi }}</p>
+    <p><strong>Jumlah Halaman:</strong> {{ modul.pages.count }}</p>
+
+    {% if request.user == kursus.instruktur or request.user.role == "admin" %}
+    <div class="mt-2">
+      <a href="{% url 'edit_modul' modul.id %}" class="text-blue-600 mr-2">Edit Modul</a>
+      <a href="{% url 'hapus_modul' modul.id %}" class="text-red-600">Hapus Modul</a>
+    </div>
+    {% endif %}
+
+    <!-- Tambah Page dalam Modul -->
+    {% if request.user == kursus.instruktur or request.user.role == "admin" %}
+    <a href="{% url 'tambah_page' modul.id %}" class="text-green-600 block mt-2">
+      + Tambah Halaman
+    </a>
+    {% endif %}
+
+    <!-- Daftar Page dalam Modul -->
+    <ul class="ml-6 mt-2">
+      {% for page in modul.pages.all %}
+      <li class="border-l pl-4">
+        <a href="{% url 'detail_page' page.id %}" class="text-blue-600">
+          {{ page.judul }}
+        </a>
+        {% if request.user == kursus.instruktur or request.user.role == "admin" %}
+        <span class="ml-2">
+          <a href="{% url 'edit_page' page.id %}" class="text-yellow-600">Edit</a> |
+          <a href="{% url 'hapus_page' page.id %}" class="text-red-600">Hapus</a>
+        </span>
+        {% endif %}
+      </li>
+      {% empty %}
+      <li class="text-gray-500">Belum ada halaman dalam modul ini.</li>
+      {% endfor %}
+    </ul>
+
+  </li>
+  {% empty %}
+  <p class="text-gray-500 mt-2">Belum ada modul dalam kursus ini.</p>
+  {% endfor %}
+</ul>
+
+{% endblock %}

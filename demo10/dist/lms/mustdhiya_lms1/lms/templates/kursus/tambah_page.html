@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Tambah Halaman{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+    <h1 class="text-2xl font-bold mb-4">Tambah Halaman Baru</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Input Judul -->
+        <label class="block mb-2 font-semibold">Judul:</label>
+        <input type="text" name="judul" class="w-full border p-2 rounded mb-4" required>
+
+        <!-- Input Konten (CKEditor) -->
+        <label class="block mb-2 font-semibold">Konten:</label>
+        <textarea name="konten" class="w-full border p-2 rounded mb-4"></textarea>
+
+        <!-- Input File -->
+        <label class="block mb-2 font-semibold">File (opsional):</label>
+        <input type="file" name="file" class="w-full border p-2 rounded mb-4">
+
+        <!-- Tombol Simpan -->
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
+            Simpan
+        </button>
+    </form>
+
+    <!-- Tombol Kembali -->
+    <a href="{% url 'detail_modul' modul.id %}" class="text-blue-500 mt-4 inline-block">
+        Kembali ke Modul
+    </a>
+</div>
+{% endblock %}

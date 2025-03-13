@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LMS Mustdhiya Bimbel{% endblock %}</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CKEditor (Digunakan Jika Perlu) -->
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between">
+            <a href="{% url 'home' %}" class="text-lg font-bold">Mustdhiya Bimbel</a>
+            <div>
+                <a href="{% url 'kursus_list' %}" class="mr-4">Katalog Kursus</a>
+
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <a href="{% url 'admin_dashboard' %}" class="mr-4">Dashboard Admin</a>
+                    {% elif user.groups.all.0.name == 'Instruktur' %}
+                        <a href="{% url 'instruktur_dashboard' %}" class="mr-4">Dashboard Instruktur</a>
+                    {% else %}
+                        <a href="{% url 'siswa_dashboard' %}" class="mr-4">Dashboard Siswa</a>
+                    {% endif %}
+
+                    <a href="{% url 'logout' %}" class="text-red-300">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="mr-4">Login</a>
+                    <a href="{% url 'register' %}" class="text-yellow-300">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto p-6">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- CKEditor Initialization -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (document.querySelector("textarea")) {
+                CKEDITOR.replace("konten");
+            }
+        });
+    </script>
+    
+</body>
+</html>

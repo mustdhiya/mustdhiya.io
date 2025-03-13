@@ -1,0 +1,22 @@
+{% extends "lms/base.html" %}
+
+{% block content %}
+<h1 class="text-2xl font-bold">Sesi Kelas untuk {{ course.title }}</h1>
+
+{% if request.user.role == 'instructor' %}
+<a href="{% url 'add_class' course.id %}" class="bg-blue-500 text-white px-4 py-2 rounded">Tambah Kelas</a>
+{% endif %}
+
+<ul class="mt-4">
+    {% for session in sessions %}
+    <li class="bg-gray-100 p-4 rounded shadow mb-2">
+        <h2 class="text-xl font-semibold">{{ session.title }}</h2>
+        <p>{{ session.description }}</p>
+        <p><strong>Tanggal:</strong> {{ session.date }}</p>
+        <a href="{% url 'discussion' session.id %}" class="text-blue-500">Forum Diskusi</a>
+    </li>
+    {% empty %}
+    <p>Belum ada sesi kelas.</p>
+    {% endfor %}
+</ul>
+{% endblock %}

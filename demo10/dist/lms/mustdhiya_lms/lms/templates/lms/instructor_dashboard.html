@@ -1,0 +1,17 @@
+{% extends "lms/base.html" %}
+
+{% block content %}
+<div class="p-6 bg-white shadow rounded-lg">
+    <h1 class="text-2xl font-bold">Dashboard Instruktur</h1>
+    <p>Halo, {{ request.user.username }}! Anda adalah Instruktur.</p>
+    
+    <h2 class="mt-4 text-xl font-semibold">Kursus Anda</h2>
+    <ul>
+        {% for course in courses %}
+        <li class="bg-gray-100 p-2 mt-2 rounded">{{ course.title }}</li>
+        {% empty %}
+        <p>Belum ada kursus.</p>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

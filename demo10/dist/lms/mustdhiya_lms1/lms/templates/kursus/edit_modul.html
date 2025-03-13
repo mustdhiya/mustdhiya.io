@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <title>Edit Modul</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="p-10">
+    <h1 class="text-2xl font-bold mb-4">Edit Modul: {{ modul.judul }}</h1>
+
+    <form method="POST" class="space-y-4">
+      {% csrf_token %}
+
+      <div>
+        <label class="block font-semibold">Judul Modul:</label>
+        <input
+          type="text"
+          name="judul"
+          value="{{ modul.judul }}"
+          class="w-full p-2 border rounded"
+          required
+        />
+      </div>
+
+      <div>
+        <label class="block font-semibold">Deskripsi:</label>
+        <textarea name="deskripsi" class="w-full p-2 border rounded">
+{{ modul.deskripsi }}</textarea
+        >
+      </div>
+
+      <button type="submit" class="bg-blue-500 text-white p-2 rounded">
+        Simpan Perubahan
+      </button>
+      <a
+        href="{% url 'detail_kursus' modul.kursus.id %}"
+        class="text-red-500 p-2"
+        >Batal</a
+      >
+    </form>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit User - {{ user.username }}{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto mt-10">
+    <h1 class="text-2xl font-bold mb-4">Edit User: {{ user.username }}</h1>
+
+    <!-- ✅ Tampilkan Pesan Sukses -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="p-3 mb-4 text-white bg-green-500 rounded">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="bg-white p-6 border rounded shadow">
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Username -->
+            <label class="block font-semibold mb-1">Username:</label>
+            <input type="text" name="username" value="{{ user.username }}" class="w-full border p-2 rounded mb-3" required>
+
+            <!-- Email -->
+            <label class="block font-semibold mb-1">Email:</label>
+            <input type="email" name="email" value="{{ user.email }}" class="w-full border p-2 rounded mb-3" required>
+
+            <!-- Role -->
+            <label class="block font-semibold mb-1">Role:</label>
+            <select name="role" class="w-full border p-2 rounded mb-3">
+                <option value="admin" {% if user.role == "admin" %}selected{% endif %}>Admin</option>
+                <option value="instruktur" {% if user.role == "instruktur" %}selected{% endif %}>Instruktur</option>
+                <option value="siswa" {% if user.role == "siswa" %}selected{% endif %}>Siswa</option>
+            </select>
+
+            <!-- Password (Opsional) -->
+            <label class="block font-semibold mb-1">Password Baru (Opsional):</label>
+            <input type="password" name="password" class="w-full border p-2 rounded mb-3" placeholder="Kosongkan jika tidak ingin mengubah password">
+
+            <!-- Tombol Submit -->
+            <div class="flex items-center gap-4 mt-4">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Simpan</button>
+                <a href="{% url 'user_list' %}" class="text-gray-600">Batal</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

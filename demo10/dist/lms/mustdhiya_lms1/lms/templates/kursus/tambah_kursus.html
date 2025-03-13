@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block title %}Tambah Kursus{% endblock %} {% block content %}
+<div class="max-w-3xl mx-auto mt-10">
+  <h1 class="text-2xl font-bold mb-6">Tambah Kursus Baru</h1>
+
+  <form method="POST" enctype="multipart/form-data" class="space-y-4">
+    {% csrf_token %}
+    <input
+      type="text"
+      name="judul"
+      placeholder="Judul Kursus"
+      required
+      class="border p-2 w-full"
+    />
+    <textarea
+      name="deskripsi"
+      placeholder="Deskripsi Kursus"
+      required
+      class="border p-2 w-full"
+    ></textarea>
+    <input
+      type="number"
+      name="harga"
+      placeholder="Harga (0 untuk Gratis)"
+      required
+      class="border p-2 w-full"
+    />
+
+    <select name="status" required class="border p-2 w-full">
+      <option value="dibuka">Pendaftaran Dibuka</option>
+      <option value="berjalan">Sedang Berlangsung</option>
+      <option value="ditutup">Ditutup</option>
+    </select>
+
+    <input type="file" name="thumbnail" class="border p-2 w-full" />
+
+    <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded">
+      Tambah Kursus
+    </button>
+  </form>
+</div>
+{% endblock %}

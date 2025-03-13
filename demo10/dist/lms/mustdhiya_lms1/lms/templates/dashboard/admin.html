@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard Admin{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto mt-10">
+    <h1 class="text-2xl font-bold">Dashboard Admin</h1>
+
+    <h2 class="text-xl font-semibold mt-6">Daftar User</h2>
+    <a href="{% url 'tambah_user' %}" class="bg-green-500 text-white px-4 py-2 rounded mt-4 inline-block">
+        Tambah User
+    </a>
+
+    <table class="w-full mt-4 border-collapse border border-gray-300">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="border px-4 py-2">Username</th>
+                <th class="border px-4 py-2">Email</th>
+                <th class="border px-4 py-2">Role</th>
+                <th class="border px-4 py-2">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr class="bg-white border">
+                <td class="border px-4 py-2">{{ user.username }}</td>
+                <td class="border px-4 py-2">{{ user.email }}</td>
+                <td class="border px-4 py-2">{{ user.role }}</td>
+                <td class="border px-4 py-2">
+                    <a href="{% url 'edit_user' user.id %}" class="text-blue-600">Edit</a> |
+                    <form method="POST" action="{% url 'hapus_user' user.id %}" class="inline">
+                        {% csrf_token %}
+                        <button type="submit" class="text-red-600">Hapus</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center p-4">Belum ada user.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
