@@ -711,10 +711,11 @@
 							<!--begin::Row-->
 							<div class="row g-10">
 								<!--begin::Col for REGULAR CLASS-->
-								<div class="col-xl-6">
+								<div class="col-xl-4">
 									<div class="d-flex h-100 align-items-center">
 										<!--begin::Option-->
-										<div class="w-100 d-flex flex-column flex-center rounded-3 bg-body py-15 px-10">
+										<div class="w-100 d-flex flex-column flex-center rounded-3 bg-body py-15 px-10"
+											style="box-shadow: -10px 10px rgba(255, 149, 0, 0.315);">
 											<!--begin::Heading-->
 											<div class="mb-7 text-center">
 												<h2 class="text-dark mb-2 fw-boldest">REGULAR CLASS</h2>
@@ -749,9 +750,7 @@
 												<p class="fw-semibold fs-6 text-gray-800 mb-2">✅ Akses belajar offline
 													(Kamis & Sabtu siang) atau online</p>
 												<p class="fw-semibold fs-6 text-gray-800 mb-2">✅ Bimbingan langsung dari
-													mentor berpengalaman</p>
-												<p class="fw-semibold fs-6 text-gray-800 mb-2">✅ Kesempatan ikut Meet &
-													Greet di cafe bersama komunitas coder Samarinda</p>
+													mentor berpengalaman selama 5 Tahun++</p>
 												<p class="fw-semibold fs-6 text-gray-800 mb-2">✅ Materi lengkap &
 													latihan praktik langsung</p>
 											</div>
@@ -777,9 +776,70 @@
 									</div>
 								</div>
 								<!--end::Col-->
+								<!--begin::Col for TUGAS CLASS -->
+								<div class="col-xl-4">
+									<div class="d-flex h-100 align-items-center">
+										<div class="w-100 d-flex flex-column flex-center rounded-3 py-15 px-10"
+											style="background-color: #ffc107; box-shadow: 10px -10px rgba(255, 193, 7, 0.3);">
+											<!--begin::Heading-->
+											<div class="mb-7 text-center">
+												<h2 class="text-dark mb-2 fw-boldest">TUGAS CLASS</h2>
+												<p class="fs-6 text-dark mb-4">
+													<strong>Promo Spesial!</strong>
+													<span style="text-decoration: line-through;">IDR 20</span>
+													<span class="text-danger">IDR 15</span>
+												</p>
+												<div class="text-center">
+													<span class="mb-2 text-dark">IDR.</span>
+													<span class="fs-3x fw-bold text-dark" data-kt-plan-price-month="15"
+														data-kt-plan-price-annual="90">
+														15
+													</span>
+													<span class="fs-7 fw-semibold opacity-50 text-dark"
+														data-kt-plan-price-month="/ Tugas"
+														data-kt-plan-price-annual="/ 6 Tugas">
+														/ Tugas
+													</span>
+												</div>
+											</div>
+											<!--end::Heading-->
+
+											<!--begin::Features-->
+											<div class="w-100 mb-10 text-start">
+												<p class="fw-semibold fs-6 text-dark mb-2">🎯 Bimbingan khusus per tugas
+													matkul</p>
+												<p class="fw-semibold fs-6 text-dark mb-2">⏱️ Deadline-oriented support
+												</p>
+												<p class="fw-semibold fs-6 text-dark mb-2">📝 Review code & debugging
+												</p>
+												<p class="fw-semibold fs-6 text-dark mb-2">💬 Konsultasi 1-on-class Via
+													Meet Up Offline</p>
+												<p class="fw-semibold fs-6 text-dark mb-2">📦 Contoh solusi &
+													dokumentasi</p>
+											</div>
+											<!--end::Features-->
+
+											<!--begin::Actions-->
+											<div class="d-flex justify-content-center gap-2">
+												<a href="#" class="btn btn-dark" data-bs-toggle="modal"
+													data-bs-target="#kt_modal_tanya" onclick="setPaket('TUGAS CLASS')">
+													Tanya
+												</a>
+												<a href="#" class="btn btn-danger" data-bs-toggle="modal"
+													data-bs-target="#kt_modal_register"
+													onclick="setPaketRegister('TUGAS CLASS')">
+													Daftar (Tugas)
+												</a>
+											</div>
+											<!--end::Actions-->
+										</div>
+									</div>
+								</div>
+								<!--end::Col-->
+
 
 								<!--begin::Col for PRIVATE CLASS-->
-								<div class="col-xl-6">
+								<div class="col-xl-4">
 									<div class="d-flex h-100 align-items-center">
 										<!--begin::Option-->
 										<div class="w-100 d-flex flex-column flex-center rounded-3 bg-primary py-20 px-10"
@@ -1090,11 +1150,57 @@
 								<input type="text" class="form-control form-control-solid"
 									placeholder="Masukkan angkatan anda" id="angkatan_reg" required>
 							</div>
+							<!-- Di dalam form, sesaat sebelum field Komitmen -->
 							<div class="d-flex flex-column mb-8 fv-row">
-								<label class="fs-6 fw-semibold mb-2">Komitmen <span class="required">*</span></label>
-								<textarea class="form-control form-control-solid" placeholder="Jelaskan komitmen anda"
-									rows="3" id="komitmen_reg" required></textarea>
+								<label class="fs-6 fw-semibold mb-2">
+									Komitmen & Modul Tugas
+									<span class="required">*</span>
+									<small class="text-muted d-block mt-1">
+										Jelaskan komitmen dan lampirkan link Google Drive berisi <b>Modul Tugaas</b>
+									</small>
+									<small class="text-muted d-block mt-1">
+										<b style="color: rgb(193, 10, 0);">Note:</b>Pastikan sudah Public
+									</small>
+								</label>
+
+								<!-- Textarea Komitmen -->
+								<textarea class="form-control form-control-solid mb-3" placeholder="Contoh: 
+        - Saya berkomitmen menyelesaikan 3 tugas dalam 2 minggu
+        - Link Drive modul: [tempel link di bawah]" rows="3" id="komitmen_reg" required></textarea>
+
+								<!-- Input Link Drive -->
+								<div id="tugas_link_drive" class="d-none">
+									<input type="text" class="form-control form-control-solid"
+										placeholder="📎 Paste link Google Drive modul tugas Anda disini"
+										id="drive_link_reg" required>
+									<div class="text-muted fs-8 mt-1">
+										Pastikan link drive dalam mode 'Anyone with the link can view'
+									</div>
+								</div>
+
+								<!-- Info Pembayaran -->
+								<div id="tugas_payment_info" class="mt-3 p-3 bg-light-warning rounded d-none">
+									<div class="alert alert-warning d-flex align-items-center p-2 mb-0">
+										<span class="svg-icon svg-icon-warning svg-icon-2hx me-3">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+												viewBox="0 0 24 24" fill="none">
+												<path opacity="0.3"
+													d="M2 4V16C2 16.6 2.4 17 3 17H13L16.6 20.6C17.1 21.1 18 20.8 18 20V17H21C21.6 17 22 16.6 22 16V4C22 3.4 21.6 3 21 3H3C2.4 3 2 3.4 2 4Z"
+													fill="currentColor" />
+												<path
+													d="M18 9H6C5.4 9 5 8.6 5 8C5 7.4 5.4 7 6 7H18C18.6 7 19 7.4 19 8C19 8.6 18.6 9 18 9ZM16 12C16 11.4 15.6 11 15 11H7C6.4 11 6 11.4 6 12C6 12.6 6.4 13 7 13H15C15.6 13 16 12.6 16 12Z"
+													fill="currentColor" />
+											</svg>
+										</span>
+										<div class="d-flex flex-column">
+											<span class="fw-bold" id="harga_tugas">IDR 15.000/tugas</span>
+											<span class="text-muted fs-7">Pembayaran setelah tugas diverifikasi
+												mentor</span>
+										</div>
+									</div>
+								</div>
 							</div>
+
 							<div class="d-flex flex-column mb-8 fv-row">
 								<label class="fs-6 fw-semibold mb-2">Nomor WA <span class="required">*</span></label>
 								<input type="text" class="form-control form-control-solid"
@@ -1174,16 +1280,42 @@
 			});
 
 			// Fungsi: isi input 'paket_bimbel_reg' ketika user klik "Daftar" di Regular / Private
-			function setPaketRegister(basePackage) {
-				// Cek plan yang sedang aktif
-				let plan = window.selectedPlan || "month"; // default jika belum di-set
-				let planLabel = (plan === "month") ? "MONTHLY" : "SEMESTER"; // Teks apa yang ingin ditampilkan
+			function updateTugasPrice() {
+				const isMonthly = document.querySelector('[data-kt-plan="month"]').classList.contains('active');
+				const hargaElement = document.getElementById('harga_tugas');
 
-				// Gabungkan basePackage + planLabel
-				let finalPackage = basePackage + " | " + planLabel;
+				if (isMonthly) {
+					hargaElement.textContent = 'IDR 15.000/tugas';
+				} else {
+					hargaElement.textContent = 'IDR 90.000/6 tugas (hemat 15%)';
+				}
+			}
 
-				// Tulis ke input #paket_bimbel_reg
-				document.getElementById("paket_bimbel_reg").value = finalPackage;
+			// Event listener untuk toggle monthly/semester
+			document.querySelectorAll('[data-kt-plan]').forEach(btn => {
+				btn.addEventListener('click', () => {
+					const currentPaket = document.getElementById('paket_bimbel_reg').value;
+					if (currentPaket.includes('TUGAS CLASS')) {
+						const basePaket = currentPaket.split('|')[0].trim();
+						setPaketRegister(basePaket);
+					}
+				});
+			});
+
+			// Modifikasi fungsi setPaketRegister
+			function setPaketRegister(paket) {
+				const tugasInfo = document.getElementById('tugas_class_info');
+				const planType = window.selectedPlan === 'month' ? 'MONTHLY' : 'SEMESTER';
+
+				// Format nilai paket
+				document.getElementById('paket_bimbel_reg').value = `${paket} | ${planType}`;
+
+				if (paket.includes('TUGAS CLASS')) {
+					tugasInfo.classList.remove('d-none');
+					updateTugasPrice();
+				} else {
+					tugasInfo.classList.add('d-none');
+				}
 			}
 
 			// ==========================
