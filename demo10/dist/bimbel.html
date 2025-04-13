@@ -777,119 +777,64 @@
 								</div>
 								<!--end::Col-->
 								<!--begin::Col for TUGAS CLASS -->
-								<style>
-									@property --rotate {
-										syntax: "<angle>";
-										initial-value: 132deg;
-										inherits: false;
-										border-radius: 26px;
-									}
-
-									.col-xl-4[data-neon] {
-										padding: 10px;
-										background: #191c29;
-										padding: 3px;
-										position: relative;
-										color: rgba(255, 255, 255, 0.8);
-										transition: all 0.3s;
-										z-index: 1;
-									}
-
-									.col-xl-4[data-neon]::before {
-										content: '';
-										width: 104%;
-										height: 95%;
-										border-radius: 8px;
-										background-image: linear-gradient(var(--rotate),
-												#989e81, #e3dd3c 43%, #c28b00);
-										position: absolute;
-										z-index: -1;
-										top: -1%;
-										left: -2%;
-										animation: spin 2.5s linear infinite;
-									}
-
-									.col-xl-4[data-neon]::after {
-										content: '';
-										position: absolute;
-										z-index: -1;
-										top: 5%;
-										right: 0;
-										left: 0;
-										height: 100%;
-										width: 100%;
-										margin: 0 auto;
-										transform: scale(0.8);
-										filter: blur(20px);
-										background-image: linear-gradient(var(--rotate),
-												#7b8261, #e3dd3c 43%, #c28b00);
-										opacity: 1;
-										animation: spin 2.5s linear infinite;
-									}
-
-									@keyframes spin {
-										0% {
-											--rotate: 0deg;
-										}
-
-										100% {
-											--rotate: 360deg;
-										}
-									}
-								</style>
-
-								<div class="col-xl-4" data-neon>
+								<div class="col-xl-4">
 									<div class="d-flex h-100 align-items-center">
-										<div class="w-100 d-flex flex-column flex-center py-15 px-10">
-											<!-- Konten card tetap sama -->
-											<h2 class="text-white mb-2 fw-boldest">TUGAS CLASS</h2>
-											<p class="fs-6 text-white-75 mb-4">
-												<strong>Promo Spesial!</strong>
-												<span style="text-decoration: line-through;">IDR 20</span>
-												<span class="text-warning">IDR 15</span>
-											</p>
-											<div class="text-center">
-												<span class="mb-2 text-white">IDR.</span>
-												<span class="fs-3x fw-bold text-white" data-kt-plan-price-month="15"
-													data-kt-plan-price-annual="90">
-													15
-												</span>
-												<span class="fs-7 fw-semibold opacity-50 text-white"
-													data-kt-plan-price-month="/ Tugas"
-													data-kt-plan-price-annual="/ 6 Tugas">
-													/ Tugas
-												</span>
+										<div class="w-100 d-flex flex-column flex-center rounded-3 py-15 px-10"
+											style="background-color: #ffc107; box-shadow: 10px -10px rgba(255, 193, 7, 0.3);">
+											<!--begin::Heading-->
+											<div class="mb-7 text-center">
+												<h2 class="text-dark mb-2 fw-boldest">TUGAS CLASS</h2>
+												<p class="fs-6 text-dark mb-4">
+													<strong>Promo Spesial!</strong>
+													<span style="text-decoration: line-through;">IDR 20</span>
+													<span class="text-danger">IDR 15</span>
+												</p>
+												<div class="text-center">
+													<span class="mb-2 text-dark">IDR.</span>
+													<span class="fs-3x fw-bold text-dark" data-kt-plan-price-month="15"
+														data-kt-plan-price-annual="90">
+														15
+													</span>
+													<span class="fs-7 fw-semibold opacity-50 text-dark"
+														data-kt-plan-price-month="/ Tugas"
+														data-kt-plan-price-annual="/ 6 Tugas">
+														/ Tugas
+													</span>
+												</div>
 											</div>
+											<!--end::Heading-->
 
-											<!-- Fitur dan tombol tetap sama -->
+											<!--begin::Features-->
 											<div class="w-100 mb-10 text-start">
-												<p class="fw-semibold fs-6 text-white mb-2">🎯 Bimbingan khusus per
-													tugas matkul</p>
-												<p class="fw-semibold fs-6 text-white mb-2">⏱️ Deadline-oriented support
+												<p class="fw-semibold fs-6 text-dark mb-2">🎯 Bimbingan khusus per tugas
+													matkul</p>
+												<p class="fw-semibold fs-6 text-dark mb-2">⏱️ Deadline-oriented support
 												</p>
-												<p class="fw-semibold fs-6 text-white mb-2">📝 Review code & debugging
+												<p class="fw-semibold fs-6 text-dark mb-2">📝 Review code & debugging
 												</p>
-												<p class="fw-semibold fs-6 text-white mb-2">💬 Konsultasi 1-on-class Via
+												<p class="fw-semibold fs-6 text-dark mb-2">💬 Konsultasi 1-on-class Via
 													Meet Up Offline</p>
-												<p class="fw-semibold fs-6 text-white mb-2">📦 Contoh solusi &
+												<p class="fw-semibold fs-6 text-dark mb-2">📦 Contoh solusi &
 													dokumentasi</p>
 											</div>
+											<!--end::Features-->
 
+											<!--begin::Actions-->
 											<div class="d-flex justify-content-center gap-2">
 												<a href="#" class="btn btn-dark" data-bs-toggle="modal"
 													data-bs-target="#kt_modal_tanya" onclick="setPaket('TUGAS CLASS')">
 													Tanya
 												</a>
-												<a href="#" class="btn btn-warning" data-bs-toggle="modal"
+												<a href="#" class="btn btn-danger" data-bs-toggle="modal"
 													data-bs-target="#kt_modal_register"
 													onclick="setPaketRegister('TUGAS CLASS')">
 													Daftar (Tugas)
 												</a>
 											</div>
+											<!--end::Actions-->
 										</div>
 									</div>
 								</div>
-
 								<!--end::Col-->
 
 
@@ -1350,10 +1295,10 @@
 			document.querySelectorAll('[data-kt-plan]').forEach(btn => {
 				btn.addEventListener('click', () => {
 					const currentPaket = document.getElementById('paket_bimbel_reg').value;
-					if (currentPaket.includes('TUGAS CLASS')) {
-						const basePaket = currentPaket.split('|')[0].trim();
-						setPaketRegister(basePaket);
-					}
+        if(currentPaket.includes('TUGAS CLASS')) {
+            const basePaket = currentPaket.split('|')[0].trim();
+            setPaketRegister(basePaket);
+        }
 				});
 			});
 
