@@ -777,10 +777,33 @@
 								</div>
 								<!--end::Col-->
 								<!--begin::Col for TUGAS CLASS -->
+								<style>
+									@keyframes float {
+										0% {
+											transform: translateY(0px) scale(1);
+										}
+
+										50% {
+											transform: translateY(-10px) scale(1.03);
+										}
+
+										100% {
+											transform: translateY(0px) scale(1);
+										}
+									}
+
+									/* Hover effect tambahan */
+									.py-15:hover {
+										transform: scale(1.05) translateY(-5px);
+										box-shadow: 15px -15px rgba(255, 193, 7, 0.4) !important;
+									}
+								</style>
 								<div class="col-xl-4">
 									<div class="d-flex h-100 align-items-center">
-										<div class="w-100 d-flex flex-column flex-center rounded-3 py-15 px-10"
-											style="background-color: #ffc107; box-shadow: 10px -10px rgba(255, 193, 7, 0.3);">
+										<div class="w-100 d-flex flex-column flex-center rounded-3 py-15 px-10" style="background-color: #ffc107; 
+                    box-shadow: 10px -10px rgba(255, 193, 7, 0.3);
+                    animation: float 2s ease-in-out infinite;
+                    transition: all 0.3s ease;">
 											<!--begin::Heading-->
 											<div class="mb-7 text-center">
 												<h2 class="text-dark mb-2 fw-boldest">TUGAS CLASS</h2>
@@ -1295,10 +1318,10 @@
 			document.querySelectorAll('[data-kt-plan]').forEach(btn => {
 				btn.addEventListener('click', () => {
 					const currentPaket = document.getElementById('paket_bimbel_reg').value;
-        if(currentPaket.includes('TUGAS CLASS')) {
-            const basePaket = currentPaket.split('|')[0].trim();
-            setPaketRegister(basePaket);
-        }
+					if (currentPaket.includes('TUGAS CLASS')) {
+						const basePaket = currentPaket.split('|')[0].trim();
+						setPaketRegister(basePaket);
+					}
 				});
 			});
 
