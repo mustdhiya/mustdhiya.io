@@ -116,6 +116,26 @@
 
 
 		}
+
+		@keyframes float {
+			0% {
+				transform: translateY(0px) scale(1);
+			}
+
+			50% {
+				transform: translateY(-10px) scale(1.03);
+			}
+
+			100% {
+				transform: translateY(0px) scale(1);
+			}
+		}
+
+		/* Hover effect tambahan */
+		.py-15:hover {
+			transform: scale(1.05) translateY(-5px);
+			box-shadow: 15px -15px rgba(255, 193, 7, 0.4) !important;
+		}
 	</style>
 	<script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
 </head>
@@ -777,27 +797,6 @@
 								</div>
 								<!--end::Col-->
 								<!--begin::Col for TUGAS CLASS -->
-								<style>
-									@keyframes float {
-										0% {
-											transform: translateY(0px) scale(1);
-										}
-
-										50% {
-											transform: translateY(-10px) scale(1.03);
-										}
-
-										100% {
-											transform: translateY(0px) scale(1);
-										}
-									}
-
-									/* Hover effect tambahan */
-									.py-15:hover {
-										transform: scale(1.05) translateY(-5px);
-										box-shadow: 15px -15px rgba(255, 193, 7, 0.4) !important;
-									}
-								</style>
 								<div class="col-xl-4">
 									<div class="d-flex h-100 align-items-center">
 										<div class="w-100 d-flex flex-column flex-center rounded-3 py-15 px-10" style="background-color: #ffc107; 
@@ -865,7 +864,7 @@
 								<div class="col-xl-4">
 									<div class="d-flex h-100 align-items-center">
 										<!--begin::Option-->
-										<div class="w-100 d-flex flex-column flex-center rounded-3 bg-primary py-20 px-10"
+										<div class="w-100 d-flex flex-column flex-center rounded-3 bg-primary py-15 px-10"
 											style="box-shadow: 10px -10px rgba(255, 149, 0, 0.315);">
 											<!--begin::Heading-->
 											<div class="mb-7 text-center">
