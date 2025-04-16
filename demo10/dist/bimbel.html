@@ -130,6 +130,7 @@
 		}
 
 		.slide .item:nth-child(3) {
+			height: 220px;
 			left: 50%;
 		}
 
@@ -279,21 +280,73 @@
 			}
 		}
 
-		@media (max-width: 700px) {
+		.item {
+			background-size: cover !important;
+			background-position: center center !important;
+			background-repeat: no-repeat !important;
+		}
+
+		@media screen and (max-width: 700px) {
 			.slider-container {
-				width: 98vw;
-				height: 350px;
+				width: 95vw;
+				height: 400px;
+			}
+
+			/* Pastikan background tetap terlihat baik */
+			.item {
+				background-size: cover !important;
 			}
 
 
-			.item .content {
-				left: 20px;
-				width: 90vw;
-			}
+		.slide .item:nth-child(3) {
+			left: 40%;
+			width: 150px;
+			height: 220px;
+		}
 
-			.promo-section {
-				padding: 16px 5vw;
-			}
+		.slide .item:nth-child(4) {
+			left: calc(40% + 160px);
+		}
+
+		.slide .item:nth-child(5) {
+			left: calc(40% + 320px);
+		}
+
+		.slide .item:nth-child(n + 6) {
+			left: calc(40% + 320px);
+		}
+
+		.item .content {
+			left: 30px;
+			width: 80%;
+		}
+
+		.content .name {
+			font-size: 24px;
+		}
+
+		.content .description {
+			font-size: 14px;
+		}
+
+		.content button {
+			padding: 8px 16px;
+		}
+
+		.button button {
+			width: 50px;
+			/* Tombol lebih besar */
+			height: 45px;
+		}
+
+		.item .content {
+			left: 20px;
+			width: 90vw;
+		}
+
+		.promo-section {
+			padding: 16px 5vw;
+		}
 		}
 
 		/* Container background dengan class landing-dark-bg */
