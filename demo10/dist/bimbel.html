@@ -1109,7 +1109,7 @@
 									</div>
 								</div>
 								<!--end::Col-->
-								<!--begin::Col for TUGAS CLASS -->
+								<!--begin::Col for FastTrack Assignment -->
 								<div class="col-xl-4">
 									<div class="d-flex h-100 align-items-center">
 										<div class="w-100 d-flex flex-column flex-center rounded-3 py-15 px-10" style="background-color: #ffc107; 
@@ -1118,7 +1118,7 @@
                     transition: all 0.3s ease;">
 											<!--begin::Heading-->
 											<div class="mb-7 text-center">
-												<h2 class="text-dark mb-2 fw-boldest">TUGAS CLASS</h2>
+												<h2 class="text-dark mb-2 fw-boldest">FastTrack Assignment</h2>
 												<p class="fs-6 text-dark mb-4">
 													<strong>Promo Spesial!</strong>
 													<span style="text-decoration: line-through;">IDR 20</span>
@@ -1157,12 +1157,12 @@
 											<!--begin::Actions-->
 											<div class="d-flex justify-content-center gap-2">
 												<a href="#" class="btn btn-dark" data-bs-toggle="modal"
-													data-bs-target="#kt_modal_tanya" onclick="setPaket('TUGAS CLASS')">
+													data-bs-target="#kt_modal_tanya" onclick="setPaket('FastTrack Assignment')">
 													Tanya
 												</a>
 												<a href="#" class="btn btn-danger" data-bs-toggle="modal"
 													data-bs-target="#kt_modal_register"
-													onclick="setPaketRegister('TUGAS CLASS')">
+													onclick="setPaketRegister('FastTrack Assignment')">
 													Daftar (Tugas)
 												</a>
 											</div>
@@ -1630,7 +1630,7 @@
 			document.querySelectorAll('[data-kt-plan]').forEach(btn => {
 				btn.addEventListener('click', () => {
 					const currentPaket = document.getElementById('paket_bimbel_reg').value;
-					if (currentPaket.includes('TUGAS CLASS')) {
+					if (currentPaket.includes('FastTrack Assignment')) {
 						const basePaket = currentPaket.split('|')[0].trim();
 						setPaketRegister(basePaket);
 					}
@@ -1645,7 +1645,7 @@
 				// Format nilai paket
 				document.getElementById('paket_bimbel_reg').value = `${paket} | ${planType}`;
 
-				if (paket.includes('TUGAS CLASS')) {
+				if (paket.includes('FastTrack Assignment')) {
 					tugasInfo.classList.remove('d-none');
 					updateTugasPrice();
 				} else {
