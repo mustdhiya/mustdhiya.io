@@ -1,0 +1,735 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Minat & Bakat RIASEC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+	<link rel="shortcut icon" href="assets/media/logos/must-dhiya-logo.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .progress-bar {
+            height: 8px;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+        .certificate {
+            width: 800px;
+            height: 600px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+            border: 2px solid #4f46e5;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        .certificate::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234f46e5' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        .certificate-content {
+            position: relative;
+            z-index: 1;
+        }
+        .certificate-border {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid #8b5cf6;
+            border-radius: 8px;
+        }
+        .certificate-seal {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            width: 100px;
+            height: 100px;
+        }
+        .competition-card {
+            border-left: 4px solid #4f46e5;
+            transition: all 0.3s ease;
+        }
+        .competition-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #certificateContainer, #certificateContainer * {
+                visibility: visible;
+            }
+            #certificateContainer {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8">
+    <div id="welcomeScreen" class="quiz-container p-8">
+        <a href="index.html" class="flex items-center">
+            <img alt="Logo" src="assets/media/logos/must-dhiya-logo.png"
+                 class="h-10 w-auto" />
+            <span class="text-white font-bold text-xs">Must Dhiya'</span>
+          </a>          
+        <h1 class="text-3xl font-bold text-center text-indigo-700 mb-6">Kuis Minat & Bakat RIASEC</h1>
+        <p class="text-gray-600 mb-6 text-center">Temukan tipe kepribadian Holland (RIASEC) yang paling dominan dalam dirimu melalui 15 pertanyaan singkat.</p>
+        
+        <div class="bg-indigo-50 p-4 rounded-lg mb-6">
+            <h2 class="font-semibold text-indigo-700 mb-2">Tentang Teori Holland (RIASEC)</h2>
+            <p class="text-gray-600 text-sm">Teori Holland mengidentifikasi 6 tipe kepribadian yang memengaruhi pilihan karir:</p>
+            <ul class="text-sm text-gray-600 mt-2 space-y-1">
+                <li><span class="font-medium text-indigo-600">R - Realistic:</span> Praktis, mekanis, dan berorientasi pada aktivitas fisik</li>
+                <li><span class="font-medium text-indigo-600">I - Investigative:</span> Analitis, intelektual, dan suka memecahkan masalah</li>
+                <li><span class="font-medium text-indigo-600">A - Artistic:</span> Kreatif, ekspresif, dan tidak konvensional</li>
+                <li><span class="font-medium text-indigo-600">S - Social:</span> Kooperatif, suportif, dan suka membantu orang lain</li>
+                <li><span class="font-medium text-indigo-600">E - Enterprising:</span> Persuasif, ambisius, dan berorientasi pada kepemimpinan</li>
+                <li><span class="font-medium text-indigo-600">C - Conventional:</span> Terorganisir, teliti, dan menyukai struktur</li>
+            </ul>
+        </div>
+        
+        <div class="mb-6">
+            <label for="nama" class="block text-gray-700 mb-2">Nama Lengkap</label>
+            <input type="text" id="nama" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Masukkan nama lengkap Anda" required>
+        </div>
+        
+        <button id="startQuiz" class="btn-primary w-full py-3 text-white font-medium rounded-lg">Mulai Kuis</button>
+    </div>
+
+    <div id="quizContainer" class="quiz-container p-8 hidden">
+        <div class="mb-6">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-indigo-700" id="questionNumber">Pertanyaan 1 dari 15</span>
+                <span class="text-sm font-medium text-indigo-700" id="progressText">7%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 7%;"></div>
+            </div>
+        </div>
+
+        <div id="questionContainer" class="mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4" id="questionText">Loading pertanyaan...</h2>
+            
+            <div class="space-y-3" id="optionsContainer">
+                <div class="flex items-center">
+                    <input type="radio" id="option1" name="answer" value="1" class="h-5 w-5 text-indigo-600">
+                    <label for="option1" class="ml-3 text-gray-700">Sangat Tidak Setuju</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="radio" id="option2" name="answer" value="2" class="h-5 w-5 text-indigo-600">
+                    <label for="option2" class="ml-3 text-gray-700">Tidak Setuju</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="radio" id="option3" name="answer" value="3" class="h-5 w-5 text-indigo-600">
+                    <label for="option3" class="ml-3 text-gray-700">Netral</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="radio" id="option4" name="answer" value="4" class="h-5 w-5 text-indigo-600">
+                    <label for="option4" class="ml-3 text-gray-700">Setuju</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="radio" id="option5" name="answer" value="5" class="h-5 w-5 text-indigo-600">
+                    <label for="option5" class="ml-3 text-gray-700">Sangat Setuju</label>
+                </div>
+            </div>
+        </div>
+
+        <button id="nextQuestion" class="btn-primary w-full py-3 text-white font-medium rounded-lg">Selanjutnya</button>
+    </div>
+
+    <div id="resultsContainer" class="quiz-container p-8 hidden">
+        <h1 class="text-3xl font-bold text-center text-indigo-700 mb-6">Hasil Analisis RIASEC</h1>
+        
+        <div class="mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Tipe Kepribadian Dominan Anda:</h2>
+            <div class="bg-indigo-50 p-6 rounded-lg">
+                <div class="flex items-center mb-4">
+                    <div id="dominantTypeIcon" class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white text-xl font-bold mr-4">R</div>
+                    <div>
+                        <h3 id="dominantTypeTitle" class="text-lg font-semibold text-indigo-700">Realistic</h3>
+                        <p id="dominantTypeSubtitle" class="text-gray-600">Praktis, mekanis, dan berorientasi pada aktivitas fisik</p>
+                    </div>
+                </div>
+                <p id="dominantTypeDescription" class="text-gray-700 mb-4">Loading deskripsi...</p>
+                
+                <div class="mt-6">
+                    <h4 class="font-semibold text-indigo-700 mb-3">Rekomendasi Lomba & Kompetisi:</h4>
+                    <div id="competitionRecommendations" class="space-y-3">
+                        <!-- Competition recommendations will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">Distribusi Skor RIASEC Anda</h3>
+            <div class="space-y-4">
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-gray-700">Realistic (R)</span>
+                        <span id="scoreR" class="text-sm font-medium text-indigo-700">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="barR" class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-gray-700">Investigative (I)</span>
+                        <span id="scoreI" class="text-sm font-medium text-indigo-700">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="barI" class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-gray-700">Artistic (A)</span>
+                        <span id="scoreA" class="text-sm font-medium text-indigo-700">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="barA" class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-gray-700">Social (S)</span>
+                        <span id="scoreS" class="text-sm font-medium text-indigo-700">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="barS" class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-gray-700">Enterprising (E)</span>
+                        <span id="scoreE" class="text-sm font-medium text-indigo-700">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="barE" class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-gray-700">Conventional (C)</span>
+                        <span id="scoreC" class="text-sm font-medium text-indigo-700">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="barC" class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+            <button id="generateCertificate" class="btn-primary py-3 px-6 text-white font-medium rounded-lg flex-1">Lihat Sertifikat</button>
+            <button id="restartQuiz" class="bg-white border border-indigo-600 text-indigo-600 py-3 px-6 font-medium rounded-lg hover:bg-indigo-50 transition flex-1">Mulai Ulang</button>
+        </div>
+    </div>
+
+    <div id="certificateContainer" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-6 rounded-lg max-w-4xl w-full max-h-screen overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Sertifikat RIASEC</h2>
+                <button id="closeCertificate" class="text-gray-500 hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="certificate mx-auto">
+                <div class="certificate-border"></div>
+                <div class="certificate-content p-12 h-full flex flex-col">
+                    <div class="text-center mb-6">
+                        <svg class="w-24 h-24 mx-auto mb-2" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" stroke="#4f46e5" stroke-width="2" fill="none"/>
+                            <path d="M30 50L45 65L70 35" stroke="#4f46e5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <h1 class="text-3xl font-bold text-indigo-700">SERTIFIKAT</h1>
+                        <p class="text-gray-600">Analisis Kepribadian RIASEC</p>
+                    </div>
+                    
+                    <div class="text-center mb-8">
+                        <p class="text-gray-600 mb-1">Diberikan kepada:</p>
+                        <h2 id="certName" class="text-2xl font-bold text-gray-800 mb-1">Nama Peserta</h2>
+                        <p class="text-gray-600 mb-4">Telah menyelesaikan Kuis Minat & Bakat RIASEC</p>
+                        <p id="certDate" class="text-gray-600">pada tanggal 1 Januari 2023</p>
+                    </div>
+                    
+                    <div class="bg-indigo-50 p-4 rounded-lg mb-auto">
+                        <div class="flex items-center mb-2">
+                            <div id="certTypeIcon" class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white text-lg font-bold mr-3">R</div>
+                            <h3 id="certTypeTitle" class="text-lg font-semibold text-indigo-700">Realistic</h3>
+                        </div>
+                        <p id="certTypeDescription" class="text-gray-700 text-sm">Loading deskripsi...</p>
+                        <div class="mt-3 pt-3 border-t border-indigo-200">
+                            <p class="text-sm font-medium text-indigo-700">Rekomendasi Lomba:</p>
+                            <p id="certCompetitions" class="text-gray-700 text-sm">Loading rekomendasi...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-end mt-6">
+                        <div>
+                            <div class="w-20 h-1 bg-indigo-700 mb-1"></div>
+                            <p class="text-gray-600 text-sm">Tanda Tangan Digital</p>
+                        </div>
+                        <div id="qrcode" class="certificate-seal"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-between mt-6">
+                <button id="downloadCertificate" class="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 transition">
+                    Download Sertifikat
+                </button>
+                <button id="shareCertificate" class="bg-white border border-indigo-600 text-indigo-600 py-2 px-4 rounded hover:bg-indigo-50 transition">
+                    Bagikan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data pertanyaan RIASEC
+        const questions = [
+            { text: "Saya lebih suka bekerja dengan peralatan dan mesin daripada bekerja dengan orang.", type: "R" },
+            { text: "Saya menikmati memecahkan masalah dan teka-teki yang kompleks.", type: "I" },
+            { text: "Saya suka mengekspresikan diri melalui seni, musik, atau tulisan.", type: "A" },
+            { text: "Saya senang membantu dan mengajar orang lain.", type: "S" },
+            { text: "Saya suka memimpin dan memengaruhi orang lain.", type: "E" },
+            { text: "Saya menyukai tugas yang terstruktur dan mengikuti prosedur yang jelas.", type: "C" },
+            { text: "Saya lebih suka aktivitas fisik dan bekerja di luar ruangan.", type: "R" },
+            { text: "Saya menikmati menganalisis data dan informasi.", type: "I" },
+            { text: "Saya suka bekerja dalam lingkungan yang mendorong kreativitas dan ekspresi diri.", type: "A" },
+            { text: "Saya senang bekerja dalam tim dan berkolaborasi dengan orang lain.", type: "S" },
+            { text: "Saya suka mengambil risiko dan membuat keputusan penting.", type: "E" },
+            { text: "Saya teliti dan memperhatikan detail dalam pekerjaan saya.", type: "C" },
+            { text: "Saya lebih suka bekerja dengan tangan dan membuat atau memperbaiki sesuatu.", type: "R" },
+            { text: "Saya menikmati mempelajari konsep baru dan melakukan penelitian.", type: "I" },
+            { text: "Saya suka bekerja di lingkungan yang tidak konvensional dan fleksibel.", type: "A" }
+        ];
+
+        // Deskripsi tipe kepribadian RIASEC
+        const personalityDescriptions = {
+            R: {
+                title: "Realistic",
+                subtitle: "Praktis, mekanis, dan berorientasi pada aktivitas fisik",
+                description: "Anda memiliki kecenderungan Realistic yang dominan. Tipe ini menyukai pekerjaan praktis, aktivitas fisik, dan bekerja dengan peralatan atau mesin. Anda mungkin memiliki keterampilan teknis yang baik, menikmati bekerja dengan tangan, dan lebih memilih hasil yang konkret daripada abstrak.",
+                icon: "R",
+                competitions: [
+                    {
+                        name: "Lomba Robotika",
+                        description: "Kompetisi pembuatan dan pemrograman robot untuk menyelesaikan tugas tertentu."
+                    },
+                    {
+                        name: "Kompetisi Teknik Mesin",
+                        description: "Lomba desain dan pembuatan mesin atau alat dengan fungsi spesifik."
+                    },
+                    {
+                        name: "Lomba Keterampilan Teknis",
+                        description: "Kompetisi yang menguji keterampilan teknis seperti pengelasan, perkayuan, atau elektronika."
+                    },
+                    {
+                        name: "Kompetisi Olahraga",
+                        description: "Berbagai lomba olahraga yang mengandalkan kekuatan fisik dan koordinasi."
+                    },
+                    {
+                        name: "Lomba Desain Produk",
+                        description: "Kompetisi merancang produk fungsional yang memecahkan masalah praktis."
+                    }
+                ]
+            },
+            I: {
+                title: "Investigative",
+                subtitle: "Analitis, intelektual, dan suka memecahkan masalah",
+                description: "Anda memiliki kecenderungan Investigative yang dominan. Tipe ini menyukai aktivitas yang melibatkan pemikiran, penyelidikan, dan analisis. Anda mungkin menikmati memecahkan masalah kompleks, melakukan penelitian, dan mengembangkan pengetahuan baru.",
+                icon: "I",
+                competitions: [
+                    {
+                        name: "Olimpiade Sains",
+                        description: "Kompetisi dalam bidang matematika, fisika, kimia, biologi, atau astronomi."
+                    },
+                    {
+                        name: "Lomba Karya Ilmiah",
+                        description: "Kompetisi penelitian dan penulisan karya ilmiah dengan metodologi yang ketat."
+                    },
+                    {
+                        name: "Hackathon",
+                        description: "Kompetisi pemrograman intensif untuk memecahkan masalah atau mengembangkan solusi teknologi."
+                    },
+                    {
+                        name: "Kompetisi Data Science",
+                        description: "Lomba analisis data untuk menemukan pola dan solusi dari dataset kompleks."
+                    },
+                    {
+                        name: "Lomba Debat Ilmiah",
+                        description: "Kompetisi debat yang berfokus pada topik-topik ilmiah dan penelitian."
+                    }
+                ]
+            },
+            A: {
+                title: "Artistic",
+                subtitle: "Kreatif, ekspresif, dan tidak konvensional",
+                description: "Anda memiliki kecenderungan Artistic yang dominan. Tipe ini menyukai aktivitas kreatif dan ekspresi diri. Anda mungkin menghargai keindahan, memiliki imajinasi yang kuat, dan menikmati lingkungan kerja yang tidak terstruktur.",
+                icon: "A",
+                competitions: [
+                    {
+                        name: "Lomba Desain Grafis",
+                        description: "Kompetisi pembuatan karya visual seperti poster, logo, atau ilustrasi."
+                    },
+                    {
+                        name: "Festival Film",
+                        description: "Kompetisi pembuatan film pendek, dokumenter, atau animasi."
+                    },
+                    {
+                        name: "Lomba Menulis Kreatif",
+                        description: "Kompetisi penulisan cerpen, puisi, atau naskah drama."
+                    },
+                    {
+                        name: "Lomba Fotografi",
+                        description: "Kompetisi pengambilan dan pengeditan foto artistik."
+                    },
+                    {
+                        name: "Lomba Musik dan Pertunjukan",
+                        description: "Kompetisi menyanyi, bermain alat musik, atau pertunjukan teater."
+                    }
+                ]
+            },
+            S: {
+                title: "Social",
+                subtitle: "Kooperatif, suportif, dan suka membantu orang lain",
+                description: "Anda memiliki kecenderungan Social yang dominan. Tipe ini menyukai bekerja dengan orang lain untuk membantu, mengajar, atau memberikan dukungan. Anda mungkin memiliki keterampilan interpersonal yang baik, empati, dan keinginan untuk membuat perbedaan dalam kehidupan orang lain.",
+                icon: "S",
+                competitions: [
+                    {
+                        name: "Lomba Debat Sosial",
+                        description: "Kompetisi debat tentang isu-isu sosial dan kebijakan publik."
+                    },
+                    {
+                        name: "Kompetisi Inovasi Sosial",
+                        description: "Lomba pengembangan solusi untuk masalah sosial di masyarakat."
+                    },
+                    {
+                        name: "Lomba Public Speaking",
+                        description: "Kompetisi berbicara di depan umum dengan tema-tema sosial dan kemanusiaan."
+                    },
+                    {
+                        name: "Lomba Pengabdian Masyarakat",
+                        description: "Kompetisi merancang dan melaksanakan program pengabdian masyarakat."
+                    },
+                    {
+                        name: "Lomba Mediasi dan Negosiasi",
+                        description: "Kompetisi keterampilan menyelesaikan konflik dan negosiasi."
+                    }
+                ]
+            },
+            E: {
+                title: "Enterprising",
+                subtitle: "Persuasif, ambisius, dan berorientasi pada kepemimpinan",
+                description: "Anda memiliki kecenderungan Enterprising yang dominan. Tipe ini menyukai memimpin, memengaruhi, dan membujuk orang lain. Anda mungkin berorientasi pada tujuan, kompetitif, dan menikmati pengambilan risiko.",
+                icon: "E",
+                competitions: [
+                    {
+                        name: "Lomba Business Plan",
+                        description: "Kompetisi pembuatan rencana bisnis yang inovatif dan berkelanjutan."
+                    },
+                    {
+                        name: "Kompetisi Marketing",
+                        description: "Lomba strategi pemasaran dan kampanye promosi produk atau jasa."
+                    },
+                    {
+                        name: "Lomba Startup",
+                        description: "Kompetisi pengembangan ide bisnis rintisan yang layak dan skalabel."
+                    },
+                    {
+                        name: "Lomba Kepemimpinan",
+                        description: "Kompetisi yang menguji kemampuan kepemimpinan dan manajemen tim."
+                    },
+                    {
+                        name: "Lomba Debat Ekonomi",
+                        description: "Kompetisi debat tentang isu-isu ekonomi, bisnis, dan keuangan."
+                    }
+                ]
+            },
+            C: {
+                title: "Conventional",
+                subtitle: "Terorganisir, teliti, dan menyukai struktur",
+                description: "Anda memiliki kecenderungan Conventional yang dominan. Tipe ini menyukai bekerja dengan data, detail, dan mengikuti prosedur yang jelas. Anda mungkin terorganisir, teliti, dan menikmati lingkungan kerja yang terstruktur.",
+                icon: "C",
+                competitions: [
+                    {
+                        name: "Lomba Akuntansi",
+                        description: "Kompetisi pemecahan masalah akuntansi dan analisis laporan keuangan."
+                    },
+                    {
+                        name: "Kompetisi Manajemen Proyek",
+                        description: "Lomba perencanaan, pelaksanaan, dan evaluasi proyek dengan efisien."
+                    },
+                    {
+                        name: "Lomba Administrasi Bisnis",
+                        description: "Kompetisi keterampilan administrasi dan manajemen kantor."
+                    },
+                    {
+                        name: "Lomba Analisis Data",
+                        description: "Kompetisi pengolahan dan interpretasi data untuk pengambilan keputusan."
+                    },
+                    {
+                        name: "Lomba Pemrograman Terstruktur",
+                        description: "Kompetisi pemrograman dengan fokus pada kode yang terstruktur dan efisien."
+                    }
+                ]
+            }
+        };
+
+        // Variabel untuk melacak state kuis
+        let currentQuestion = 0;
+        let scores = { R: 0, I: 0, S: 0, A: 0, E: 0, C: 0 };
+        let userName = "";
+        let dominantType = "";
+
+        // DOM Elements
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const quizContainer = document.getElementById('quizContainer');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const certificateContainer = document.getElementById('certificateContainer');
+        const startQuizBtn = document.getElementById('startQuiz');
+        const nextQuestionBtn = document.getElementById('nextQuestion');
+        const generateCertificateBtn = document.getElementById('generateCertificate');
+        const restartQuizBtn = document.getElementById('restartQuiz');
+        const closeCertificateBtn = document.getElementById('closeCertificate');
+        const downloadCertificateBtn = document.getElementById('downloadCertificate');
+        const shareCertificateBtn = document.getElementById('shareCertificate');
+
+        // Event Listeners
+        startQuizBtn.addEventListener('click', startQuiz);
+        nextQuestionBtn.addEventListener('click', handleNextQuestion);
+        generateCertificateBtn.addEventListener('click', showCertificate);
+        restartQuizBtn.addEventListener('click', restartQuiz);
+        closeCertificateBtn.addEventListener('click', () => certificateContainer.classList.add('hidden'));
+        downloadCertificateBtn.addEventListener('click', downloadCertificate);
+        shareCertificateBtn.addEventListener('click', shareCertificate);
+
+        // Fungsi untuk memulai kuis
+        function startQuiz() {
+            userName = document.getElementById('nama').value.trim();
+            if (!userName) {
+                alert('Silakan masukkan nama Anda terlebih dahulu.');
+                return;
+            }
+            
+            welcomeScreen.classList.add('hidden');
+            quizContainer.classList.remove('hidden');
+            loadQuestion();
+        }
+
+        // Fungsi untuk memuat pertanyaan
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            const questionNumber = document.getElementById('questionNumber');
+            const questionText = document.getElementById('questionText');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            
+            // Reset pilihan jawaban
+            const radioButtons = document.querySelectorAll('input[name="answer"]');
+            radioButtons.forEach(radio => radio.checked = false);
+            
+            // Update pertanyaan
+            questionNumber.textContent = `Pertanyaan ${currentQuestion + 1} dari ${questions.length}`;
+            questionText.textContent = question.text;
+            
+            // Update progress bar
+            const progress = Math.round(((currentQuestion + 1) / questions.length) * 100);
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${progress}%`;
+            
+            // Disable tombol next jika belum ada jawaban yang dipilih
+            nextQuestionBtn.disabled = true;
+            nextQuestionBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            
+            // Enable tombol next ketika jawaban dipilih
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    nextQuestionBtn.disabled = false;
+                    nextQuestionBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                });
+            });
+        }
+
+        // Fungsi untuk menangani pertanyaan berikutnya
+        function handleNextQuestion() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            
+            if (!selectedAnswer) {
+                alert('Silakan pilih jawaban terlebih dahulu.');
+                return;
+            }
+            
+            // Tambahkan skor berdasarkan jawaban
+            const question = questions[currentQuestion];
+            scores[question.type] += parseInt(selectedAnswer.value);
+            
+            // Pindah ke pertanyaan berikutnya atau tampilkan hasil
+            currentQuestion++;
+            
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // Fungsi untuk menampilkan hasil
+        function showResults() {
+            quizContainer.classList.add('hidden');
+            resultsContainer.classList.remove('hidden');
+            
+            // Hitung total skor dan persentase untuk setiap tipe
+            const typeCount = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
+            
+            // Hitung berapa pertanyaan untuk setiap tipe
+            questions.forEach(q => typeCount[q.type]++);
+            
+            // Hitung persentase dan update progress bar
+            for (const type in scores) {
+                const maxPossible = typeCount[type] * 5; // 5 adalah nilai maksimum per pertanyaan
+                const percentage = Math.round((scores[type] / maxPossible) * 100);
+                
+                document.getElementById(`score${type}`).textContent = `${percentage}%`;
+                document.getElementById(`bar${type}`).style.width = `${percentage}%`;
+            }
+            
+            // Tentukan tipe dominan
+            dominantType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            
+            // Update informasi tipe dominan
+            const dominantInfo = personalityDescriptions[dominantType];
+            document.getElementById('dominantTypeIcon').textContent = dominantInfo.icon;
+            document.getElementById('dominantTypeTitle').textContent = dominantInfo.title;
+            document.getElementById('dominantTypeSubtitle').textContent = dominantInfo.subtitle;
+            document.getElementById('dominantTypeDescription').textContent = dominantInfo.description;
+            
+            // Tampilkan rekomendasi lomba
+            const competitionRecommendations = document.getElementById('competitionRecommendations');
+            competitionRecommendations.innerHTML = '';
+            
+            dominantInfo.competitions.forEach(competition => {
+                const competitionCard = document.createElement('div');
+                competitionCard.className = 'competition-card bg-white p-3 rounded-lg shadow-sm';
+                competitionCard.innerHTML = `
+                    <h5 class="font-medium text-indigo-700">${competition.name}</h5>
+                    <p class="text-sm text-gray-600">${competition.description}</p>
+                `;
+                competitionRecommendations.appendChild(competitionCard);
+            });
+        }
+
+        // Fungsi untuk menampilkan sertifikat
+        function showCertificate() {
+            certificateContainer.classList.remove('hidden');
+            
+            // Update informasi sertifikat
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('id-ID', { 
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric' 
+            });
+            
+            document.getElementById('certName').textContent = userName;
+            document.getElementById('certDate').textContent = `pada tanggal ${formattedDate}`;
+            
+            const dominantInfo = personalityDescriptions[dominantType];
+            document.getElementById('certTypeIcon').textContent = dominantInfo.icon;
+            document.getElementById('certTypeTitle').textContent = dominantInfo.title;
+            document.getElementById('certTypeDescription').textContent = dominantInfo.description;
+            
+            // Tampilkan rekomendasi lomba di sertifikat
+            const competitionNames = dominantInfo.competitions.map(comp => comp.name).join(', ');
+            document.getElementById('certCompetitions').textContent = competitionNames;
+            
+            // Generate QR code
+            const qrCodeContainer = document.getElementById('qrcode');
+            qrCodeContainer.innerHTML = '';
+            
+            const qrData = {
+                name: userName,
+                date: formattedDate,
+                type: dominantType,
+                typeTitle: dominantInfo.title,
+                competitions: competitionNames
+            };
+            
+            new QRCode(qrCodeContainer, {
+                text: JSON.stringify(qrData),
+                width: 100,
+                height: 100,
+                colorDark: "#4f46e5",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+
+        // Fungsi untuk mengunduh sertifikat
+        function downloadCertificate() {
+            alert('Fitur download sertifikat akan segera tersedia. Untuk saat ini, Anda dapat mengambil screenshot sertifikat.');
+        }
+
+        // Fungsi untuk membagikan sertifikat
+        function shareCertificate() {
+            alert('Fitur berbagi sertifikat akan segera tersedia. Untuk saat ini, Anda dapat mengambil screenshot sertifikat dan membagikannya secara manual.');
+        }
+
+        // Fungsi untuk memulai ulang kuis
+        function restartQuiz() {
+            currentQuestion = 0;
+            scores = { R: 0, I: 0, S: 0, A: 0, E: 0, C: 0 };
+            userName = "";
+            dominantType = "";
+            
+            resultsContainer.classList.add('hidden');
+            welcomeScreen.classList.remove('hidden');
+            document.getElementById('nama').value = '';
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93c6402a2673ce15',t:'MTc0NjY3ODkyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
