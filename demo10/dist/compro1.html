@@ -1,0 +1,1255 @@
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Company Profile - Penyedia Kantor Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+	<link rel="shortcut icon" href="assets/media/logos/must-dhiya-logo.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .timeline-item {
+            transition: all 0.5s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-dot {
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.5);
+            background-color: #1a365d;
+            box-shadow: 0 0 15px rgba(26, 54, 93, 0.5);
+        }
+        
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        
+        .slide-in {
+            animation: slideIn 0.5s forwards;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .hero-pattern {
+            background-color: #1a365d;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .btn-primary {
+            background-color: #1a365d;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2d4a77;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(26, 54, 93, 0.3);
+        }
+        
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #1a365d;
+            margin-top: 8px;
+            transition: width 0.5s ease;
+        }
+        
+        .section-title:hover::after {
+            width: 100px;
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-from-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .slide-from-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .slide-from-left.active, .slide-from-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .scale-in.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* Timeline Animation */
+        .timeline-line {
+            height: 0;
+            transition: height 1.5s ease;
+        }
+        
+        .timeline-line.active {
+            height: 100%;
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .float {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        /* Pulse Animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(26, 54, 93, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(26, 54, 93, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(26, 54, 93, 0);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Rotating Animation */
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .rotate {
+            animation: rotate 10s linear infinite;
+        }
+        
+        /* Shimmer Effect */
+        @keyframes shimmer {
+            0% {
+                background-position: -100% 0;
+            }
+            100% {
+                background-position: 100% 0;
+            }
+        }
+        
+        .shimmer {
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        /* Typing Animation */
+        .typing-container {
+            display: inline-block;
+        }
+        
+        .typing-text {
+            overflow: hidden;
+            border-right: .15em solid #1a365d;
+            white-space: nowrap;
+            margin: 0;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #1a365d; }
+        }
+        
+        /* Card Hover Effect */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        /* Button Ripple Effect */
+        .btn-ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-ripple:after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            transform: scale(10, 10);
+            opacity: 0;
+            transition: transform .5s, opacity 1s;
+        }
+        
+        .btn-ripple:active:after {
+            transform: scale(0, 0);
+            opacity: .3;
+            transition: 0s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="index.html">
+                <div class="w-10 h-10 bg-blue-900 rounded-md flex items-center justify-center mr-3">
+                    <img src="assets/media/logos/must-dhiya-logo.png" alt="logo">
+                </div>
+                <h1 class="text-xl md:text-2xl font-bold text-blue-900">Dynamic Company Profile</h1>
+                </a>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#beranda" class="text-gray-700 hover:text-blue-900 font-medium">Beranda</a>
+                <a href="#tentang" class="text-gray-700 hover:text-blue-900 font-medium">Tentang Kami</a>
+                <a href="#layanan" class="text-gray-700 hover:text-blue-900 font-medium">Layanan</a>
+                <a href="#karir" class="text-gray-700 hover:text-blue-900 font-medium">Karir</a>
+                <a href="#kontak" class="text-gray-700 hover:text-blue-900 font-medium">Kontak</a>
+            </nav>
+            <button class="md:hidden text-gray-700" id="mobile-menu-button">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md absolute w-full">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#beranda" class="text-gray-700 hover:text-blue-900 font-medium">Beranda</a>
+                <a href="#tentang" class="text-gray-700 hover:text-blue-900 font-medium">Tentang Kami</a>
+                <a href="#layanan" class="text-gray-700 hover:text-blue-900 font-medium">Layanan</a>
+                <a href="#karir" class="text-gray-700 hover:text-blue-900 font-medium">Karir</a>
+                <a href="#kontak" class="text-gray-700 hover:text-blue-900 font-medium">Kontak</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero-pattern pt-24 pb-16 md:pt-32 md:pb-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-white mb-10 md:mb-0 animate__animated animate__fadeInLeft">
+                    <div class="typing-container mb-6">
+                        <h1 class="text-3xl md:text-5xl font-bold leading-tight typing-text">Solusi Kantor Premium</h1>
+                    </div>
+                    <p class="text-lg md:text-xl mb-8 opacity-90 animate__animated animate__fadeIn animate__delay-1s">Dynamic Company Profile menyediakan ruang kantor premium dengan fasilitas lengkap untuk mendukung pertumbuhan bisnis Anda.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 animate__animated animate__fadeIn animate__delay-2s">
+                        <button class="btn-primary btn-ripple px-6 py-3 rounded-md font-medium">Jelajahi Layanan</button>
+                        <button class="bg-white text-blue-900 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition btn-ripple">Lihat Karir</button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center animate__animated animate__fadeInRight">
+                    <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-lg float">
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="flex space-x-2">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            </div>
+                            <div class="text-xs text-gray-500">dynamic-company.id</div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="h-10 bg-gray-100 rounded w-3/4 shimmer"></div>
+                            <div class="h-32 bg-gray-100 rounded shimmer"></div>
+                            <div class="flex space-x-2">
+                                <div class="h-8 bg-blue-900 rounded w-1/3 pulse"></div>
+                                <div class="h-8 bg-gray-100 rounded w-1/3 shimmer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="tentang" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="relative">
+                        <div class="w-full h-64 md:h-96 bg-blue-100 rounded-lg"></div>
+                        <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-blue-900 rounded-lg hidden md:block"></div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-white rounded-lg shadow-lg p-6 flex items-center justify-center">
+                            <div class="text-center">
+                                <h3 class="text-2xl font-bold text-blue-900 mb-3">Sejak 2013</h3>
+                                <p class="text-gray-600">Menyediakan solusi kantor premium untuk lebih dari 500+ perusahaan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="section-title text-2xl md:text-3xl font-bold text-blue-900 mb-6">Tentang Dynamic Company Profile</h2>
+                    <p class="text-gray-700 mb-6">Dynamic Company Profile adalah penyedia solusi kantor premium terkemuka di Indonesia. Kami menawarkan ruang kerja yang dirancang dengan standar tertinggi untuk memenuhi kebutuhan bisnis modern.</p>
+                    <p class="text-gray-700 mb-8">Dengan pengalaman lebih dari 10 tahun, kami telah membantu ratusan perusahaan dari berbagai skala dan industri untuk mendapatkan ruang kerja yang ideal, fleksibel, dan representatif.</p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-building text-blue-900 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">50+ Lokasi</h4>
+                                <p class="text-sm text-gray-600">Di seluruh Indonesia</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-users text-blue-900 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">500+ Klien</h4>
+                                <p class="text-sm text-gray-600">Perusahaan terpercaya</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-award text-blue-900 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">15+ Penghargaan</h4>
+                                <p class="text-sm text-gray-600">Layanan terbaik</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-star text-blue-900 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">4.9/5 Rating</h4>
+                                <p class="text-sm text-gray-600">Kepuasan pelanggan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="layanan" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-2xl md:text-3xl font-bold text-blue-900 mb-6 inline-block">Layanan Kami</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">Kami menawarkan berbagai solusi kantor yang dapat disesuaikan dengan kebutuhan bisnis Anda, dari kantor pribadi hingga ruang pertemuan.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:transform hover:scale-105">
+                    <div class="h-48 bg-blue-900 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-door-open text-white text-5xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-3">Kantor Pribadi</h3>
+                        <p class="text-gray-700 mb-4">Ruang kantor pribadi yang dirancang untuk tim kecil hingga menengah dengan privasi maksimal dan fasilitas lengkap.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span class="text-gray-700">Ruang kerja eksklusif</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span class="text-gray-700">Akses 24/7</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span class="text-gray-700">Fasilitas lengkap</span>
+                            </li>
+                        </ul>
+                        <button class="btn-primary w-full py-2 rounded-md font-medium">Pelajari Lebih Lanjut</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:transform hover:scale-105">
+                    <div class="h-48 bg-blue-800 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-users text-white text-5xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-3">Coworking Space</h3>
+                        <p class="text-gray-700 mb-4">Ruang kerja bersama yang dirancang untuk meningkatkan kolaborasi dan produktivitas dengan suasana dinamis.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span class="text-gray-700">Lingkungan kolaboratif</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span class="text-gray-700">Fleksibilitas tinggi</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span class="text-gray-700">Networking opportunity</span>
+                            </li>
+                        </ul>
+                        <button class="btn-primary w-full py-2 rounded-md font-medium">Pelajari Lebih Lanjut</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:transform hover:scale-105">
+                    <div class="h-48 bg-blue-700 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-handshake text-white text-5xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-3">Ruang Pertemuan</h3>
+                        <p class="text-gray-700 mb-4">Ruang pertemuan profesional dengan teknologi terkini untuk mendukung presentasi dan diskusi bisnis Anda.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span class="text-gray-700">Peralatan audiovisual</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span class="text-gray-700">Kapasitas fleksibel</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span class="text-gray-700">Layanan pendukung</span>
+                            </li>
+                        </ul>
+                        <button class="btn-primary w-full py-2 rounded-md font-medium">Pelajari Lebih Lanjut</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Timeline Section -->
+    <section id="karir" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-2xl md:text-3xl font-bold text-blue-900 mb-6 inline-block">Karir di Dynamic Company Profile</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">Bergabunglah dengan tim kami dan kembangkan karir Anda di lingkungan yang dinamis dan profesional. Klik pada timeline untuk melihat detail lowongan.</p>
+            </div>
+            
+            <!-- Timeline -->
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-200"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-16">
+                    <!-- Item 1 -->
+                    <div class="timeline-item relative">
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8 text-right">
+                                <div class="bg-white p-6 rounded-lg shadow-md inline-block">
+                                    <h3 class="text-xl font-bold text-blue-900 mb-2">Property Manager</h3>
+                                    <p class="text-gray-600 mb-3">Departemen Operasional</p>
+                                    <button class="timeline-btn bg-blue-900 text-white px-4 py-2 rounded-md text-sm" data-job="property-manager">Lihat Detail</button>
+                                </div>
+                            </div>
+                            <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full border-4 border-white"></div>
+                            <div class="md:w-1/2 md:pl-8">
+                                <div class="text-gray-500">Mei 2023 - Sekarang</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="timeline-item relative">
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8 text-right">
+                                <div class="text-gray-500">Juni 2023 - Sekarang</div>
+                            </div>
+                            <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full border-4 border-white"></div>
+                            <div class="md:w-1/2 md:pl-8">
+                                <div class="bg-white p-6 rounded-lg shadow-md inline-block">
+                                    <h3 class="text-xl font-bold text-blue-900 mb-2">Customer Experience Specialist</h3>
+                                    <p class="text-gray-600 mb-3">Departemen Layanan Pelanggan</p>
+                                    <button class="timeline-btn bg-blue-900 text-white px-4 py-2 rounded-md text-sm" data-job="customer-experience">Lihat Detail</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="timeline-item relative">
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8 text-right">
+                                <div class="bg-white p-6 rounded-lg shadow-md inline-block">
+                                    <h3 class="text-xl font-bold text-blue-900 mb-2">Business Development Executive</h3>
+                                    <p class="text-gray-600 mb-3">Departemen Pemasaran</p>
+                                    <button class="timeline-btn bg-blue-900 text-white px-4 py-2 rounded-md text-sm" data-job="business-development">Lihat Detail</button>
+                                </div>
+                            </div>
+                            <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full border-4 border-white"></div>
+                            <div class="md:w-1/2 md:pl-8">
+                                <div class="text-gray-500">Juli 2023 - Sekarang</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 4 -->
+                    <div class="timeline-item relative">
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8 text-right">
+                                <div class="text-gray-500">Agustus 2023 - Sekarang</div>
+                            </div>
+                            <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full border-4 border-white"></div>
+                            <div class="md:w-1/2 md:pl-8">
+                                <div class="bg-white p-6 rounded-lg shadow-md inline-block">
+                                    <h3 class="text-xl font-bold text-blue-900 mb-2">Facility Maintenance Technician</h3>
+                                    <p class="text-gray-600 mb-3">Departemen Pemeliharaan</p>
+                                    <button class="timeline-btn bg-blue-900 text-white px-4 py-2 rounded-md text-sm" data-job="maintenance-technician">Lihat Detail</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 5 -->
+                    <div class="timeline-item relative">
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8 text-right">
+                                <div class="bg-white p-6 rounded-lg shadow-md inline-block">
+                                    <h3 class="text-xl font-bold text-blue-900 mb-2">Digital Marketing Specialist</h3>
+                                    <p class="text-gray-600 mb-3">Departemen Pemasaran</p>
+                                    <button class="timeline-btn bg-blue-900 text-white px-4 py-2 rounded-md text-sm" data-job="digital-marketing">Lihat Detail</button>
+                                </div>
+                            </div>
+                            <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full border-4 border-white"></div>
+                            <div class="md:w-1/2 md:pl-8">
+                                <div class="text-gray-500">September 2023 - Sekarang</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-2xl md:text-3xl font-bold text-blue-900 mb-6 inline-block">Berita Terbaru</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">Ikuti perkembangan terbaru dari Dynamic Company Profile dan industri perkantoran.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-blue-100"></div>
+                    <div class="p-6">
+                        <div class="text-sm text-gray-500 mb-2">15 September 2023</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-3">Dynamic Company Profile Membuka Lokasi Baru di Jakarta Selatan</h3>
+                        <p class="text-gray-700 mb-4">Kami dengan bangga mengumumkan pembukaan lokasi baru kami di kawasan bisnis Jakarta Selatan...</p>
+                        <button class="text-blue-900 font-medium hover:underline" data-news="news-1">Baca Selengkapnya</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-blue-100"></div>
+                    <div class="p-6">
+                        <div class="text-sm text-gray-500 mb-2">10 September 2023</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-3">Tren Perkantoran Pasca Pandemi: Fleksibilitas dan Teknologi</h3>
+                        <p class="text-gray-700 mb-4">Pandemi telah mengubah cara kita bekerja dan memandang ruang kantor. Fleksibilitas dan teknologi menjadi kunci...</p>
+                        <button class="text-blue-900 font-medium hover:underline" data-news="news-2">Baca Selengkapnya</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-blue-100"></div>
+                    <div class="p-6">
+                        <div class="text-sm text-gray-500 mb-2">5 September 2023</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-3">Dynamic Company Profile Meraih Penghargaan "Best Office Provider 2023"</h3>
+                        <p class="text-gray-700 mb-4">Kami dengan bangga mengumumkan bahwa Dynamic Company Profile telah menerima penghargaan...</p>
+                        <button class="text-blue-900 font-medium hover:underline" data-news="news-3">Baca Selengkapnya</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontak" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="section-title text-2xl md:text-3xl font-bold text-blue-900 mb-6">Hubungi Kami</h2>
+                    <p class="text-gray-700 mb-8">Tertarik dengan layanan kami atau ingin mengetahui lebih lanjut tentang lowongan kerja? Jangan ragu untuk menghubungi kami.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 shrink-0">
+                                <i class="fas fa-map-marker-alt text-blue-900 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-blue-900 mb-1">Alamat</h4>
+                                <p class="text-gray-700">Menara Dynamic, Jl. Jendral Sudirman Kav. 52-53, Jakarta Selatan, 12190</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 shrink-0">
+                                <i class="fas fa-phone text-blue-900 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-blue-900 mb-1">Telepon</h4>
+                                <p class="text-gray-700">+62 21 5678 9000</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 shrink-0">
+                                <i class="fas fa-envelope text-blue-900 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-blue-900 mb-1">Email</h4>
+                                <p class="text-gray-700">info@dynamiccompany.id</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 shrink-0">
+                                <i class="fas fa-clock text-blue-900 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-blue-900 mb-1">Jam Operasional</h4>
+                                <p class="text-gray-700">Senin - Jumat: 08.00 - 17.00 WIB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-blue-900 mb-6">Kirim Pesan</h3>
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-2">Nama Lengkap</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-gray-700 mb-2">Subjek</label>
+                                <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-gray-700 mb-2">Pesan</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary w-full py-3 rounded-md font-medium">Kirim Pesan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between mb-8">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-white rounded-md flex items-center justify-center mr-3">
+                            <span class="text-blue-900 font-bold text-xl">DC</span>
+                        </div>
+                        <h3 class="text-xl font-bold">Dynamic Company Profile</h3>
+                    </div>
+                    <p class="text-blue-200 max-w-xs">Solusi kantor premium untuk mendukung pertumbuhan bisnis Anda dengan fasilitas lengkap dan lokasi strategis.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Layanan</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-blue-200 hover:text-white">Kantor Pribadi</a></li>
+                            <li><a href="#" class="text-blue-200 hover:text-white">Coworking Space</a></li>
+                            <li><a href="#" class="text-blue-200 hover:text-white">Ruang Pertemuan</a></li>
+                            <li><a href="#" class="text-blue-200 hover:text-white">Virtual Office</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Perusahaan</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-blue-200 hover:text-white">Tentang Kami</a></li>
+                            <li><a href="#" class="text-blue-200 hover:text-white">Karir</a></li>
+                            <li><a href="#" class="text-blue-200 hover:text-white">Berita</a></li>
+                            <li><a href="#" class="text-blue-200 hover:text-white">Kontak</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Ikuti Kami</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-blue-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-blue-200 mb-4 md:mb-0">&copy; 2023 Dynamic Company Profile. Hak Cipta Dilindungi.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-blue-200 hover:text-white">Kebijakan Privasi</a>
+                        <a href="#" class="text-blue-200 hover:text-white">Syarat & Ketentuan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Job Modals -->
+    <div id="modal-container" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div id="modal-content" class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <!-- Modal content will be inserted here -->
+        </div>
+    </div>
+
+    <script>
+                // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Modal Functionality
+        const modalContainer = document.getElementById('modal-container');
+        const modalContent = document.getElementById('modal-content');
+        
+        // Close modal when clicking outside
+        modalContainer.addEventListener('click', (e) => {
+            if (e.target === modalContainer) {
+                closeModal();
+            }
+        });
+        
+        function openModal(content) {
+            modalContent.innerHTML = content;
+            modalContainer.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            
+            // Add slide-in animation
+            modalContent.classList.add('slide-in');
+        }
+        
+        function closeModal() {
+            modalContainer.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            modalContent.classList.remove('slide-in');
+        }
+        
+        // Job Details
+        const jobDetails = {
+            'property-manager': {
+                title: 'Property Manager',
+                department: 'Departemen Operasional',
+                location: 'Jakarta Selatan',
+                type: 'Full-time',
+                description: 'Kami mencari Property Manager yang berpengalaman untuk mengelola operasional harian properti kantor kami. Posisi ini bertanggung jawab untuk memastikan semua fasilitas berfungsi dengan baik dan memberikan pengalaman terbaik bagi penyewa kami.',
+                responsibilities: [
+                    'Mengelola operasional harian properti kantor',
+                    'Mengawasi staf pemeliharaan dan keamanan',
+                    'Menangani permintaan dan keluhan penyewa',
+                    'Memastikan kepatuhan terhadap peraturan keselamatan dan kesehatan',
+                    'Mengelola anggaran operasional properti',
+                    'Mengkoordinasikan perbaikan dan pemeliharaan rutin'
+                ],
+                requirements: [
+                    'Minimal 3 tahun pengalaman sebagai Property Manager',
+                    'Pemahaman yang kuat tentang manajemen fasilitas',
+                    'Keterampilan komunikasi dan interpersonal yang sangat baik',
+                    'Kemampuan memecahkan masalah dan mengambil keputusan',
+                    'Gelar sarjana di bidang terkait (Manajemen Properti, Teknik, atau setara)',
+                    'Sertifikasi manajemen properti merupakan nilai tambah'
+                ],
+                benefits: [
+                    'Gaji kompetitif',
+                    'Asuransi kesehatan',
+                    'Tunjangan transportasi',
+                    'Program pengembangan karir',
+                    'Lingkungan kerja profesional',
+                    'Cuti berbayar'
+                ]
+            },
+            'customer-experience': {
+                title: 'Customer Experience Specialist',
+                department: 'Departemen Layanan Pelanggan',
+                location: 'Jakarta Pusat',
+                type: 'Full-time',
+                description: 'Kami mencari Customer Experience Specialist yang bersemangat untuk memberikan layanan pelanggan terbaik. Posisi ini bertanggung jawab untuk memastikan kepuasan pelanggan dan menangani berbagai permintaan dan pertanyaan dari penyewa kami.',
+                responsibilities: [
+                    'Menjadi titik kontak utama untuk semua permintaan penyewa',
+                    'Menangani keluhan dan masalah dengan cepat dan profesional',
+                    'Mengkoordinasikan layanan tambahan untuk penyewa',
+                    'Melakukan orientasi untuk penyewa baru',
+                    'Mengumpulkan umpan balik dan mengidentifikasi area untuk peningkatan',
+                    'Membangun hubungan yang kuat dengan penyewa'
+                ],
+                requirements: [
+                    'Minimal 2 tahun pengalaman dalam layanan pelanggan',
+                    'Keterampilan komunikasi yang sangat baik',
+                    'Kemampuan untuk bekerja di bawah tekanan',
+                    'Orientasi pada detail dan pemecahan masalah',
+                    'Gelar sarjana di bidang terkait (Komunikasi, Manajemen, atau setara)',
+                    'Pengalaman dalam industri properti atau hospitality merupakan nilai tambah'
+                ],
+                benefits: [
+                    'Gaji kompetitif',
+                    'Asuransi kesehatan',
+                    'Tunjangan makan',
+                    'Program pengembangan karir',
+                    'Lingkungan kerja yang dinamis',
+                    'Cuti berbayar'
+                ]
+            },
+            'business-development': {
+                title: 'Business Development Executive',
+                department: 'Departemen Pemasaran',
+                location: 'Jakarta Selatan',
+                type: 'Full-time',
+                description: 'Kami mencari Business Development Executive yang dinamis untuk memperluas portofolio klien kami. Posisi ini bertanggung jawab untuk mengidentifikasi peluang bisnis baru dan membangun hubungan dengan calon klien potensial.',
+                responsibilities: [
+                    'Mengidentifikasi dan mengejar peluang bisnis baru',
+                    'Melakukan presentasi kepada calon klien',
+                    'Menegosiasikan kontrak dan perjanjian',
+                    'Membangun dan memelihara hubungan dengan klien',
+                    'Mencapai target penjualan yang ditetapkan',
+                    'Berkolaborasi dengan tim pemasaran untuk mengembangkan strategi'
+                ],
+                requirements: [
+                    'Minimal 3 tahun pengalaman dalam pengembangan bisnis atau penjualan',
+                    'Keterampilan negosiasi dan presentasi yang kuat',
+                    'Jaringan bisnis yang luas',
+                    'Kemampuan untuk bekerja secara mandiri dan dalam tim',
+                    'Gelar sarjana di bidang terkait (Bisnis, Pemasaran, atau setara)',
+                    'Pengalaman dalam industri properti komersial merupakan nilai tambah'
+                ],
+                benefits: [
+                    'Gaji pokok plus komisi',
+                    'Asuransi kesehatan',
+                    'Tunjangan transportasi',
+                    'Program pengembangan karir',
+                    'Lingkungan kerja yang mendukung',
+                    'Cuti berbayar'
+                ]
+            },
+            'maintenance-technician': {
+                title: 'Facility Maintenance Technician',
+                department: 'Departemen Pemeliharaan',
+                location: 'Jakarta Selatan',
+                type: 'Full-time',
+                description: 'Kami mencari Facility Maintenance Technician yang terampil untuk memastikan semua sistem dan peralatan di properti kami berfungsi dengan baik. Posisi ini bertanggung jawab untuk melakukan pemeliharaan preventif dan perbaikan yang diperlukan.',
+                responsibilities: [
+                    'Melakukan pemeliharaan preventif pada sistem bangunan',
+                    'Menangani permintaan perbaikan dari penyewa',
+                    'Memelihara sistem HVAC, listrik, dan pipa',
+                    'Melakukan inspeksi rutin pada peralatan dan fasilitas',
+                    'Memastikan kepatuhan terhadap standar keselamatan',
+                    'Berkoordinasi dengan kontraktor eksternal bila diperlukan'
+                ],
+                requirements: [
+                    'Minimal 2 tahun pengalaman sebagai teknisi pemeliharaan',
+                    'Pengetahuan tentang sistem HVAC, listrik, dan pipa',
+                    'Kemampuan untuk membaca dan memahami skema teknis',
+                    'Keterampilan pemecahan masalah yang kuat',
+                    'Sertifikasi teknis yang relevan',
+                    'Kemampuan untuk bekerja dalam jadwal yang fleksibel'
+                ],
+                benefits: [
+                    'Gaji kompetitif',
+                    'Asuransi kesehatan',
+                    'Tunjangan seragam',
+                    'Program pengembangan keterampilan',
+                    'Lingkungan kerja yang aman',
+                    'Cuti berbayar'
+                ]
+            },
+            'digital-marketing': {
+                title: 'Digital Marketing Specialist',
+                department: 'Departemen Pemasaran',
+                location: 'Jakarta Selatan',
+                type: 'Full-time',
+                description: 'Kami mencari Digital Marketing Specialist yang kreatif untuk mengelola dan meningkatkan kehadiran online kami. Posisi ini bertanggung jawab untuk mengembangkan dan mengimplementasikan strategi pemasaran digital yang efektif.',
+                responsibilities: [
+                    'Mengelola kampanye pemasaran digital',
+                    'Mengoptimalkan kehadiran media sosial perusahaan',
+                    'Mengembangkan konten yang menarik untuk berbagai platform',
+                    'Mengelola dan memperbarui situs web perusahaan',
+                    'Menganalisis metrik dan KPI untuk mengukur keberhasilan kampanye',
+                    'Berkolaborasi dengan tim pemasaran untuk mengembangkan strategi terpadu'
+                ],
+                requirements: [
+                    'Minimal 2 tahun pengalaman dalam pemasaran digital',
+                    'Pemahaman yang kuat tentang SEO, SEM, dan analitik web',
+                    'Pengalaman dengan platform media sosial dan alat manajemen konten',
+                    'Keterampilan menulis dan komunikasi yang sangat baik',
+                    'Gelar sarjana di bidang terkait (Pemasaran, Komunikasi, atau setara)',
+                    'Portofolio kampanye digital yang berhasil'
+                ],
+                benefits: [
+                    'Gaji kompetitif',
+                    'Asuransi kesehatan',
+                    'Tunjangan makan',
+                    'Program pengembangan karir',
+                    'Lingkungan kerja yang kreatif',
+                    'Cuti berbayar'
+                ]
+            }
+        };
+        
+        // News Details
+        const newsDetails = {
+            'news-1': {
+                title: 'Dynamic Company Profile Membuka Lokasi Baru di Jakarta Selatan',
+                date: '15 September 2023',
+                content: `
+                    <p class="mb-4">Dynamic Company Profile dengan bangga mengumumkan pembukaan lokasi baru kami di kawasan bisnis Jakarta Selatan. Lokasi baru ini menambah portofolio kami menjadi total 15 lokasi di seluruh Jakarta.</p>
+                    <p class="mb-4">Terletak di jantung kawasan bisnis Kuningan, lokasi baru ini menawarkan lebih dari 5.000 meter persegi ruang kantor premium dengan fasilitas terkini, termasuk:</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>50 kantor pribadi dengan berbagai ukuran</li>
+                        <li>Area coworking yang luas dengan 100 workstation</li>
+                        <li>10 ruang pertemuan dengan teknologi konferensi terkini</li>
+                        <li>Lounge dan area istirahat yang nyaman</li>
+                        <li>Kafetaria dan pantry lengkap</li>
+                        <li>Gym dan fasilitas kebugaran</li>
+                    </ul>
+                    <p class="mb-4">"Pembukaan lokasi baru ini merupakan langkah strategis dalam ekspansi kami untuk memenuhi permintaan yang terus meningkat akan ruang kantor premium yang fleksibel," kata Budi Santoso, CEO Dynamic Company Profile. "Kami berkomitmen untuk terus menyediakan solusi kantor terbaik yang mendukung produktivitas dan pertumbuhan bisnis klien kami."</p>
+                    <p>Lokasi baru ini akan mulai beroperasi pada 1 Oktober 2023, dan saat ini sedang menerima reservasi untuk kantor pribadi, keanggotaan coworking, dan ruang pertemuan.</p>
+                `
+            },
+            'news-2': {
+                title: 'Tren Perkantoran Pasca Pandemi: Fleksibilitas dan Teknologi',
+                date: '10 September 2023',
+                content: `
+                    <p class="mb-4">Pandemi telah mengubah cara kita bekerja dan memandang ruang kantor. Fleksibilitas dan teknologi menjadi kunci dalam desain dan operasional perkantoran modern.</p>
+                    <p class="mb-4">Berdasarkan survei terbaru yang dilakukan oleh Dynamic Company Profile terhadap 500 perusahaan di Indonesia, 78% responden menyatakan bahwa mereka telah mengadopsi model kerja hybrid, yang menggabungkan kerja di kantor dan jarak jauh. Hal ini telah mendorong permintaan akan ruang kantor yang lebih fleksibel dan dapat disesuaikan dengan kebutuhan yang berubah.</p>
+                    <p class="mb-4">Beberapa tren utama yang muncul dalam lanskap perkantoran pasca pandemi:</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Peningkatan permintaan untuk kontrak sewa jangka pendek dan fleksibel</li>
+                        <li>Fokus pada teknologi yang mendukung kolaborasi hybrid</li>
+                        <li>Peningkatan investasi dalam infrastruktur digital</li>
+                        <li>Desain ruang yang mendukung kesehatan dan kesejahteraan</li>
+                        <li>Pengurangan kepadatan workstation</li>
+                    </ul>
+                    <p class="mb-4">"Perusahaan saat ini mencari solusi kantor yang dapat beradaptasi dengan cepat terhadap perubahan kebutuhan bisnis mereka," kata Dewi Lestari, Head of Research di Dynamic Company Profile. "Fleksibilitas bukan lagi sekadar fitur tambahan, tetapi telah menjadi kebutuhan mendasar."</p>
+                    <p>Dynamic Company Profile terus berinovasi untuk memenuhi kebutuhan ini dengan menawarkan berbagai solusi kantor fleksibel yang didukung oleh teknologi terkini, memastikan bahwa klien kami dapat bekerja secara efisien dan produktif dalam lingkungan yang terus berubah.</p>
+                `
+            },
+            'news-3': {
+                title: 'Dynamic Company Profile Meraih Penghargaan "Best Office Provider 2023"',
+                date: '5 September 2023',
+                content: `
+                    <p class="mb-4">Dynamic Company Profile dengan bangga mengumumkan bahwa kami telah menerima penghargaan "Best Office Provider 2023" dari Indonesia Property Awards. Penghargaan ini merupakan pengakuan atas komitmen kami dalam menyediakan solusi kantor premium dengan layanan terbaik di industri.</p>
+                    <p class="mb-4">Kriteria penilaian untuk penghargaan ini meliputi:</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Kualitas fasilitas dan infrastruktur</li>
+                        <li>Inovasi dalam desain dan teknologi</li>
+                        <li>Kepuasan pelanggan dan retensi klien</li>
+                        <li>Keberlanjutan dan praktik ramah lingkungan</li>
+                        <li>Kontribusi terhadap komunitas bisnis lokal</li>
+                    </ul>
+                    <p class="mb-4">"Penghargaan ini merupakan bukti dari kerja keras dan dedikasi seluruh tim Dynamic Company Profile," kata Andi Wijaya, COO Dynamic Company Profile. "Kami berkomitmen untuk terus meningkatkan standar kami dan memberikan pengalaman terbaik bagi klien kami."</p>
+                    <p class="mb-4">Dalam 10 tahun terakhir, Dynamic Company Profile telah tumbuh dari satu lokasi menjadi jaringan 15 lokasi di seluruh Indonesia, melayani lebih dari 500 perusahaan dari berbagai industri.</p>
+                    <p>Penghargaan ini akan menjadi motivasi bagi kami untuk terus berinovasi dan meningkatkan layanan kami, memastikan bahwa kami tetap menjadi pemimpin dalam industri penyedia kantor premium di Indonesia.</p>
+                `
+            }
+        };
+        
+        // Add event listeners to job buttons
+        document.querySelectorAll('.timeline-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const jobId = button.getAttribute('data-job');
+                const job = jobDetails[jobId];
+                
+                if (job) {
+                    const modalHTML = `
+                        <div class="p-6 md:p-8 animate__animated animate__fadeIn">
+                            <div class="flex justify-between items-start mb-6">
+                                <div>
+                                    <h2 class="text-2xl font-bold text-blue-900">${job.title}</h2>
+                                    <p class="text-gray-600">${job.department} | ${job.location} | ${job.type}</p>
+                                </div>
+                                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 transition-colors">
+                                    <i class="fas fa-times text-xl"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="mb-6 animate__animated animate__fadeIn animate__delay-1s">
+                                <h3 class="text-lg font-bold text-blue-900 mb-2">Deskripsi Pekerjaan</h3>
+                                <p class="text-gray-700">${job.description}</p>
+                            </div>
+                            
+                            <div class="mb-6 animate__animated animate__fadeIn animate__delay-2s">
+                                <h3 class="text-lg font-bold text-blue-900 mb-2">Tanggung Jawab</h3>
+                                <ul class="list-disc pl-5 space-y-1">
+                                    ${job.responsibilities.map(item => `<li class="text-gray-700">${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                            
+                            <div class="mb-6 animate__animated animate__fadeIn animate__delay-3s">
+                                <h3 class="text-lg font-bold text-blue-900 mb-2">Persyaratan</h3>
+                                <ul class="list-disc pl-5 space-y-1">
+                                    ${job.requirements.map(item => `<li class="text-gray-700">${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                            
+                            <div class="mb-8 animate__animated animate__fadeIn animate__delay-4s">
+                                <h3 class="text-lg font-bold text-blue-900 mb-2">Benefit</h3>
+                                <ul class="list-disc pl-5 space-y-1">
+                                    ${job.benefits.map(item => `<li class="text-gray-700">${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                            
+                            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 animate__animated animate__fadeIn animate__delay-5s">
+                                <button class="btn-primary btn-ripple px-6 py-3 rounded-md font-medium">Lamar Sekarang</button>
+                                <button onclick="closeModal()" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-md font-medium hover:bg-gray-300 transition btn-ripple">Tutup</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    openModal(modalHTML);
+                }
+            });
+        });
+        
+        // Add event listeners to news buttons
+        document.querySelectorAll('[data-news]').forEach(button => {
+            button.addEventListener('click', () => {
+                const newsId = button.getAttribute('data-news');
+                const news = newsDetails[newsId];
+                
+                if (news) {
+                    const modalHTML = `
+                        <div class="p-6 md:p-8 animate__animated animate__fadeIn">
+                            <div class="flex justify-between items-start mb-6">
+                                <div>
+                                    <h2 class="text-2xl font-bold text-blue-900">${news.title}</h2>
+                                    <p class="text-gray-600">${news.date}</p>
+                                </div>
+                                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 transition-colors">
+                                    <i class="fas fa-times text-xl"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <div class="h-64 bg-blue-100 rounded-lg mb-6 shimmer"></div>
+                                <div class="text-gray-700 animate__animated animate__fadeIn animate__delay-1s">
+                                    ${news.content}
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center mt-8 pt-6 border-t border-gray-200 animate__animated animate__fadeIn animate__delay-2s">
+                                <div class="flex space-x-4">
+                                    <button class="flex items-center text-gray-600 hover:text-blue-900 transition-colors">
+                                        <i class="far fa-heart mr-2"></i> Suka
+                                    </button>
+                                    <button class="flex items-center text-gray-600 hover:text-blue-900 transition-colors">
+                                        <i class="far fa-share-square mr-2"></i> Bagikan
+                                    </button>
+                                </div>
+                                <button onclick="closeModal()" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-md font-medium hover:bg-gray-300 transition btn-ripple">Tutup</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    openModal(modalHTML);
+                }
+            });
+        });
+        
+        // Contact Form Submission
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Validate form (simple validation)
+            if (name && email && subject && message) {
+                // Show success message
+                const modalHTML = `
+                    <div class="p-6 md:p-8 text-center animate__animated animate__fadeIn">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 animate__animated animate__bounceIn">
+                            <i class="fas fa-check text-green-500 text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-blue-900 mb-4">Pesan Terkirim!</h2>
+                        <p class="text-gray-700 mb-6">Terima kasih telah menghubungi kami. Tim kami akan segera merespons pesan Anda.</p>
+                        <button onclick="closeModal()" class="btn-primary btn-ripple px-6 py-3 rounded-md font-medium">Tutup</button>
+                    </div>
+                `;
+                
+                openModal(modalHTML);
+                
+                // Reset form
+                contactForm.reset();
+            } else {
+                // Show error message
+                const modalHTML = `
+                    <div class="p-6 md:p-8 text-center animate__animated animate__shakeX">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-exclamation-triangle text-red-500 text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-blue-900 mb-4">Oops!</h2>
+                        <p class="text-gray-700 mb-6">Mohon lengkapi semua field yang diperlukan.</p>
+                        <button onclick="closeModal()" class="btn-primary btn-ripple px-6 py-3 rounded-md font-medium">Tutup</button>
+                    </div>
+                `;
+                
+                openModal(modalHTML);
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // Adjust for header height
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add active class to nav links on scroll
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        function setActiveNavLink() {
+            const scrollPosition = window.scrollY;
+            
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-blue-900', 'font-semibold');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('text-blue-900', 'font-semibold');
+                        }
+                    });
+                }
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // Adjust for header height
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95096894e5acfd37',t:'MTc1MDA2NzQ4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

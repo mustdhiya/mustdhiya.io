@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Pemesanan Ruangan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+        }
+        
+        .room {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .room:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+        
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            transform: translateY(-50px);
+            transition: all 0.3s ease;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .timeline-item {
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .booking-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .booking-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .time-slot {
+            transition: all 0.2s ease;
+        }
+        
+        .time-slot:hover:not(.booked) {
+            background-color: #e0f2fe;
+            transform: scale(1.05);
+        }
+        
+        .time-slot.selected {
+            background-color: #0ea5e9;
+            color: white;
+        }
+        
+        .time-slot.booked {
+            background-color: #f1f5f9;
+            color: #94a3b8;
+            cursor: not-allowed;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto px-4 py-8">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Sistem Pemesanan Ruangan</h1>
+            <p class="text-gray-600">Pilih ruangan pada denah untuk melihat detail dan melakukan pemesanan</p>
+        </header>
+        
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Floor Plan Section -->
+            <div class="lg:w-2/3 bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-xl font-semibold mb-4 text-gray-800">Denah Ruangan</h2>
+                <div class="floor-plan-container relative w-full h-[500px] border border-gray-200 rounded-lg overflow-hidden">
+                    <!-- SVG Floor Plan -->
+                    <svg width="100%" height="100%" viewBox="0 0 800 600" class="bg-blue-50">
+                        <!-- Main Building Outline -->
+                        <rect x="100" y="100" width="600" height="400" fill="#e2e8f0" stroke="#64748b" stroke-width="2" />
+                        
+                        <!-- Room 101 - Meeting Room -->
+                        <rect id="room101" class="room" x="120" y="120" width="150" height="100" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2" rx="4" />
+                        <text x="195" y="170" text-anchor="middle" fill="#1e40af" font-weight="500">Ruang Rapat 101</text>
+                        
+                        <!-- Room 102 - Conference Room -->
+                        <rect id="room102" class="room" x="120" y="240" width="150" height="120" fill="#bbf7d0" stroke="#22c55e" stroke-width="2" rx="4" />
+                        <text x="195" y="300" text-anchor="middle" fill="#166534" font-weight="500">Ruang Konferensi 102</text>
+                        
+                        <!-- Room 103 - Training Room -->
+                        <rect id="room103" class="room" x="120" y="380" width="150" height="100" fill="#fde68a" stroke="#eab308" stroke-width="2" rx="4" />
+                        <text x="195" y="430" text-anchor="middle" fill="#854d0e" font-weight="500">Ruang Pelatihan 103</text>
+                        
+                        <!-- Room 201 - Executive Room -->
+                        <rect id="room201" class="room" x="290" y="120" width="220" height="150" fill="#c7d2fe" stroke="#6366f1" stroke-width="2" rx="4" />
+                        <text x="400" y="195" text-anchor="middle" fill="#3730a3" font-weight="500">Ruang Eksekutif 201</text>
+                        
+                        <!-- Room 202 - Auditorium -->
+                        <rect id="room202" class="room" x="290" y="290" width="220" height="190" fill="#fed7aa" stroke="#f97316" stroke-width="2" rx="4" />
+                        <text x="400" y="385" text-anchor="middle" fill="#9a3412" font-weight="500">Auditorium 202</text>
+                        
+                        <!-- Room 301 - Workspace -->
+                        <rect id="room301" class="room" x="530" y="120" width="150" height="180" fill="#d8b4fe" stroke="#a855f7" stroke-width="2" rx="4" />
+                        <text x="605" y="210" text-anchor="middle" fill="#6b21a8" font-weight="500">Workspace 301</text>
+                        
+                        <!-- Room 302 - Creative Studio -->
+                        <rect id="room302" class="room" x="530" y="320" width="150" height="160" fill="#fbcfe8" stroke="#ec4899" stroke-width="2" rx="4" />
+                        <text x="605" y="400" text-anchor="middle" fill="#9d174d" font-weight="500">Studio Kreatif 302</text>
+                        
+                        <!-- Hallways -->
+                        <rect x="290" y="120" width="220" height="20" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1" />
+                        <rect x="290" y="270" width="220" height="20" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1" />
+                        <rect x="270" y="120" width="20" height="360" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1" />
+                        <rect x="510" y="120" width="20" height="360" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1" />
+                    </svg>
+                    
+                    <div class="absolute top-4 right-4 bg-white bg-opacity-80 p-2 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-1">
+                            <div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+                            <span class="text-xs">Tersedia</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+                            <span class="text-xs">Terpesan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Timeline Section -->
+            <div class="lg:w-1/3 bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-xl font-semibold mb-4 text-gray-800">Jadwal Hari Ini</h2>
+                <div class="date-selector mb-4">
+                    <input type="date" id="booking-date" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                
+                <div class="timeline-container space-y-3 max-h-[400px] overflow-y-auto pr-2">
+                    <div class="timeline-item bg-blue-50 p-3 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium text-blue-800">Ruang Rapat 101</span>
+                            <span class="text-sm text-blue-600">09:00 - 10:30</span>
+                        </div>
+                        <p class="text-sm text-gray-600">Meeting Tim Marketing</p>
+                    </div>
+                    
+                    <div class="timeline-item bg-purple-50 p-3 rounded-lg border-l-4 border-purple-500">
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium text-purple-800">Workspace 301</span>
+                            <span class="text-sm text-purple-600">10:00 - 12:00</span>
+                        </div>
+                        <p class="text-sm text-gray-600">Workshop Design Thinking</p>
+                    </div>
+                    
+                    <div class="timeline-item bg-orange-50 p-3 rounded-lg border-l-4 border-orange-500">
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium text-orange-800">Auditorium 202</span>
+                            <span class="text-sm text-orange-600">13:00 - 15:00</span>
+                        </div>
+                        <p class="text-sm text-gray-600">Presentasi Produk Baru</p>
+                    </div>
+                    
+                    <div class="timeline-item bg-green-50 p-3 rounded-lg border-l-4 border-green-500">
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium text-green-800">Ruang Konferensi 102</span>
+                            <span class="text-sm text-green-600">14:00 - 16:00</span>
+                        </div>
+                        <p class="text-sm text-gray-600">Rapat Direksi</p>
+                    </div>
+                    
+                    <div class="timeline-item bg-pink-50 p-3 rounded-lg border-l-4 border-pink-500">
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium text-pink-800">Studio Kreatif 302</span>
+                            <span class="text-sm text-pink-600">15:30 - 17:00</span>
+                        </div>
+                        <p class="text-sm text-gray-600">Sesi Foto Produk</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Room Detail Modal -->
+    <div id="roomModal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="modal-content bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <h2 id="modalRoomTitle" class="text-2xl font-bold text-gray-800">Detail Ruangan</h2>
+                    <button id="closeModal" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <div id="modalRoomImage" class="bg-gray-100 rounded-lg h-48 mb-4 flex items-center justify-center">
+                            <svg id="modalRoomIcon" class="w-24 h-24 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500">Kapasitas</h3>
+                                <p id="modalRoomCapacity" class="text-gray-800">-</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500">Fasilitas</h3>
+                                <ul id="modalRoomFacilities" class="list-disc list-inside text-gray-800">
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500">Deskripsi</h3>
+                                <p id="modalRoomDescription" class="text-gray-800">-</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-800 mb-3">Pilih Waktu</h3>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal</label>
+                            <input type="date" id="modalBookingDate" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Slot Waktu</label>
+                            <div class="grid grid-cols-3 gap-2" id="timeSlots">
+                                <div class="time-slot p-2 text-center border border-gray-200 rounded-md cursor-pointer text-sm">08:00</div>
+                                <div class="time-slot p-2 text-center border border-gray-200 rounded-md cursor-pointer text-sm">09:00</div>
+                                <div class="time-slot booked p-2 text-center border border-gray-200 rounded-md text-sm">10:00</div>
+                                <div class="time-slot p-2 text-center border border-gray-200 rounded-md cursor-pointer text-sm">11:00</div>
+                                <div class="time-slot p-2 text-center border border-gray-200 rounded-md cursor-pointer text-sm">12:00</div>
+                                <div class="time-slot booked p-2 text-center border border-gray-200 rounded-md text-sm">13:00</div>
+                                <div class="time-slot booked p-2 text-center border border-gray-200 rounded-md text-sm">14:00</div>
+                                <div class="time-slot p-2 text-center border border-gray-200 rounded-md cursor-pointer text-sm">15:00</div>
+                                <div class="time-slot p-2 text-center border border-gray-200 rounded-md cursor-pointer text-sm">16:00</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Durasi</label>
+                            <select id="modalDuration" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="1">1 jam</option>
+                                <option value="2">2 jam</option>
+                                <option value="3">3 jam</option>
+                                <option value="4">4 jam</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Keterangan</label>
+                            <textarea id="modalNotes" rows="3" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan keterangan pemesanan..."></textarea>
+                        </div>
+                        
+                        <button id="bookRoomBtn" class="booking-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-all">
+                            Pesan Ruangan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="modal-content bg-white rounded-xl shadow-2xl max-w-md w-full">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Konfirmasi Pemesanan</h2>
+                    <button id="closeConfirmationModal" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="space-y-4">
+                    <p class="text-gray-600">Apakah Anda yakin ingin memesan ruangan ini?</p>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <div class="flex items-center mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                            <span id="confirmRoomName" class="font-medium text-blue-800">Ruang Rapat 101</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-2 text-sm">
+                            <div>
+                                <span class="text-gray-500">Tanggal:</span>
+                                <span id="confirmDate" class="text-gray-800 ml-1">-</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-500">Waktu:</span>
+                                <span id="confirmTime" class="text-gray-800 ml-1">-</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-500">Durasi:</span>
+                                <span id="confirmDuration" class="text-gray-800 ml-1">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-3">
+                        <button id="cancelBookingBtn" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-all">
+                            Batal
+                        </button>
+                        <button id="confirmBookingBtn" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-all">
+                            Konfirmasi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Success Modal -->
+    <div id="successModal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="modal-content bg-white rounded-xl shadow-2xl max-w-md w-full">
+            <div class="p-6">
+                <div class="flex flex-col items-center justify-center mb-4">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 text-center">Pemesanan Berhasil!</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <p class="text-gray-600 text-center">Ruangan telah berhasil dipesan. Detail pemesanan telah dikirim ke email Anda.</p>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <div class="flex items-center mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                            </svg>
+                            <span id="successRoomName" class="font-medium text-green-800">Ruang Rapat 101</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-2 text-sm">
+                            <div>
+                                <span class="text-gray-500">Kode Booking:</span>
+                                <span id="bookingCode" class="text-gray-800 ml-1">BK-12345</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-500">Tanggal:</span>
+                                <span id="successDate" class="text-gray-800 ml-1">-</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-500">Waktu:</span>
+                                <span id="successTime" class="text-gray-800 ml-1">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button id="closeSuccessModal" class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-all">
+                        Selesai
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set today's date as default
+            const today = new Date();
+            const formattedDate = today.toISOString().split('T')[0];
+            document.getElementById('booking-date').value = formattedDate;
+            document.getElementById('modalBookingDate').value = formattedDate;
+            
+            // Room data
+            const roomData = {
+                room101: {
+                    title: "Ruang Rapat 101",
+                    capacity: "10 orang",
+                    facilities: ["Proyektor", "Whiteboard", "Video Conference", "AC"],
+                    description: "Ruang rapat berukuran sedang yang ideal untuk pertemuan tim kecil hingga menengah. Dilengkapi dengan peralatan presentasi modern dan koneksi internet berkecepatan tinggi.",
+                    color: "#bfdbfe"
+                },
+                room102: {
+                    title: "Ruang Konferensi 102",
+                    capacity: "20 orang",
+                    facilities: ["Proyektor", "Whiteboard", "Video Conference", "AC", "Sound System"],
+                    description: "Ruang konferensi luas dengan tata letak yang dapat disesuaikan. Cocok untuk rapat besar, presentasi, dan acara perusahaan.",
+                    color: "#bbf7d0"
+                },
+                room103: {
+                    title: "Ruang Pelatihan 103",
+                    capacity: "15 orang",
+                    facilities: ["Proyektor", "Whiteboard", "Komputer", "AC"],
+                    description: "Ruang pelatihan dengan meja dan kursi yang dapat diatur ulang. Ideal untuk workshop, pelatihan, dan sesi pembelajaran interaktif.",
+                    color: "#fde68a"
+                },
+                room201: {
+                    title: "Ruang Eksekutif 201",
+                    capacity: "12 orang",
+                    facilities: ["Proyektor 4K", "Smart Board", "Video Conference", "AC", "Coffee Bar"],
+                    description: "Ruang rapat eksekutif premium dengan perabotan mewah dan teknologi canggih. Cocok untuk pertemuan tingkat tinggi dan presentasi penting.",
+                    color: "#c7d2fe"
+                },
+                room202: {
+                    title: "Auditorium 202",
+                    capacity: "50 orang",
+                    facilities: ["Proyektor", "Sound System", "Podium", "AC", "Lighting System"],
+                    description: "Auditorium besar dengan panggung dan sistem audio visual profesional. Ideal untuk seminar, konferensi, dan acara perusahaan berskala besar.",
+                    color: "#fed7aa"
+                },
+                room301: {
+                    title: "Workspace 301",
+                    capacity: "25 orang",
+                    facilities: ["Meja Kerja", "Wi-Fi Berkecepatan Tinggi", "Printer", "AC", "Pantry"],
+                    description: "Ruang kerja bersama yang nyaman dengan berbagai fasilitas pendukung produktivitas. Cocok untuk kerja kolaboratif dan brainstorming.",
+                    color: "#d8b4fe"
+                },
+                room302: {
+                    title: "Studio Kreatif 302",
+                    capacity: "15 orang",
+                    facilities: ["Peralatan Desain", "Komputer Grafis", "Green Screen", "AC", "Lighting Equipment"],
+                    description: "Studio kreatif yang dilengkapi dengan peralatan produksi konten dan desain. Ideal untuk sesi foto, rekaman video, dan proyek kreatif lainnya.",
+                    color: "#fbcfe8"
+                }
+            };
+            
+            // Modal elements
+            const roomModal = document.getElementById('roomModal');
+            const confirmationModal = document.getElementById('confirmationModal');
+            const successModal = document.getElementById('successModal');
+            const closeModal = document.getElementById('closeModal');
+            const closeConfirmationModal = document.getElementById('closeConfirmationModal');
+            const closeSuccessModal = document.getElementById('closeSuccessModal');
+            const bookRoomBtn = document.getElementById('bookRoomBtn');
+            const cancelBookingBtn = document.getElementById('cancelBookingBtn');
+            const confirmBookingBtn = document.getElementById('confirmBookingBtn');
+            
+            // Room elements
+            const rooms = document.querySelectorAll('.room');
+            let currentRoom = null;
+            
+            // Time slots
+            const timeSlots = document.querySelectorAll('.time-slot');
+            let selectedTimeSlot = null;
+            
+            // Open room modal when clicking on a room
+            rooms.forEach(room => {
+                room.addEventListener('click', function() {
+                    const roomId = this.id;
+                    currentRoom = roomId;
+                    const room = roomData[roomId];
+                    
+                    // Set modal content
+                    document.getElementById('modalRoomTitle').textContent = room.title;
+                    document.getElementById('modalRoomCapacity').textContent = room.capacity;
+                    
+                    // Clear and populate facilities
+                    const facilitiesEl = document.getElementById('modalRoomFacilities');
+                    facilitiesEl.innerHTML = '';
+                    room.facilities.forEach(facility => {
+                        const li = document.createElement('li');
+                        li.textContent = facility;
+                        facilitiesEl.appendChild(li);
+                    });
+                    
+                    document.getElementById('modalRoomDescription').textContent = room.description;
+                    
+                    // Set room icon color
+                    document.getElementById('modalRoomImage').style.backgroundColor = room.color;
+                    
+                    // Show modal with animation
+                    roomModal.classList.add('active');
+                });
+            });
+            
+            // Close room modal
+            closeModal.addEventListener('click', function() {
+                roomModal.classList.remove('active');
+            });
+            
+            // Close confirmation modal
+            closeConfirmationModal.addEventListener('click', function() {
+                confirmationModal.classList.remove('active');
+            });
+            
+            // Close success modal
+            closeSuccessModal.addEventListener('click', function() {
+                successModal.classList.remove('active');
+                // Refresh the page or update UI as needed
+            });
+            
+            // Handle time slot selection
+            timeSlots.forEach(slot => {
+                if (!slot.classList.contains('booked')) {
+                    slot.addEventListener('click', function() {
+                        // Remove selected class from all slots
+                        timeSlots.forEach(s => s.classList.remove('selected'));
+                        // Add selected class to clicked slot
+                        this.classList.add('selected');
+                        selectedTimeSlot = this.textContent;
+                    });
+                }
+            });
+            
+            // Book room button click
+            bookRoomBtn.addEventListener('click', function() {
+                if (!selectedTimeSlot) {
+                    alert('Silakan pilih slot waktu terlebih dahulu');
+                    return;
+                }
+                
+                const date = document.getElementById('modalBookingDate').value;
+                const duration = document.getElementById('modalDuration').value;
+                
+                // Set confirmation modal content
+                document.getElementById('confirmRoomName').textContent = roomData[currentRoom].title;
+                document.getElementById('confirmDate').textContent = formatDate(date);
+                document.getElementById('confirmTime').textContent = selectedTimeSlot;
+                document.getElementById('confirmDuration').textContent = `${duration} jam`;
+                
+                // Hide room modal and show confirmation modal
+                roomModal.classList.remove('active');
+                confirmationModal.classList.add('active');
+            });
+            
+            // Cancel booking button click
+            cancelBookingBtn.addEventListener('click', function() {
+                confirmationModal.classList.remove('active');
+                roomModal.classList.add('active');
+            });
+            
+            // Confirm booking button click
+            confirmBookingBtn.addEventListener('click', function() {
+                // Generate random booking code
+                const bookingCode = 'BK-' + Math.floor(10000 + Math.random() * 90000);
+                
+                // Set success modal content
+                document.getElementById('successRoomName').textContent = roomData[currentRoom].title;
+                document.getElementById('bookingCode').textContent = bookingCode;
+                document.getElementById('successDate').textContent = document.getElementById('confirmDate').textContent;
+                document.getElementById('successTime').textContent = document.getElementById('confirmTime').textContent;
+                
+                // Hide confirmation modal and show success modal
+                confirmationModal.classList.remove('active');
+                successModal.classList.add('active');
+                
+                // Add the booking to the timeline
+                addBookingToTimeline(
+                    roomData[currentRoom].title,
+                    document.getElementById('confirmDate').textContent,
+                    document.getElementById('confirmTime').textContent,
+                    document.getElementById('modalNotes').value || 'Pemesanan Baru'
+                );
+            });
+            
+            // Close modals when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === roomModal) {
+                    roomModal.classList.remove('active');
+                }
+                if (event.target === confirmationModal) {
+                    confirmationModal.classList.remove('active');
+                }
+                if (event.target === successModal) {
+                    successModal.classList.remove('active');
+                }
+            });
+            
+            // Format date for display
+            function formatDate(dateString) {
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                return new Date(dateString).toLocaleDateString('id-ID', options);
+            }
+            
+            // Add booking to timeline
+            function addBookingToTimeline(roomName, date, time, description) {
+                const timelineContainer = document.querySelector('.timeline-container');
+                
+                // Determine color based on room name
+                let colorClass = 'blue';
+                if (roomName.includes('Konferensi')) colorClass = 'green';
+                if (roomName.includes('Pelatihan')) colorClass = 'yellow';
+                if (roomName.includes('Eksekutif')) colorClass = 'indigo';
+                if (roomName.includes('Auditorium')) colorClass = 'orange';
+                if (roomName.includes('Workspace')) colorClass = 'purple';
+                if (roomName.includes('Studio')) colorClass = 'pink';
+                
+                const timelineItem = document.createElement('div');
+                timelineItem.className = `timeline-item bg-${colorClass}-50 p-3 rounded-lg border-l-4 border-${colorClass}-500 pulse`;
+                timelineItem.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <span class="font-medium text-${colorClass}-800">${roomName}</span>
+                        <span class="text-sm text-${colorClass}-600">${time}</span>
+                    </div>
+                    <p class="text-sm text-gray-600">${description}</p>
+                `;
+                
+                // Add to the beginning of the timeline
+                timelineContainer.insertBefore(timelineItem, timelineContainer.firstChild);
+                
+                // Remove pulse animation after 3 seconds
+                setTimeout(() => {
+                    timelineItem.classList.remove('pulse');
+                }, 3000);
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9509a391c15cef6a',t:'MTc1MDA2OTkwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
