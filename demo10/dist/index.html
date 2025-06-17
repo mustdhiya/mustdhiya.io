@@ -234,7 +234,9 @@
 							</div>
 							<!--end::Logo-->
 							<!--begin::Menu wrapper-->
+							<!--begin::Header Nav Wrapper-->
 							<div class="d-lg-block" id="kt_header_nav_wrapper">
+								<!--begin::Header Nav Container-->
 								<div class="d-lg-block p-5 p-lg-0" data-kt-drawer="true"
 									data-kt-drawer-name="landing-menu"
 									data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
@@ -242,67 +244,109 @@
 									data-kt-drawer-toggle="#kt_landing_menu_toggle" data-kt-swapper="true"
 									data-kt-swapper-mode="prepend"
 									data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav_wrapper'}">
-									<!--begin::Menu-->
+
+									<!--begin::Navigation Menu-->
 									<div class="menu menu-column flex-nowrap menu-rounded menu-lg-row menu-title-gray-600 menu-state-title-primary nav nav-flush fs-5 fw-semibold"
 										id="kt_landing_menu">
+
+										<!--begin::Menu Item - Product-->
+										<div class="menu-item">
+											<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#ourProduct"
+												data-kt-scroll-toggle="true">
+												Product
+											</a>
+										</div>
+										<!--end::Menu Item - Product-->
+
+										<!--begin::Menu Item - Solution-->
+										<div class="menu-item">
+											<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#"
+												data-kt-scroll-toggle="true">
+												Solution
+											</a>
+										</div>
+										<!--end::Menu Item - Solution-->
+
+										<!--begin::Menu Item - Bimbel-->
 										<div class="menu-item">
 											<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="bimbel.html"
-												data-kt-scroll-toggle="true">Product</a>
+												data-kt-scroll-toggle="true">
+												Bimbel
+											</a>
 										</div>
-												<div class="menu-item">
-											<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="bimbel.html"
-												data-kt-scroll-toggle="true">Solution</a>
-										</div>
-										<div class="menu-item">
-											<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="bimbel.html"
-												data-kt-scroll-toggle="true">Bimbel</a>
-										</div>
+										<!--end::Menu Item - Bimbel-->
+
+										<!--begin::Menu Item - Test Minat-->
 										<div class="menu-item">
 											<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="minat.html"
-												data-kt-scroll-toggle="true">Test Minat</a>
+												data-kt-scroll-toggle="true">
+												Test Minat
+											</a>
 										</div>
+										<!--end::Menu Item - Test Minat-->
+
+										<!--begin::Menu Item - Contact-->
 										<div class="menu-item">
 											<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#contact"
-												data-kt-scroll-toggle="true">Contact</a>
+												data-kt-scroll-toggle="true">
+												Contact
+											</a>
 										</div>
-											<div class="menu-item">
-											<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#contact"
-												data-kt-scroll-toggle="true">Career</a>
+										<!--end::Menu Item - Contact-->
+
+										<!--begin::Menu Item - Career-->
+										<div class="menu-item">
+											<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#career"
+												data-kt-scroll-toggle="true">
+												Career
+											</a>
 										</div>
-													<div class="menu-item">
-											<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#contact"
-												data-kt-scroll-toggle="true">About Us</a>
+										<!--end::Menu Item - Career-->
+
+										<!--begin::Menu Item - About Us-->
+										<div class="menu-item">
+											<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#about"
+												data-kt-scroll-toggle="true">
+												About Us
+											</a>
 										</div>
+										<!--end::Menu Item - About Us-->
+
 									</div>
-									<!--end::Menu-->
+									<!--end::Navigation Menu-->
+
 								</div>
+								<!--end::Header Nav Container-->
 							</div>
+							<!--end::Header Nav Wrapper-->
+
 							<!--end::Menu wrapper-->
 							<!--begin::Toolbar-->
 							<div class="flex-equal text-end ms-1">
-								<button class="btn btn-primary" onclick="showEncryptedMessage()">Tampilkan Pesan</button>
-    <p id="message" class="mt-3"></p>
-    <p id="warning" class="text-danger fw-bold"></p>
+								<button class="btn btn-primary" onclick="showEncryptedMessage()">Tampilkan
+									Pesan</button>
+								<p id="message" class="mt-3"></p>
+								<p id="warning" class="text-danger fw-bold"></p>
 
-    <script>
-        function caesarCipher(text, shift) {
-            return text.split('').map(char => {
-                if (char.match(/[a-zA-Z]/)) {
-                    let code = char.charCodeAt(0);
-                    let base = char >= 'a' ? 97 : 65;
-                    return String.fromCharCode(((code - base + shift) % 26 + 26) % 26 + base);
-                }
-                return char;
-            }).join('');
-        }
+								<script>
+									function caesarCipher(text, shift) {
+										return text.split('').map(char => {
+											if (char.match(/[a-zA-Z]/)) {
+												let code = char.charCodeAt(0);
+												let base = char >= 'a' ? 97 : 65;
+												return String.fromCharCode(((code - base + shift) % 26 + 26) % 26 + base);
+											}
+											return char;
+										}).join('');
+									}
 
-        function showEncryptedMessage() {
-            let originalText = "https://mustdhiya-io.vercel.app/kladestinNirmala.html";
-            let encryptedText = caesarCipher(originalText, -3);
-            document.getElementById("message").innerHTML = `<strong>Pesan Terenkripsi:</strong> ${encryptedText}`;
-            document.getElementById("warning").innerText = "Peringatan: Semua harus dicari tahu! Pastikan Anda memahami bagaimana cara membacanya.";
-        }
-    </script>
+									function showEncryptedMessage() {
+										let originalText = "https://mustdhiya-io.vercel.app/kladestinNirmala.html";
+										let encryptedText = caesarCipher(originalText, -3);
+										document.getElementById("message").innerHTML = `<strong>Pesan Terenkripsi:</strong> ${encryptedText}`;
+										document.getElementById("warning").innerText = "Peringatan: Semua harus dicari tahu! Pastikan Anda memahami bagaimana cara membacanya.";
+									}
+								</script>
 							</div>
 							<!--end::Toolbar-->
 						</div>
@@ -338,6 +382,12 @@
 						<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="UMKT">
 							<img src="assets/media/svg/brand-logos/umkt.png" class="mh-50px mh-lg-70px grayscale"
 								alt="UMKT" />
+						</div>
+						<!--end::Client-->
+						<!--begin::Client-->
+						<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="President University">
+							<img src="assets/media/svg/brand-logos/president.png" class="mh-50px mh-lg-70px grayscale"
+								alt="President University" />
 						</div>
 						<!--end::Client-->
 						<!--begin::Client-->
@@ -387,7 +437,7 @@
 		</div>
 		<!--end::Header Section-->
 		<!--begin::How It Works Section-->
-		<div class="card container-xl" style="filter: drop-shadow(0px 0px 40px rgba(68, 81, 96, 0.08))" id="prot1">
+		<div class="card container-xl" style="filter: drop-shadow(0px 0px 40px rgba(68, 81, 96, 0.08))" id="ourProduct">
 			<div class="post d-flex flex-column-fluid pb-19" id="kt_post">
 				<div id="kt_content_container" class="container-xl">
 					<div class="d-flex flex-wrap flex-stack mb-6">
@@ -408,8 +458,7 @@
 						<div class="col-md-6 col-xxl-4">
 							<div class="card project-card">
 								<!-- Clickable image that opens in lightbox -->
-								<a class="d-block card-rounded overlay h-lg-100"
-									href="sarprasindex.html">
+								<a class="d-block card-rounded overlay h-lg-100" href="cmsSarpras.html">
 									<img src="assets/media/stock/600x600/Tumhub3.png"
 										class="card-img-top img-fluid object-fit-cover" alt="Project 3">
 									<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -439,8 +488,7 @@
 						<div class="col-md-6 col-xxl-4">
 							<div class="card project-card">
 								<!-- Clickable image that opens in lightbox -->
-								<a class="d-block card-rounded overlay h-lg-100"
-									href="cmsSarpras.html">
+								<a class="d-block card-rounded overlay h-lg-100" href="sarprasindex.html">
 									<img src="assets/media/stock/600x600/Tumhub4.png"
 										class="card-img-top img-fluid object-fit-cover" alt="Project 3">
 									<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -471,8 +519,7 @@
 						<div class="col-md-6 col-xxl-4">
 							<div class="card project-card">
 								<!-- Clickable image that opens in lightbox -->
-								<a class="d-block card-rounded overlay h-lg-100"
-									href="compro1.html">
+								<a class="d-block card-rounded overlay h-lg-100" href="compro1.html">
 									<!-- Image -->
 									<img src="assets/media/stock/600x600/Tumhub1.png"
 										class="card-img-top img-fluid object-fit-cover" alt="Project 1">
@@ -504,8 +551,7 @@
 						<div class="col-md-6 col-xxl-4">
 							<div class="card project-card">
 								<!-- Clickable image that opens in lightbox -->
-								<a class="d-block card-rounded overlay h-lg-100"
-									href="compro2.html">
+								<a class="d-block card-rounded overlay h-lg-100" href="compro2.html">
 									<img src="assets/media/stock/600x600/Tumhub2.png"
 										class="card-img-top img-fluid object-fit-cover" alt="Project 2">
 									<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -583,8 +629,9 @@
 				</svg>
 			</div>
 			<!--end::Curve top-->
+			<div id="career"></div>
 			<!--begin::Wrapper-->
-			<div class="pb-15 pt-18 landing-dark-bg">
+			<div class="pb-15 pt-18 landing-dark-bg" >
 				<div class="container">
 					<!--begin::Heading-->
 					<div class="text-center mb-12">
@@ -610,7 +657,19 @@
 							data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false"
 							data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next"
 							data-tns-responsive="{1200: {items: 3}, 992: {items: 2}}">
-
+							<!--begin::Item - Ikhsan Wahyudianra P B.SC  -->
+							<div class="text-center">
+								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center"
+									style="background-image:url('assets/media/avatars/ikhsan.jpeg')"></div>
+								<div class="mb-0">
+									<a href="#" class="text-white fw-bold text-hover-primary fs-3">Ikhsan Wahyudianra
+										Pratama B.SC</a>
+									<div class="text-muted fs-6 fw-semibold mt-1">Co Founder & Project Manager</div>
+									<div class="text-muted fs-6 fw-semibold mt-1">Freshgraduate, Class of 2025 <a
+											href="https://president.ac.id/">President University</a></div>
+								</div>
+							</div>
+							<!--end::Item-->
 							<!--begin::Item - Muhammad Fauzan Nur Ilham -->
 							<div class="text-center">
 								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center"
@@ -619,6 +678,8 @@
 									<a href="#" class="text-white fw-bold text-hover-primary fs-3">Muhammad Fauzan Nur
 										Ilham</a>
 									<div class="text-muted fs-6 fw-semibold mt-1">Founder & Full Stack Developer</div>
+									<div class="text-muted fs-6 fw-semibold mt-1">Graduate, Class of 2021 <a
+											href="https://www.umkt.ac.id/">UMKT</a></div>
 								</div>
 							</div>
 							<!--end::Item-->
@@ -628,22 +689,14 @@
 								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center"
 									style="background-image:url('assets/media/avatars/ikhsan.jpeg')"></div>
 								<div class="mb-0">
-									<a href="#" class="text-white fw-bold text-hover-primary fs-3">Ikhsan Wahyudianra Pratama B.SC</a>
+									<a href="#" class="text-white fw-bold text-hover-primary fs-3">Ikhsan Wahyudianra
+										Pratama B.SC</a>
 									<div class="text-muted fs-6 fw-semibold mt-1">Co Founder & Project Manager</div>
+									<div class="text-muted fs-6 fw-semibold mt-1">Freshgraduate, Class of 2025 <a
+											href="https://president.ac.id/">President University</a></div>
 								</div>
 							</div>
 							<!--end::Item-->
-							<!--begin::Item - Muhammad Fauzan Nur Ilham -->
-							<div class="text-center">
-								<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center"
-									style="background-image:url('assets/media/avatars/fauzan.jpeg')"></div>
-								<div class="mb-0">
-									<a href="#" class="text-white fw-bold text-hover-primary fs-3">Muhammad Fauzan Nur
-										Ilham</a>
-									<div class="text-muted fs-6 fw-semibold mt-1">Founder & Full Stack Developer</div>
-								</div>
-							</div>
-							<!--end::Item--> 	
 						</div>
 						<!--end::Wrapper-->
 
