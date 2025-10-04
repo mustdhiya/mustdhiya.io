@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Manajemen Perusahaan & Lowongan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="assets/media/logos/must-dhiya-logo.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+        }
+
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: #3b82f6;
+        }
+
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            height: 14px;
+            width: 14px;
+            border-radius: 50%;
+            background-color: #3b82f6;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover:after {
+            background-color: #1d4ed8;
+            transform: scale(1.2);
+        }
+
+        .job-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chart-container {
+            position: relative;
+            height: 200px;
+        }
+
+        .chart-bar {
+            position: absolute;
+            bottom: 0;
+            width: 30px;
+            background: linear-gradient(to top, #3b82f6, #93c5fd);
+            border-radius: 4px 4px 0 0;
+            transition: height 1s ease;
+        }
+
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring-circle {
+            stroke-dasharray: 251.2;
+            stroke-dashoffset: 251.2;
+            transition: stroke-dashoffset 1s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
+        <!-- Sidebar -->
+        <div class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-10">
+            <div class="flex items-center justify-center h-16 border-b">
+                <img src="assets/media/logos/must-dhiya-logo.png" alt="logo" class="h-10">
+                <h1 class="text-xl font-bold text-blue-800"> Admin Dashboard</h1>
+            </div>
+            <nav class="mt-6">
+                <div class="px-4 py-3 bg-blue-100 text-blue-800 font-medium rounded-r-lg">
+                    <i class="fas fa-home mr-2"></i> Dashboard
+                </div>
+                <a href="#" class="block px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-800 transition">
+                    <i class="fas fa-briefcase mr-2"></i> Lowongan Kerja
+                </a>
+                <a href="#" class="block px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-800 transition">
+                    <i class="fas fa-users mr-2"></i> Kandidat
+                </a>
+                <a href="#" class="block px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-800 transition">
+                    <i class="fas fa-building mr-2"></i> Perusahaan
+                </a>
+                <a href="#" class="block px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-800 transition">
+                    <i class="fas fa-chart-line mr-2"></i> Laporan
+                </a>
+                <a href="#" class="block px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-800 transition">
+                    <i class="fas fa-cog mr-2"></i> Pengaturan
+                </a>
+            </nav>
+            <div class="absolute bottom-0 left-0 right-0 p-4 border-t">
+                <div class="flex items-center">
+                    <div
+                        class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+                        A
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-700">Admin User</p>
+                        <p class="text-xs text-gray-500">admin@example.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="ml-64 p-8">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-800">Manajemen Perusahaan & Lowongan</h1>
+                    <p class="text-gray-600">Selamat datang kembali, Admin!</p>
+                </div>
+                <div class="flex space-x-4">
+                    <button id="btnAddJob"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center transition">
+                        <i class="fas fa-plus mr-2"></i> Tambah Lowongan
+                    </button>
+                    <button id="btnAddCompany"
+                        class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center transition">
+                        <i class="fas fa-building mr-2"></i> Tambah Perusahaan
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="stat-card bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-500">
+                    <div class="flex justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 font-medium">Total Lowongan</p>
+                            <p class="text-2xl font-bold text-gray-800">24</p>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-500">
+                            <i class="fas fa-briefcase text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="text-green-500 text-sm font-medium"><i class="fas fa-arrow-up mr-1"></i> 12%</span>
+                        <span class="text-gray-500 text-sm"> dari bulan lalu</span>
+                    </div>
+                </div>
+
+                <div class="stat-card bg-white p-6 rounded-xl shadow-md border-l-4 border-green-500">
+                    <div class="flex justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 font-medium">Kandidat Baru</p>
+                            <p class="text-2xl font-bold text-gray-800">156</p>
+                        </div>
+                        <div
+                            class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-500">
+                            <i class="fas fa-user-plus text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="text-green-500 text-sm font-medium"><i class="fas fa-arrow-up mr-1"></i> 18%</span>
+                        <span class="text-gray-500 text-sm"> dari bulan lalu</span>
+                    </div>
+                </div>
+
+                <div class="stat-card bg-white p-6 rounded-xl shadow-md border-l-4 border-purple-500">
+                    <div class="flex justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 font-medium">Wawancara</p>
+                            <p class="text-2xl font-bold text-gray-800">38</p>
+                        </div>
+                        <div
+                            class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-500">
+                            <i class="fas fa-comments text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="text-red-500 text-sm font-medium"><i class="fas fa-arrow-down mr-1"></i> 5%</span>
+                        <span class="text-gray-500 text-sm"> dari bulan lalu</span>
+                    </div>
+                </div>
+
+                <div class="stat-card bg-white p-6 rounded-xl shadow-md border-l-4 border-amber-500">
+                    <div class="flex justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 font-medium">Perusahaan</p>
+                            <p class="text-2xl font-bold text-gray-800">12</p>
+                        </div>
+                        <div
+                            class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center text-amber-500">
+                            <i class="fas fa-building text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="text-green-500 text-sm font-medium"><i class="fas fa-arrow-up mr-1"></i> 8%</span>
+                        <span class="text-gray-500 text-sm"> dari bulan lalu</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Timeline Section -->
+                <div class="col-span-1 bg-white p-6 rounded-xl shadow-md">
+                    <h2 class="text-lg font-bold text-gray-800 mb-4">Timeline Proses Rekrutmen</h2>
+
+                    <div class="timeline-container">
+                        <div class="timeline-item" data-step="1">
+                            <h3 class="font-medium text-blue-700">Publikasi Lowongan</h3>
+                            <p class="text-sm text-gray-600 mt-1">Lowongan dipublikasikan ke berbagai platform</p>
+                            <span class="text-xs text-gray-500 mt-1 block">14 Mei 2023</span>
+                        </div>
+
+                        <div class="timeline-item" data-step="2">
+                            <h3 class="font-medium text-blue-700">Penyaringan CV</h3>
+                            <p class="text-sm text-gray-600 mt-1">Seleksi awal berdasarkan kualifikasi</p>
+                            <span class="text-xs text-gray-500 mt-1 block">21 Mei 2023</span>
+                        </div>
+
+                        <div class="timeline-item" data-step="3">
+                            <h3 class="font-medium text-blue-700">Tes Kemampuan</h3>
+                            <p class="text-sm text-gray-600 mt-1">Kandidat mengikuti tes teknis</p>
+                            <span class="text-xs text-gray-500 mt-1 block">28 Mei 2023</span>
+                        </div>
+
+                        <div class="timeline-item" data-step="4">
+                            <h3 class="font-medium text-blue-700">Wawancara</h3>
+                            <p class="text-sm text-gray-600 mt-1">Wawancara dengan tim HR dan manajer</p>
+                            <span class="text-xs text-gray-500 mt-1 block">5 Juni 2023</span>
+                        </div>
+
+                        <div class="timeline-item" data-step="5">
+                            <h3 class="font-medium text-blue-700">Penawaran Kerja</h3>
+                            <p class="text-sm text-gray-600 mt-1">Negosiasi dan penawaran resmi</p>
+                            <span class="text-xs text-gray-500 mt-1 block">12 Juni 2023</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Listings -->
+                <div class="col-span-1 bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-bold text-gray-800">Lowongan Terbaru</h2>
+                        <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">Lihat Semua</button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="job-card p-4 border border-gray-200 rounded-lg hover:border-blue-300"
+                            data-job-id="1">
+                            <div class="flex justify-between">
+                                <h3 class="font-medium text-gray-800">Senior Web Developer</h3>
+                                <span
+                                    class="text-xs font-medium px-2 py-1 bg-green-100 text-green-800 rounded-full">Full-time</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">PT Teknologi Maju</p>
+                            <div class="flex justify-between mt-3">
+                                <span class="text-xs text-gray-500"><i class="fas fa-map-marker-alt mr-1"></i>
+                                    Jakarta</span>
+                                <span class="text-xs text-gray-500">Ditambahkan 2 hari lalu</span>
+                            </div>
+                        </div>
+
+                        <div class="job-card p-4 border border-gray-200 rounded-lg hover:border-blue-300"
+                            data-job-id="2">
+                            <div class="flex justify-between">
+                                <h3 class="font-medium text-gray-800">UI/UX Designer</h3>
+                                <span
+                                    class="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-800 rounded-full">Remote</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Kreasi Digital</p>
+                            <div class="flex justify-between mt-3">
+                                <span class="text-xs text-gray-500"><i class="fas fa-map-marker-alt mr-1"></i>
+                                    Bandung</span>
+                                <span class="text-xs text-gray-500">Ditambahkan 3 hari lalu</span>
+                            </div>
+                        </div>
+
+                        <div class="job-card p-4 border border-gray-200 rounded-lg hover:border-blue-300"
+                            data-job-id="3">
+                            <div class="flex justify-between">
+                                <h3 class="font-medium text-gray-800">Data Analyst</h3>
+                                <span
+                                    class="text-xs font-medium px-2 py-1 bg-purple-100 text-purple-800 rounded-full">Hybrid</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Analitika Indonesia</p>
+                            <div class="flex justify-between mt-3">
+                                <span class="text-xs text-gray-500"><i class="fas fa-map-marker-alt mr-1"></i>
+                                    Surabaya</span>
+                                <span class="text-xs text-gray-500">Ditambahkan 5 hari lalu</span>
+                            </div>
+                        </div>
+
+                        <div class="job-card p-4 border border-gray-200 rounded-lg hover:border-blue-300"
+                            data-job-id="4">
+                            <div class="flex justify-between">
+                                <h3 class="font-medium text-gray-800">Marketing Manager</h3>
+                                <span
+                                    class="text-xs font-medium px-2 py-1 bg-green-100 text-green-800 rounded-full">Full-time</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Global Marketing</p>
+                            <div class="flex justify-between mt-3">
+                                <span class="text-xs text-gray-500"><i class="fas fa-map-marker-alt mr-1"></i>
+                                    Jakarta</span>
+                                <span class="text-xs text-gray-500">Ditambahkan 1 minggu lalu</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="col-span-1 bg-white p-6 rounded-xl shadow-md">
+                    <h2 class="text-lg font-bold text-gray-800 mb-4">Statistik Perusahaan</h2>
+
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Aplikasi per Departemen</h3>
+                        <div class="chart-container">
+                            <div class="chart-bar" style="left: 20px; height: 70%; width: 40px;" data-value="70">
+                                <div class="text-xs text-center mt-2 font-medium">IT</div>
+                                <div class="absolute -top-6 left-0 right-0 text-center text-xs font-medium">70%</div>
+                            </div>
+                            <div class="chart-bar" style="left: 80px; height: 50%; width: 40px;" data-value="50">
+                                <div class="text-xs text-center mt-2 font-medium">HR</div>
+                                <div class="absolute -top-6 left-0 right-0 text-center text-xs font-medium">50%</div>
+                            </div>
+                            <div class="chart-bar" style="left: 140px; height: 85%; width: 40px;" data-value="85">
+                                <div class="text-xs text-center mt-2 font-medium">Sales</div>
+                                <div class="absolute -top-6 left-0 right-0 text-center text-xs font-medium">85%</div>
+                            </div>
+                            <div class="chart-bar" style="left: 200px; height: 40%; width: 40px;" data-value="40">
+                                <div class="text-xs text-center mt-2 font-medium">Mkt</div>
+                                <div class="absolute -top-6 left-0 right-0 text-center text-xs font-medium">40%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Status Rekrutmen</h3>
+                        <div class="flex justify-around">
+                            <div class="text-center">
+                                <svg class="progress-ring" width="90" height="90">
+                                    <circle class="progress-ring-circle" stroke="#e5e7eb" stroke-width="8"
+                                        fill="transparent" r="36" cx="45" cy="45" />
+                                    <circle class="progress-ring-circle" stroke="#3b82f6" stroke-width="8"
+                                        fill="transparent" r="36" cx="45" cy="45" style="stroke-dashoffset: 75.36;" />
+                                </svg>
+                                <p class="text-sm font-medium mt-2">Proses</p>
+                                <p class="text-lg font-bold text-blue-600">70%</p>
+                            </div>
+                            <div class="text-center">
+                                <svg class="progress-ring" width="90" height="90">
+                                    <circle class="progress-ring-circle" stroke="#e5e7eb" stroke-width="8"
+                                        fill="transparent" r="36" cx="45" cy="45" />
+                                    <circle class="progress-ring-circle" stroke="#10b981" stroke-width="8"
+                                        fill="transparent" r="36" cx="45" cy="45" style="stroke-dashoffset: 125.6;" />
+                                </svg>
+                                <p class="text-sm font-medium mt-2">Selesai</p>
+                                <p class="text-lg font-bold text-green-600">50%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Sumber Kandidat</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 65%"></div>
+                                </div>
+                                <span class="text-xs font-medium text-gray-700 ml-2 w-12">65%</span>
+                                <span class="text-xs text-gray-600 ml-2">LinkedIn</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 25%"></div>
+                                </div>
+                                <span class="text-xs font-medium text-gray-700 ml-2 w-12">25%</span>
+                                <span class="text-xs text-gray-600 ml-2">JobStreet</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 10%"></div>
+                                </div>
+                                <span class="text-xs font-medium text-gray-700 ml-2 w-12">10%</span>
+                                <span class="text-xs text-gray-600 ml-2">Referral</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Timeline Step Modal -->
+    <div id="timelineModal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white rounded-xl shadow-xl max-w-md w-full mx-4 transform transition-all">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 id="timelineModalTitle" class="text-lg font-bold text-gray-800"></h3>
+                    <button class="close-modal text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="timelineModalContent" class="mb-6">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+                <div class="flex justify-end">
+                    <button
+                        class="close-modal bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg transition">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Detail Modal -->
+    <div id="jobModal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white rounded-xl shadow-xl max-w-lg w-full mx-4 transform transition-all">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 id="jobModalTitle" class="text-lg font-bold text-gray-800"></h3>
+                    <button class="close-modal text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="jobModalContent" class="mb-6">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+                <div class="flex justify-end space-x-3">
+                    <button
+                        class="close-modal bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg transition">
+                        Tutup
+                    </button>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">
+                        Edit Lowongan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Job Modal -->
+    <div id="addJobModal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white rounded-xl shadow-xl max-w-2xl w-full mx-4 transform transition-all">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold text-gray-800">Tambah Lowongan Baru</h3>
+                    <button class="close-modal text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Judul Pekerjaan</label>
+                            <input type="text"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Contoh: Senior Web Developer">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Perusahaan</label>
+                            <select
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Pilih Perusahaan</option>
+                                <option value="1">PT Teknologi Maju</option>
+                                <option value="2">Kreasi Digital</option>
+                                <option value="3">Analitika Indonesia</option>
+                                <option value="4">Global Marketing</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Tipe Pekerjaan</label>
+                            <select
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Pilih Tipe</option>
+                                <option value="full-time">Full-time</option>
+                                <option value="part-time">Part-time</option>
+                                <option value="contract">Contract</option>
+                                <option value="remote">Remote</option>
+                                <option value="hybrid">Hybrid</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Lokasi</label>
+                            <input type="text"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Contoh: Jakarta">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Departemen</label>
+                            <select
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Pilih Departemen</option>
+                                <option value="it">IT & Development</option>
+                                <option value="hr">Human Resources</option>
+                                <option value="sales">Sales</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="finance">Finance</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi Pekerjaan</label>
+                        <textarea
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            rows="4" placeholder="Masukkan deskripsi pekerjaan..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Kualifikasi</label>
+                        <textarea
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            rows="3" placeholder="Masukkan kualifikasi yang dibutuhkan..."></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Rentang Gaji (Opsional)</label>
+                            <div class="flex items-center space-x-2">
+                                <input type="text"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="Minimum">
+                                <span>-</span>
+                                <input type="text"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="Maksimum">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Penutupan</label>
+                            <input type="date"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button type="button"
+                            class="close-modal bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg transition">
+                            Batal
+                        </button>
+                        <button type="button"
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">
+                            Simpan Lowongan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Company Modal -->
+    <div id="addCompanyModal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white rounded-xl shadow-xl max-w-2xl w-full mx-4 transform transition-all">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold text-gray-800">Tambah Perusahaan Baru</h3>
+                    <button class="close-modal text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nama Perusahaan</label>
+                            <input type="text"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Contoh: PT Teknologi Maju">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Industri</label>
+                            <select
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Pilih Industri</option>
+                                <option value="tech">Teknologi</option>
+                                <option value="finance">Keuangan</option>
+                                <option value="health">Kesehatan</option>
+                                <option value="education">Pendidikan</option>
+                                <option value="retail">Retail</option>
+                                <option value="manufacturing">Manufaktur</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
+                        <input type="text"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Alamat lengkap perusahaan">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Kota</label>
+                            <input type="text"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Contoh: Jakarta">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Provinsi</label>
+                            <input type="text"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Contoh: DKI Jakarta">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Kode Pos</label>
+                            <input type="text"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Contoh: 12345">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Email Kontak</label>
+                            <input type="email"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Contoh: info@perusahaan.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Telepon</label>
+                            <input type="tel"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Contoh: 021-1234567">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Website</label>
+                        <input type="url"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Contoh: https://www.perusahaan.com">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi Perusahaan</label>
+                        <textarea
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            rows="3" placeholder="Masukkan deskripsi singkat tentang perusahaan..."></textarea>
+                    </div>
+
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button type="button"
+                            class="close-modal bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg transition">
+                            Batal
+                        </button>
+                        <button type="button"
+                            class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
+                            Simpan Perusahaan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Timeline Step Modal
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const timelineModal = document.getElementById('timelineModal');
+        const timelineModalTitle = document.getElementById('timelineModalTitle');
+        const timelineModalContent = document.getElementById('timelineModalContent');
+
+        const timelineStepContent = {
+            1: {
+                title: "Publikasi Lowongan",
+                content: `
+                    <p class="text-gray-700 mb-4">Tahap ini meliputi pembuatan dan publikasi lowongan kerja ke berbagai platform rekrutmen.</p>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-blue-700 mb-2">Proses:</h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Finalisasi deskripsi pekerjaan dengan departemen terkait</li>
+                            <li>Pembuatan konten lowongan yang menarik</li>
+                            <li>Publikasi ke platform rekrutmen (LinkedIn, JobStreet, dll)</li>
+                            <li>Promosi lowongan melalui media sosial perusahaan</li>
+                        </ul>
+                    </div>
+                `
+            },
+            2: {
+                title: "Penyaringan CV",
+                content: `
+                    <p class="text-gray-700 mb-4">Tahap ini meliputi proses seleksi awal berdasarkan kualifikasi yang tertera pada CV kandidat.</p>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-blue-700 mb-2">Proses:</h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Pengumpulan CV dari berbagai sumber</li>
+                            <li>Penyaringan berdasarkan kriteria minimum</li>
+                            <li>Evaluasi kesesuaian pengalaman dan keterampilan</li>
+                            <li>Pemilihan kandidat untuk tahap selanjutnya</li>
+                        </ul>
+                    </div>
+                `
+            },
+            3: {
+                title: "Tes Kemampuan",
+                content: `
+                    <p class="text-gray-700 mb-4">Tahap ini meliputi pengujian kemampuan teknis dan non-teknis kandidat sesuai dengan kebutuhan posisi.</p>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-blue-700 mb-2">Proses:</h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Persiapan materi tes sesuai posisi</li>
+                            <li>Pelaksanaan tes teknis (online/offline)</li>
+                            <li>Evaluasi hasil tes oleh tim teknis</li>
+                            <li>Pemilihan kandidat untuk tahap wawancara</li>
+                        </ul>
+                    </div>
+                `
+            },
+            4: {
+                title: "Wawancara",
+                content: `
+                    <p class="text-gray-700 mb-4">Tahap ini meliputi proses wawancara dengan tim HR dan manajer departemen terkait.</p>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-blue-700 mb-2">Proses:</h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Wawancara awal dengan tim HR</li>
+                            <li>Wawancara teknis dengan manajer departemen</li>
+                            <li>Wawancara dengan calon rekan kerja (opsional)</li>
+                            <li>Evaluasi hasil wawancara dan diskusi final</li>
+                        </ul>
+                    </div>
+                `
+            },
+            5: {
+                title: "Penawaran Kerja",
+                content: `
+                    <p class="text-gray-700 mb-4">Tahap ini meliputi proses negosiasi dan penawaran resmi kepada kandidat terpilih.</p>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-blue-700 mb-2">Proses:</h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Persiapan paket kompensasi dan benefit</li>
+                            <li>Diskusi internal mengenai penawaran</li>
+                            <li>Komunikasi penawaran kepada kandidat</li>
+                            <li>Negosiasi dan finalisasi kontrak</li>
+                            <li>Onboarding karyawan baru</li>
+                        </ul>
+                    </div>
+                `
+            }
+        };
+
+        timelineItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const step = item.getAttribute('data-step');
+                const stepData = timelineStepContent[step];
+
+                timelineModalTitle.textContent = stepData.title;
+                timelineModalContent.innerHTML = stepData.content;
+
+                timelineModal.classList.add('active');
+                timelineModalContent.classList.add('fade-in');
+            });
+        });
+
+        // Job Detail Modal
+        const jobCards = document.querySelectorAll('.job-card');
+        const jobModal = document.getElementById('jobModal');
+        const jobModalTitle = document.getElementById('jobModalTitle');
+        const jobModalContent = document.getElementById('jobModalContent');
+
+        const jobDetails = {
+            1: {
+                title: "Senior Web Developer",
+                company: "PT Teknologi Maju",
+                location: "Jakarta",
+                type: "Full-time",
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700">Deskripsi Pekerjaan:</h4>
+                            <p class="text-gray-600 mt-1">Kami mencari Senior Web Developer yang berpengalaman untuk bergabung dengan tim pengembangan kami. Anda akan bertanggung jawab untuk merancang, mengembangkan, dan memelihara aplikasi web perusahaan.</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700">Kualifikasi:</h4>
+                            <ul class="list-disc list-inside text-gray-600 mt-1">
+                                <li>Minimal 5 tahun pengalaman dalam pengembangan web</li>
+                                <li>Mahir dalam HTML, CSS, JavaScript, dan framework modern</li>
+                                <li>Pengalaman dengan React, Vue, atau Angular</li>
+                                <li>Pemahaman yang kuat tentang pengembangan backend</li>
+                                <li>Kemampuan komunikasi yang baik dan dapat bekerja dalam tim</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-700">Gaji:</h4>
+                                <p class="text-gray-600 mt-1">Rp 15.000.000 - Rp 25.000.000 per bulan</p>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-700">Tanggal Penutupan:</h4>
+                                <p class="text-gray-600 mt-1">30 Juni 2023</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700">Status Aplikasi:</h4>
+                            <div class="mt-2">
+                                <div class="flex items-center">
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 75%"></div>
+                                    </div>
+                                    <span class="text-xs font-medium text-gray-700 ml-2">75%</span>
+                                </div>
+                                <div class="flex justify-between mt-1">
+                                    <span class="text-xs text-gray-500">45 Aplikasi</span>
+                                    <span class="text-xs text-gray-500">12 Wawancara</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            2: {
+                title: "UI/UX Designer",
+                company: "Kreasi Digital",
+                location: "Bandung",
+                type: "Remote",
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700">Deskripsi Pekerjaan:</h4>
+                            <p class="text-gray-600 mt-1">Kami mencari UI/UX Designer yang kreatif untuk merancang antarmuka pengguna yang menarik dan fungsional untuk aplikasi web dan mobile kami.</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700">Kualifikasi:</h4>
+                            <ul class="list-disc list-inside text-gray-600 mt-1">
+                                <li>Minimal 3 tahun pengalaman dalam UI/UX design</li>
+                                <li>Portofolio yang menunjukkan karya desain yang kuat</li>
+                                <li>Mahir menggunakan Figma, Adobe XD, atau Sketch</li>
+                                <li>Pemahaman yang baik tentang prinsip desain dan UX</li>
+                                <li>Kemampuan untuk berkolaborasi dengan tim pengembangan</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-700">Gaji:</h4>
+                                <p class="text-gray-600 mt-1">Rp 10.000.000 - Rp 18.000.000 per bulan</p>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-700">Tanggal Penutupan:</h4>
+                                <p class="text-gray-600 mt-1">15 Juli 2023</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700">Status Aplikasi:</h4>
+                            <div class="mt-2">
+                                <div class="flex items-center">
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 60%"></div>
+                                    </div>
+                                    <span class="text-xs font-medium text-gray-700 ml-2">60%</span>
+                                </div>
+                                <div class="flex justify-between mt-1">
+                                    <span class="text-xs text-gray-500">32 Aplikasi</span>
+                                    <span class="text-xs text-gray-500">8 Wawancara</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            3: {
+                title: "Data Analyst",
+                company: "Analitika Indonesia",
+                location: "Surabaya",
+                type: "Hybrid",
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700">Deskripsi Pekerjaan:</h4>
+                            <p class="text-gray-600 mt-1">Kami mencari Data Analyst yang berpengalaman untuk menganalisis data bisnis, membuat laporan, dan memberikan wawasan yang dapat ditindaklanjuti untuk meningkatkan kinerja perusahaan.</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700">Kualifikasi:</h4>
+                            <ul class="list-disc list-inside text-gray-600 mt-1">
+                                <li>Minimal 2 tahun pengalaman sebagai Data Analyst</li>
+                                <li>Mahir dalam SQL, Excel, dan alat visualisasi data</li>
+                                <li>Pengalaman dengan Python atau R untuk analisis data</li>
+                                <li>Kemampuan untuk mengkomunikasikan temuan dengan jelas</li>
+                                <li>Gelar dalam Statistik, Matematika, atau bidang terkait</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-700">Gaji:</h4>
+                                <p class="text-gray-600 mt-1">Rp 12.000.000 - Rp 20.000.000 per bulan</p>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-700">Tanggal Penutupan:</h4>
+                                <p class="text-gray-600 mt-1">10 Juli 2023</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700">Status Aplikasi:</h4>
+                            <div class="mt-2">
+                                <div class="flex items-center">
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 40%"></div>
+                                    </div>
+                                    <span class="text-xs font-medium text-gray-700 ml-2">40%</span>
+                                </div>
+                                <div class="flex justify-between mt-1">
+                                    <span class="text-xs text-gray-500">28 Aplikasi</span>
+                                    <span class="text-xs text-gray-500">5 Wawancara</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            4: {
+                title: "Marketing Manager",
+                company: "Global Marketing",
+                location: "Jakarta",
+                type: "Full-time",
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700">Deskripsi Pekerjaan:</h4>
+                            <p class="text-gray-600 mt-1">Kami mencari Marketing Manager yang berpengalaman untuk memimpin strategi pemasaran perusahaan, mengembangkan kampanye, dan meningkatkan brand awareness.</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700">Kualifikasi:</h4>
+                            <ul class="list-disc list-inside text-gray-600 mt-1">
+                                <li>Minimal 5 tahun pengalaman dalam pemasaran</li>
+                                <li>Pengalaman memimpin tim pemasaran</li>
+                                <li>Pemahaman yang kuat tentang digital marketing</li>
+                                <li>Kemampuan analitis dan strategis yang baik</li>
+                                <li>Gelar dalam Pemasaran, Komunikasi, atau bidang terkait</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-700">Gaji:</h4>
+                                <p class="text-gray-600 mt-1">Rp 18.000.000 - Rp 30.000.000 per bulan</p>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-700">Tanggal Penutupan:</h4>
+                                <p class="text-gray-600 mt-1">20 Juli 2023</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700">Status Aplikasi:</h4>
+                            <div class="mt-2">
+                                <div class="flex items-center">
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 25%"></div>
+                                    </div>
+                                    <span class="text-xs font-medium text-gray-700 ml-2">25%</span>
+                                </div>
+                                <div class="flex justify-between mt-1">
+                                    <span class="text-xs text-gray-500">15 Aplikasi</span>
+                                    <span class="text-xs text-gray-500">3 Wawancara</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        jobCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const jobId = card.getAttribute('data-job-id');
+                const jobData = jobDetails[jobId];
+
+                jobModalTitle.textContent = jobData.title;
+                jobModalContent.innerHTML = jobData.content;
+
+                jobModal.classList.add('active');
+                jobModalContent.classList.add('fade-in');
+            });
+        });
+
+        // Add Job Modal
+        const btnAddJob = document.getElementById('btnAddJob');
+        const addJobModal = document.getElementById('addJobModal');
+
+        btnAddJob.addEventListener('click', () => {
+            addJobModal.classList.add('active');
+        });
+
+        // Add Company Modal
+        const btnAddCompany = document.getElementById('btnAddCompany');
+        const addCompanyModal = document.getElementById('addCompanyModal');
+
+        btnAddCompany.addEventListener('click', () => {
+            addCompanyModal.classList.add('active');
+        });
+
+        // Close Modals
+        const closeButtons = document.querySelectorAll('.close-modal');
+
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+            });
+        });
+
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate progress rings
+            const progressRings = document.querySelectorAll('.progress-ring-circle');
+            progressRings.forEach(ring => {
+                const radius = ring.r.baseVal.value;
+                const circumference = radius * 2 * Math.PI;
+
+                ring.style.strokeDasharray = `${circumference} ${circumference}`;
+
+                function setProgress(percent) {
+                    const offset = circumference - percent / 100 * circumference;
+                    ring.style.strokeDashoffset = offset;
+                }
+
+                // Get the percentage from the stroke color
+                const isBlue = ring.getAttribute('stroke') === '#3b82f6';
+                setProgress(isBlue ? 70 : 50);
+            });
+        });
+    </script>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'95098ee1c3479cb3',t:'MTc1MDA2OTA1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
+</html>
